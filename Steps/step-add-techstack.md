@@ -46,10 +46,18 @@ Deine Aufgaben:
    coverage/
    .turbo/
 
-4. GitHub Push
+4. UI Modularisierung / Refactoring (für importierte Monolithen)
+   Sollten Screens als HTML/JSX-Monolithe importiert worden sein (z. B. aus UI-Tools wie Stitch):
+   - Zerlege die riesigen Component-Dateien (aus `src/app/` o. Ä.) in saubere, kleine React-Komponenten.
+   - Extrahiere Layout-Teile (Header, Footer, Navbar) nach `src/components/layout/`.
+   - Extrahiere wiederverwendbare UI-Elemente (Button, Card, Input) nach `src/components/ui/`.
+   - Extrahiere funktionale Seiten-Abschnitte (HeroSection, Grid) nach `src/components/sections/`.
+   - Bereinige die Imports und exportiere saubere Haupt-Seiten.
+
+5. GitHub Push
    Repo initialisieren und pushen.
 
 Wichtig:
 - DNA Bereich 3 (Seiten-Baum) wird NICHT von dir erstellt
 - docs/maps/ wird NICHT von dir erstellt
-- Beides übernimmt step-generate-maps.md nach der UI-Fertigstellung
+- Beides übernimmt step-generate-maps.md nach der UI-Fertigstellung (und nach dem Refactoring)
