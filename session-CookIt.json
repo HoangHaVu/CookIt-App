@@ -1,0 +1,50 @@
+{
+  "project": "CookIt",
+  "app_name": "Cooksy",
+  "path": "/Users/hoanghavu/myprojects/CookIt!/",
+  "last_updated": "2026-03-09T00:00:00",
+  "version": "0.1.0",
+  "status": "active",
+  "current_phase": "Phase 1 — Core Kochbuch MVP (Setup abgeschlossen, Implementierung ausstehend)",
+  "stack": {
+    "framework": "React + Vite",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS v3",
+    "package_manager": "npm",
+    "auth_backend": null,
+    "deployment": null
+  },
+  "structure": {
+    "screens": "src/app/ (32 Dateien)",
+    "components": "src/components/layout/, sections/, ui/",
+    "maps": "docs/maps/ (34 Dateien)"
+  },
+  "progress": {
+    "completed": [
+      "Projekt-Setup: React + Vite + TypeScript + Tailwind CSS v3",
+      "32 Screen-Dateien in src/app/ angelegt",
+      "Komponenten-Struktur src/components/ angelegt",
+      "DNA-Datei mit Bereich 1+2+3 befüllt",
+      "ZUKUNFT-Datei mit Phase 2–8 Roadmap erstellt",
+      "34 Maps in docs/maps/ generiert"
+    ],
+    "in_progress": [],
+    "pending": [
+      "React Router v6 konfigurieren (Routes aus map-navigation.md)",
+      "State Management einrichten (Zustand oder Context API)",
+      "Auth-Flow implementieren (Login → Homepage)",
+      "Mock-Daten für Rezepte + User anlegen",
+      "Phase 1 Core Screens verdrahten (Homepage, RecipeDetail, CreateRecipe, Profile, Search)"
+    ]
+  },
+  "open_decisions": [
+    "Backend: Supabase vs. Firebase vs. Mock-only für MVP?",
+    "State Management: Zustand vs. Context API vs. TanStack Query?"
+  ],
+  "next_steps": [
+    "React Router konfigurieren",
+    "State Management wählen und aufsetzen",
+    "Auth-Flow verdrahten"
+  ],
+  "active_map": "docs/maps/map-navigation.md"
+}
