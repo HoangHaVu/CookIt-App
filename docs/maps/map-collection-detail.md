@@ -5,8 +5,8 @@
 Route: /collectiondetail
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/CollectionDetail.tsx
-Props: None (Generated Monolith)
-Imports: React
+### RecipeThumbnail
+Datei: src/components/ui/RecipeThumbnail.tsx

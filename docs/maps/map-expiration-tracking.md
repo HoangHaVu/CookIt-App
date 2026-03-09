@@ -5,8 +5,8 @@
 Route: /expirationtracking
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/ExpirationTracking.tsx
-Props: None (Generated Monolith)
-Imports: React
+### ExpirationItem
+Datei: src/components/ui/ExpirationItem.tsx

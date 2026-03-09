@@ -1,6 +1,6 @@
 import { PageHeader } from '../components/layout/PageHeader';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
 import { ExpirationItem } from '../components/ui/ExpirationItem';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 const EXPIRED_ITEMS = [
   {
@@ -40,14 +40,6 @@ const SOON_ITEMS = [
   },
 ];
 
-const EXPIRATION_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'planner', icon: 'calendar_today', label: 'Planner', path: '#' },
-  { id: 'recipes', icon: 'menu_book', label: 'Recipes', path: '#' },
-  { id: 'pantry', icon: 'inventory_2', label: 'Pantry', path: '/pantryinventory', fill: true },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
-
 export default function ExpirationTracking() {
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
@@ -68,7 +60,7 @@ export default function ExpirationTracking() {
         </div>
       </div>
 
-      <main className="flex-1 overflow-y-auto p-4 space-y-8 pb-32">
+      <main className="flex-1 overflow-y-auto p-4 space-y-8 pb-48">
         <section>
           <div className="flex items-center justify-between mb-4 px-1">
             <h2 className="text-red-600 dark:text-red-400 font-black uppercase tracking-widest text-xs flex items-center gap-2">
@@ -117,7 +109,7 @@ export default function ExpirationTracking() {
         <span className="material-symbols-outlined text-3xl">add</span>
       </button>
 
-      <ModuleNav activeTab="pantry" variant="pantry" items={EXPIRATION_NAV} />
+      <AppNavigation activeTab="home" />
     </div>
   );
 }

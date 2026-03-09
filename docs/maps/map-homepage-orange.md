@@ -5,8 +5,12 @@
 Route: /homepageorange
 
 ## Sections & Komponenten
+### SearchHeader
+Datei: src/components/layout/SearchHeader.tsx
 
-### Main View
-Datei: src/app/HomepageOrange.tsx
-Props: None (Generated Monolith)
-Imports: React
+### CategoryScroll
+Datei: src/components/sections/CategoryScroll.tsx
+
+### RecommendedRecipes
+Datei: src/components/sections/RecommendedRecipes.tsx
+Imports: RecipeCard (→ map-ui-shared.md)

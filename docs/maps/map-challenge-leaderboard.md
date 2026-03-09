@@ -5,8 +5,8 @@
 Route: /challengeleaderboard
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/ChallengeLeaderboard.tsx
-Props: None (Generated Monolith)
-Imports: React
+### ChallengePodium
+Datei: src/components/sections/ChallengePodium.tsx

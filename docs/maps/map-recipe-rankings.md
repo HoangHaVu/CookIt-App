@@ -5,8 +5,12 @@
 Route: /reciperankings
 
 ## Sections & Komponenten
+### RankingHeader
+Datei: src/components/layout/RankingHeader.tsx
 
-### Main View
-Datei: src/app/RecipeRankings.tsx
-Props: None (Generated Monolith)
-Imports: React
+### RankingCard
+Datei: src/components/ui/RankingCard.tsx
+
+### RankingRow
+Datei: src/components/ui/RankingRow.tsx
+泛型: GridRecipeCard (→ map-ui-shared.md)

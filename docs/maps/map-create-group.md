@@ -5,8 +5,5 @@
 Route: /creategroup
 
 ## Sections & Komponenten
-
-### Main View
-Datei: src/app/CreateGroup.tsx
-Props: None (Generated Monolith)
-Imports: React
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx

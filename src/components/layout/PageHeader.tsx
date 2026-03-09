@@ -5,13 +5,17 @@ interface PageHeaderProps {
     showBackButton?: boolean;
     showShareButton?: boolean;
     onBack?: () => void;
+    transparent?: boolean;
+    rightActionIcon?: string;
 }
 
 export function PageHeader({
     title,
     showBackButton = true,
     showShareButton = true,
-    onBack
+    onBack,
+    transparent = false,
+    rightActionIcon = 'share'
 }: PageHeaderProps) {
     const navigate = useNavigate();
 
@@ -24,28 +28,32 @@ export function PageHeader({
     };
 
     return (
-        <header className="flex items-center p-6 justify-between bg-brand-green text-white curved-header relative z-10 shadow-lg shadow-brand-green/10">
+        <header className={`flex items-center p-6 justify-between relative z-10 transition-all ${transparent
+                ? 'bg-transparent text-white'
+                : 'bg-brand-green text-white curved-header shadow-lg shadow-brand-green/10'
+            }`}>
             {showBackButton ? (
                 <button
-                    className="size-10 flex items-center justify-center rounded-full transition-colors text-white/80 hover:bg-white/10"
+                    className={`size-12 flex items-center justify-center rounded-2xl transition-all active:scale-95 ${transparent ? 'hover:bg-white/10' : 'hover:bg-white/10'
+                        }`}
                     onClick={handleBack}
                 >
-                    <span className="material-symbols-outlined">arrow_back</span>
+                    <span className="material-symbols-outlined font-black">arrow_back</span>
                 </button>
             ) : (
-                <div className="size-10" />
+                <div className="size-12" />
             )}
 
-            <h1 className="text-lg font-bold leading-tight tracking-tight flex-1 text-center truncate px-2">
+            <h1 className="text-xl font-black leading-tight tracking-tight flex-1 text-center truncate px-4 uppercase">
                 {title}
             </h1>
 
             {showShareButton ? (
-                <button className="size-10 flex items-center justify-center rounded-full transition-colors text-white/80 hover:bg-white/10">
-                    <span className="material-symbols-outlined">share</span>
+                <button className="size-12 flex items-center justify-center rounded-2xl transition-all active:scale-95 hover:bg-white/10">
+                    <span className="material-symbols-outlined font-black">{rightActionIcon}</span>
                 </button>
             ) : (
-                <div className="size-10" />
+                <div className="size-12" />
             )}
         </header>
     );

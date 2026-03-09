@@ -5,8 +5,5 @@
 Route: /createchallenge
 
 ## Sections & Komponenten
-
-### Main View
-Datei: src/app/CreateChallenge.tsx
-Props: None (Generated Monolith)
-Imports: React
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx

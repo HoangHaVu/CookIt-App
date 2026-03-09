@@ -5,8 +5,9 @@
 Route: /shoppinglist
 
 ## Sections & Komponenten
+### ShoppingHeader
+Datei: src/components/layout/ShoppingHeader.tsx
 
-### Main View
-Datei: src/app/ShoppingList.tsx
-Props: None (Generated Monolith)
-Imports: React
+### ShoppingCategory
+Datei: src/components/sections/ShoppingCategory.tsx
+Imports: ShoppingItem (→ map-ui-shared.md)

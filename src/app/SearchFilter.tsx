@@ -1,302 +1,140 @@
+import { useNavigate } from 'react-router-dom';
+import { AppNavigation } from '../components/layout/AppNavigation';
+import { RecipeThumbnail } from '../components/ui/RecipeThumbnail';
+
+const SEARCH_RESULTS = [
+  {
+    title: "Fresh Salmon Salad",
+    category: "Keto Friendly",
+    time: "15 mins",
+    imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCHQnO9jUYD9S_ouU2FlDOeEtjeFPv_x3ahmow3bnk8YsVGppc5n3_w-lQE2rSb1Z6JdxUdqssJRMfHi9_LZ0SyIbxfPQAa3gKWkpUdq7xSRdy6pZSESy7zJStf0YzDRmiC1mbJfRyxjhOKl0ACovnAgAIuCb1rO_ghRyKcnlzoeYZ5knOEtQl3nj-Q9CZDpsoolSBMdkLTHR_TrI1dv6tqCxgGekPNtwq4HpDWJeWgbLzFz-bCvmHcv9n38QzO1KVmL23okVOpR_zP",
+    isFavorite: true
+  },
+  {
+    title: "Herb Garlic Pasta",
+    category: "Italian",
+    time: "25 mins",
+    imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMJ0N7s4sGd72OkeODDem7IyyrW1RYzSCsl0gSdEZSRlRvV6hyCg4ySRyLZOwonKyrBLzUzI4gv7EMIoC6Fx98Ajrrw_xaqLNdm0Us5p0qvsDoeYdjN0nVEM_F3OVWhdK9Ka4CX8tsxFhfW493hVK05uMvA2DGb7fVzRMU20F-C8yzZJcmVFedZHfuA6WqBPKWnaMHEi8X6-isEkTiGdeoqaOHQX8p_WwUa9w6I_YUR1dJg10By1fMRwMD5W0FECSk5EdZODCQl9NX",
+    isFavorite: false
+  },
+  {
+    title: "Avocado Delight",
+    category: "Breakfast",
+    time: "10 mins",
+    imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCHTV4Hema_Xa9NnoU2fZczZUS8vtK1Y91wH8qk-P_WlLkrMmjIHc5P_JyCBjwARh0LCT7nhAjKDGhjZMz2hN0uDD_9lacknnwDNckU7nFttacVovt5tRDBCFWAGGx9WIQX5tgGMNpn4nkLsYKbZ-kt2ljMkIyz0tS_RLjal7i0wOUnkS47olc3N-cgCAfTSAnaIQAYbLDVuXEKoqW8l2LvkLFdz1v7pG_-lWTBtWX4laxc6nDOuMfaqHKDGI4tf4ZcGRL8AnzhAKmf",
+    isFavorite: true
+  },
+  {
+    title: "Harvest Grain Bowl",
+    category: "Vegan",
+    time: "20 mins",
+    imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsZ-_sZLEfBmMlSvVxs4cuaRMDQeTfHmbXhj13J7dYbgWDBBuGboTzL18Do2KFk6d74IJiYwK6EqqJRY86J96QiS1WNtjhruW5apDtnVQIEP-SXKTG72AY02ymp3kHVNTQ3VFcJbt88HazIEOsNYX8DoBZ7OUaYyugSiIW5WS20nYULudvUciMkhMnz7c47XcV2-S39FcEpmLGojW_vDO4Mzt-44hGC-490KVN9ghamGc5xkO6K7QsZL-KGBzA9f6oSGI7ybK8ej83",
+    isFavorite: false
+  },
+  {
+    title: "Fluffy Buttermilk Stack",
+    category: "Brunch",
+    time: "30 mins",
+    imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgaJttJpAkVk5aS5paJOyUzq2zr-5QJ0cvNBhT3s_lWD_AnVeXzKOUF00jnZbqV9mdy2TpWpfgJhGxFxy7EBQdcvrB5_5DG9li2doKrjKDC490HrdAt3w4fqkcadFM3KZ95G38ak0Cj2lgdbdU5D2QYxR8bESG9LmqE7Tilw8fFCTf6YOi4fEPWdJWH4_ba7fwZZWmU7OOadodAzZDW7Mwf6Ugswn5Ny_4D4ngWreZavQkgj5e5sEPoq54D5foUKgPV2F9WGvZWNUc",
+    isFavorite: false
+  },
+  {
+    title: "Margherita Pizza",
+    category: "Classic",
+    time: "45 mins",
+    imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDur6HJtrZTT8wq2deyx8B5YnKmeEsjA4k6Ir6dECT9BQmO80Lvj_iNJdr_niXtGTk_5SmlSgHE_gMZSXMg8A_suZLF3PArmCWU1TiM_BirB-NzAK3RQ3sJyJM8OC5F77h8oxzpixTjFRrxjHRML1C4DW8ve1jVwXXNseHOccOarVukR6c08Ln75jgDKyWr2RAVWZJ9cBdLCclXerBZUY9keUsNwnu3vxZBphZZA_4dZZNCOFBO_beEOo5Vcniq6sgiqB6wB1Cg2R8a",
+    isFavorite: true
+  }
+];
+
 export default function SearchFilter() {
+  const navigate = useNavigate();
+
   return (
-    <>
-      <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-        <header className="bg-deep-green text-white p-4 sticky top-0 z-10 shadow-md">
-          <div className="flex items-center justify-between max-w-4xl mx-auto">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined cursor-pointer">
-                arrow_back
-              </span>
-              <h1 className="text-xl font-bold tracking-tight">
-                Explore Recipes
-              </h1>
-            </div>
-            <button className="p-2 bg-white/10 rounded-full">
-              <span className="material-symbols-outlined">tune</span>
-            </button>
-          </div>
-        </header>
-
-        <div className="px-4 py-6 bg-deep-green/5 dark:bg-deep-green/20 border-b border-deep-green/10">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex gap-2">
-              <label className="flex flex-col flex-1 h-14">
-                <div className="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm bg-white dark:bg-slate-800">
-                  <div className="text-slate-400 flex items-center justify-center pl-4 rounded-l-xl">
-                    <span className="material-symbols-outlined">search</span>
-                  </div>
-                  <input
-                    className="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-slate-400 px-4 text-base font-normal leading-normal"
-                    placeholder="Search ingredients, cuisines..."
-                    value=""
-                  />
-                </div>
-              </label>
-              <button className="bg-primary text-white rounded-xl px-6 h-14 flex items-center justify-center font-bold shadow-lg hover:brightness-110 active:scale-95 transition-all">
-                Search
-              </button>
-            </div>
-
-            <div className="mt-6">
-              <h3 className="text-deep-green dark:text-sage-green text-sm font-bold uppercase tracking-wider mb-3">
-                Refine by
-              </h3>
-              <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-                <button className="flex h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-sage-green text-deep-green px-5 font-semibold text-sm border border-deep-green/10 whitespace-nowrap">
-                  Diet: Keto{' '}
-                  <span className="material-symbols-outlined text-sm">
-                    expand_more
-                  </span>
-                </button>
-                <button className="flex h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-sage-green text-deep-green px-5 font-semibold text-sm border border-deep-green/10 whitespace-nowrap">
-                  Time: &lt; 30m{' '}
-                  <span className="material-symbols-outlined text-sm">
-                    expand_more
-                  </span>
-                </button>
-                <button className="flex h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-sage-green text-deep-green px-5 font-semibold text-sm border border-deep-green/10 whitespace-nowrap">
-                  Difficulty: Easy{' '}
-                  <span className="material-symbols-outlined text-sm">
-                    expand_more
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
+    <div className="relative flex min-h-screen w-full flex-col max-w-4xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+      {/* Search Header */}
+      <section className="bg-brand-green text-white pb-32 px-8 pt-16 rounded-b-[4rem] shadow-2xl relative z-10">
+        <div className="flex items-center justify-between mb-10">
+          <button
+            onClick={() => navigate(-1)}
+            className="size-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-xl transition-all active:scale-95"
+          >
+            <span className="material-symbols-outlined text-white font-black">arrow_back</span>
+          </button>
+          <h2 className="text-2xl font-black uppercase tracking-tighter italic">Explore <span className="text-primary">Recipes</span></h2>
+          <button className="size-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-xl transition-all active:scale-95">
+            <span className="material-symbols-outlined text-white font-black">tune</span>
+          </button>
         </div>
 
-        <main className="flex-1 p-4 max-w-4xl mx-auto w-full">
-          <div className="flex justify-between items-center mb-6">
-            <p className="text-slate-500 dark:text-slate-400 font-medium">
-              124 results found
-            </p>
-            <div className="flex items-center gap-2 text-deep-green font-semibold cursor-pointer">
-              <span>Newest first</span>
-              <span className="material-symbols-outlined">swap_vert</span>
+        <div className="absolute -bottom-10 left-8 right-8 z-20">
+          <div className="flex items-center bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-[0_20px_50px_-10px_rgba(14,117,71,0.3)] p-3 border-4 border-slate-50 dark:border-slate-800 group focus-within:border-brand-green/20 transition-all">
+            <div className="flex-1 flex items-center px-6">
+              <span className="material-symbols-outlined text-slate-300 mr-4 font-black group-focus-within:text-brand-green transition-colors">search</span>
+              <input
+                className="w-full border-none focus:ring-0 text-slate-900 dark:text-slate-100 bg-transparent py-4 text-sm font-bold placeholder:text-slate-300 placeholder:uppercase placeholder:text-[10px] placeholder:tracking-widest"
+                placeholder="Search ingredients, cuisines..."
+              />
             </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
-            <div className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  data-alt="Healthy salmon salad bowl with greens"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHQnO9jUYD9S_ouU2FlDOeEtjeFPv_x3ahmow3bnk8YsVGppc5n3_w-lQE2rSb1Z6JdxUdqssJRMfHi9_LZ0SyIbxfPQAa3gKWkpUdq7xSRdy6pZSESy7zJStf0YzDRmiC1mbJfRyxjhOKl0ACovnAgAIuCb1rO_ghRyKcnlzoeYZ5knOEtQl3nj-Q9CZDpsoolSBMdkLTHR_TrI1dv6tqCxgGekPNtwq4HpDWJeWgbLzFz-bCvmHcv9n38QzO1KVmL23okVOpR_zP"
-                />
-                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full text-deep-green shadow-sm">
-                  <span className="material-symbols-outlined text-xl">
-                    favorite
-                  </span>
-                </div>
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] font-bold uppercase text-primary tracking-widest">
-                  Keto Friendly
-                </span>
-                <h4 className="font-bold text-slate-800 dark:text-slate-100 mt-1 line-clamp-1">
-                  Fresh Salmon Salad
-                </h4>
-                <div className="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400 text-xs">
-                  <span className="material-symbols-outlined text-sm">
-                    schedule
-                  </span>
-                  <span>15 mins</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  data-alt="Gourmet pasta with fresh herbs"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMJ0N7s4sGd72OkeODDem7IyyrW1RYzSCsl0gSdEZSRlRvV6hyCg4ySRyLZOwonKyrBLzUzI4gv7EMIoC6Fx98Ajrrw_xaqLNdm0Us5p0qvsDoeYdjN0nVEM_F3OVWhdK9Ka4CX8tsxFhfW493hVK05uMvA2DGb7fVzRMU20F-C8yzZJcmVFedZHfuA6WqBPKWnaMHEi8X6-isEkTiGdeoqaOHQX8p_WwUa9w6I_YUR1dJg10By1fMRwMD5W0FECSk5EdZODCQl9NX"
-                />
-                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full text-slate-300 shadow-sm">
-                  <span className="material-symbols-outlined text-xl">
-                    favorite
-                  </span>
-                </div>
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] font-bold uppercase text-primary tracking-widest">
-                  Italian
-                </span>
-                <h4 className="font-bold text-slate-800 dark:text-slate-100 mt-1 line-clamp-1">
-                  Herb Garlic Pasta
-                </h4>
-                <div className="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400 text-xs">
-                  <span className="material-symbols-outlined text-sm">
-                    schedule
-                  </span>
-                  <span>25 mins</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  data-alt="Avocado toast with poached egg"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHTV4Hema_Xa9NnoU2fZczZUS8vtK1Y91wH8qk-P_WlLkrMmjIHc5P_JyCBjwARh0LCT7nhAjKDGhjZMz2hN0uDD_9lacknnwDNckU7nFttacVovt5tRDBCFWAGGx9WIQX5tgGMNpn4nkLsYKbZ-kt2ljMkIyz0tS_RLjal7i0wOUnkS47olc3N-cgCAfTSAnaIQAYbLDVuXEKoqW8l2LvkLFdz1v7pG_-lWTBtWX4laxc6nDOuMfaqHKDGI4tf4ZcGRL8AnzhAKmf"
-                />
-                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full text-deep-green shadow-sm">
-                  <span className="material-symbols-outlined text-xl">
-                    favorite
-                  </span>
-                </div>
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] font-bold uppercase text-primary tracking-widest">
-                  Breakfast
-                </span>
-                <h4 className="font-bold text-slate-800 dark:text-slate-100 mt-1 line-clamp-1">
-                  Avocado Delight
-                </h4>
-                <div className="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400 text-xs">
-                  <span className="material-symbols-outlined text-sm">
-                    schedule
-                  </span>
-                  <span>10 mins</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  data-alt="Colorful mediterranean grain bowl"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsZ-_sZLEfBmMlSvVxs4cuaRMDQeTfHmbXhj13J7dYbgWDBBuGboTzL18Do2KFk6d74IJiYwK6EqqJRY86J96QiS1WNtjhruW5apDtnVQIEP-SXKTG72AY02ymp3kHVNTQ3VFcJbt88HazIEOsNYX8DoBZ7OUaYyugSiIW5WS20nYULudvUciMkhMnz7c47XcV2-S39FcEpmLGojW_vDO4Mzt-44hGC-490KVN9ghamGc5xkO6K7QsZL-KGBzA9f6oSGI7ybK8ej83"
-                />
-                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full text-slate-300 shadow-sm">
-                  <span className="material-symbols-outlined text-xl">
-                    favorite
-                  </span>
-                </div>
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] font-bold uppercase text-primary tracking-widest">
-                  Vegan
-                </span>
-                <h4 className="font-bold text-slate-800 dark:text-slate-100 mt-1 line-clamp-1">
-                  Harvest Grain Bowl
-                </h4>
-                <div className="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400 text-xs">
-                  <span className="material-symbols-outlined text-sm">
-                    schedule
-                  </span>
-                  <span>20 mins</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  data-alt="Stacked buttermilk pancakes with syrup"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgaJttJpAkVk5aS5paJOyUzq2zr-5QJ0cvNBhT3s_lWD_AnVeXzKOUF00jnZbqV9mdy2TpWpfgJhGxFxy7EBQdcvrB5_5DG9li2doKrjKDC490HrdAt3w4fqkcadFM3KZ95G38ak0Cj2lgdbdU5D2QYxR8bESG9LmqE7Tilw8fFCTf6YOi4fEPWdJWH4_ba7fwZZWmU7OOadodAzZDW7Mwf6Ugswn5Ny_4D4ngWreZavQkgj5e5sEPoq54D5foUKgPV2F9WGvZWNUc"
-                />
-                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full text-slate-300 shadow-sm">
-                  <span className="material-symbols-outlined text-xl">
-                    favorite
-                  </span>
-                </div>
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] font-bold uppercase text-primary tracking-widest">
-                  Brunch
-                </span>
-                <h4 className="font-bold text-slate-800 dark:text-slate-100 mt-1 line-clamp-1">
-                  Fluffy Buttermilk Stack
-                </h4>
-                <div className="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400 text-xs">
-                  <span className="material-symbols-outlined text-sm">
-                    schedule
-                  </span>
-                  <span>30 mins</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  data-alt="Thin crust pizza with basil"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDur6HJtrZTT8wq2deyx8B5YnKmeEsjA4k6Ir6dECT9BQmO80Lvj_iNJdr_niXtGTk_5SmlSgHE_gMZSXMg8A_suZLF3PArmCWU1TiM_BirB-NzAK3RQ3sJyJM8OC5F77h8oxzpixTjFRrxjHRML1C4DW8ve1jVwXXNseHOccOarVukR6c08Ln75jgDKyWr2RAVWZJ9cBdLCclXerBZUY9keUsNwnu3vxZBphZZA_4dZZNCOFBO_beEOo5Vcniq6sgiqB6wB1Cg2R8a"
-                />
-                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full text-deep-green shadow-sm">
-                  <span className="material-symbols-outlined text-xl">
-                    favorite
-                  </span>
-                </div>
-              </div>
-              <div className="p-3">
-                <span className="text-[10px] font-bold uppercase text-primary tracking-widest">
-                  Classic
-                </span>
-                <h4 className="font-bold text-slate-800 dark:text-slate-100 mt-1 line-clamp-1">
-                  Margherita Pizza
-                </h4>
-                <div className="flex items-center gap-2 mt-2 text-slate-500 dark:text-slate-400 text-xs">
-                  <span className="material-symbols-outlined text-sm">
-                    schedule
-                  </span>
-                  <span>45 mins</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 mb-12 flex justify-center">
-            <button className="bg-primary/10 text-primary border border-primary/20 font-bold px-8 py-3 rounded-xl hover:bg-primary hover:text-white transition-colors">
-              Load More Recipes
+            <button className="bg-primary text-white h-14 px-8 rounded-[1.5rem] flex items-center justify-center shadow-xl shadow-primary/30 hover:bg-orange-600 transition-all active:scale-95 font-black uppercase tracking-widest text-xs">
+              Search
             </button>
           </div>
-        </main>
+        </div>
+      </section>
 
-        <footer className="sticky bottom-0 bg-deep-green text-white/70 border-t border-white/10 px-4 py-2 z-20">
-          <div className="max-w-4xl mx-auto flex items-center justify-between">
-            <a
-              className="flex flex-col items-center gap-1 flex-1 py-1"
-              href="#"
-            >
-              <span className="material-symbols-outlined">home</span>
-              <span className="text-[10px] font-medium">Home</span>
-            </a>
-            <a
-              className="flex flex-col items-center gap-1 flex-1 py-1 text-white"
-              href="#"
-            >
-              <span
-                className="material-symbols-outlined"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                search
-              </span>
-              <span className="text-[10px] font-medium">Explore</span>
-            </a>
-            <a
-              className="flex flex-col items-center gap-1 flex-1 py-1"
-              href="#"
-            >
-              <span className="material-symbols-outlined">favorite</span>
-              <span className="text-[10px] font-medium">Saved</span>
-            </a>
-            <a
-              className="flex flex-col items-center gap-1 flex-1 py-1"
-              href="#"
-            >
-              <span className="material-symbols-outlined">person</span>
-              <span className="text-[10px] font-medium">Profile</span>
-            </a>
+      <main className="flex-1 px-8 pt-20 pb-40 space-y-12">
+        {/* Filters */}
+        <section className="space-y-6">
+          <div className="flex items-center gap-3 px-1">
+            <div className="size-10 rounded-xl bg-brand-green/10 flex items-center justify-center text-brand-green">
+              <span className="material-symbols-outlined text-xl font-black">filter_list</span>
+            </div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">Refine Results</h3>
           </div>
-        </footer>
-      </div>
-    </>
+
+          <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+            {[
+              { label: 'Diet: Keto', icon: 'nutrition' },
+              { label: 'Time: < 30m', icon: 'timer' },
+              { label: 'Difficulty: Easy', icon: 'fitness_center' }
+            ].map(filter => (
+              <button key={filter.label} className="flex h-12 shrink-0 items-center justify-center gap-3 rounded-2xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 px-6 font-black uppercase tracking-widest text-[9px] border-2 border-slate-50 dark:border-slate-800 hover:border-brand-green/20 transition-all">
+                {filter.label}
+                <span className="material-symbols-outlined text-sm font-black text-brand-green">expand_more</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Results Info */}
+        <section className="flex justify-between items-center px-1">
+          <div className="space-y-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-300">Found in Cookbook</p>
+            <p className="text-lg font-black text-slate-800 dark:text-slate-100 tracking-tighter italic">124 Results <span className="text-brand-green">available</span></p>
+          </div>
+          <div className="flex items-center gap-3 text-primary font-black uppercase tracking-widest text-[10px] cursor-pointer hover:underline underline-offset-4">
+            <span>Newest first</span>
+            <span className="material-symbols-outlined font-black text-lg">swap_vert</span>
+          </div>
+        </section>
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 gap-4">
+          {SEARCH_RESULTS.map((recipe, i) => (
+            <RecipeThumbnail key={i} {...recipe} />
+          ))}
+        </div>
+
+        {/* Load More */}
+        <div className="pt-8 flex justify-center">
+          <button className="bg-brand-green/10 text-brand-green border-2 border-brand-green/20 font-black uppercase tracking-[0.2em] text-[10px] px-12 py-5 rounded-[2rem] hover:bg-brand-green hover:text-white transition-all active:scale-95 shadow-2xl">
+            Load More Recipes
+          </button>
+        </div>
+      </main>
+
+      <AppNavigation activeTab="recipes" />
+    </div>
   );
 }

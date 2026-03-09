@@ -5,8 +5,12 @@
 Route: /pantryinventory
 
 ## Sections & Komponenten
+### PantryHeader
+Datei: src/components/layout/PantryHeader.tsx
 
-### Main View
-Datei: src/app/PantryInventory.tsx
-Props: None (Generated Monolith)
-Imports: React
+### PantrySearch
+Datei: src/components/sections/PantrySearch.tsx
+
+### PantryCategory
+Datei: src/components/sections/PantryCategory.tsx
+Imports: PantryItemCard (→ map-ui-shared.md)

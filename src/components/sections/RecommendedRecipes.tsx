@@ -26,12 +26,18 @@ const RECIPES = [
 
 export function RecommendedRecipes() {
     return (
-        <section className="mb-10">
-            <div className="flex items-center justify-between mb-5">
-                <h3 className="text-xl font-bold">Recommended for you</h3>
-                <button className="text-primary text-sm font-semibold">Refresh</button>
+        <section className="space-y-8">
+            <div className="flex items-end justify-between px-1">
+                <div className="flex items-center gap-3">
+                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                        <span className="material-symbols-outlined text-xl font-black italic">recommend</span>
+                    </div>
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">Recommended for You</h3>
+                </div>
+                <button className="text-primary font-black text-[10px] uppercase tracking-widest hover:underline underline-offset-4 mb-1">Refresh</button>
             </div>
-            <div className="space-y-6">
+
+            <div className="grid gap-10">
                 {RECIPES.map((r, i) => (
                     <RecipeCard key={i} {...r} />
                 ))}

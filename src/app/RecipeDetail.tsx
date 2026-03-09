@@ -6,7 +6,7 @@ import { RecipeQuickStats } from '../components/sections/RecipeQuickStats';
 import { IngredientsList } from '../components/sections/IngredientsList';
 import { InstructionsList } from '../components/sections/InstructionsList';
 import { CommunityReviews } from '../components/sections/CommunityReviews';
-import { RecipeStickyFooter } from '../components/layout/RecipeStickyFooter';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 export default function RecipeDetail() {
   return (
@@ -33,8 +33,15 @@ export default function RecipeDetail() {
         <IngredientsList />
         <InstructionsList />
         <CommunityReviews />
+
+        {/* Unified CTA button moved from sticky footer */}
+        <div className="mt-12 mb-20 px-4">
+          <button className="w-full bg-brand-green text-white py-5 rounded-[2rem] font-black tracking-widest text-center shadow-2xl shadow-brand-green/30 active:scale-95 transition-all uppercase text-xs">
+            Add to My Meal Plan
+          </button>
+        </div>
       </div>
-      <RecipeStickyFooter />
+      <AppNavigation activeTab="recipes" />
     </div>
   );
 }

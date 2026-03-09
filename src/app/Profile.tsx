@@ -1,5 +1,5 @@
 import { ProfileHeader } from '../components/layout/ProfileHeader';
-import { BottomNav } from '../components/layout/BottomNav';
+import { AppNavigation } from '../components/layout/AppNavigation';
 import { ProfileHero } from '../components/sections/ProfileHero';
 import { ProfileStatsSection } from '../components/sections/ProfileStatsSection';
 import { ProfileTabs } from '../components/sections/ProfileTabs';
@@ -13,7 +13,7 @@ export default function Profile() {
       <ProfileStatsSection />
       <ProfileTabs />
       <ProfileRecipeGrid />
-      <BottomNav />
+      <AppNavigation activeTab="profile" />
     </div>
   );
 }

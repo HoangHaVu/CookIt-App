@@ -5,8 +5,5 @@
 Route: /cookmode
 
 ## Sections & Komponenten
-
-### Main View
-Datei: src/app/CookMode.tsx
-Props: None (Generated Monolith)
-Imports: React
+### CookHeader
+Datei: src/components/layout/CookHeader.tsx

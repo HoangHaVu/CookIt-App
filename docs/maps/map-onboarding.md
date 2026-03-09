@@ -5,8 +5,4 @@
 Route: /onboarding
 
 ## Sections & Komponenten
-
-### Main View
-Datei: src/app/Onboarding.tsx
-Props: None (Generated Monolith)
-Imports: React
+(Keine seiten-spezifischen Sections, nutzt App-weite UI-Komponenten)

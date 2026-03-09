@@ -5,8 +5,8 @@
 Route: /achievementsbadges
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/AchievementsBadges.tsx
-Props: None (Generated Monolith)
-Imports: React
+### AchievementCard
+Datei: src/components/ui/AchievementCard.tsx

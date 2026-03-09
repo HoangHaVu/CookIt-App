@@ -1,6 +1,6 @@
 import { PageHeader } from '../components/layout/PageHeader';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
 import { CreatorCard } from '../components/ui/CreatorCard';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 const TOP_CREATORS = [
   {
@@ -47,14 +47,6 @@ const ON_THE_RISE = [
   }
 ];
 
-const TRENDING_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'explore', icon: 'explore', label: 'Explore', path: '/reciperankings' },
-  { id: 'trending', icon: 'trending_up', label: 'Trending', path: '/trendingcreators', fill: true },
-  { id: 'cook', icon: 'restaurant', label: 'Cook', path: '#' },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
-
 export default function TrendingCreators() {
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
@@ -68,8 +60,8 @@ export default function TrendingCreators() {
               <button
                 key={tab}
                 className={`flex-1 min-w-24 py-4 text-center text-xs font-black uppercase tracking-widest border-b-4 transition-all ${isActive
-                    ? 'border-primary text-brand-green'
-                    : 'border-transparent text-slate-400 hover:text-slate-600'
+                  ? 'border-primary text-brand-green'
+                  : 'border-transparent text-slate-400 hover:text-slate-600'
                   }`}
               >
                 {tab}
@@ -123,7 +115,7 @@ export default function TrendingCreators() {
         </section>
       </main>
 
-      <ModuleNav activeTab="trending" variant="brand" items={TRENDING_NAV} />
+      <AppNavigation activeTab="home" />
     </div>
   );
 }

@@ -69,3 +69,56 @@ Jede mit: Dateiname, Props, welche Seiten sie verwenden.
 Erstelle docs/maps/ falls der Ordner nicht existiert.
 Benenne Dateien kebab-case: map-homepage.md, map-solutions.md etc.
 Bereich 1 und 2 der DNA-Datei NICHT verändern.
+
+## 5. Navigations-Map — docs/maps/map-navigation.md (nur bei App-Projekten)
+
+Prüfe zuerst ob es sich um ein App-Projekt handelt:
+
+```
+Flutter        → pubspec.yaml vorhanden
+React Native   → package.json enthält "react-native"
+Komplexe SPA   → package.json enthält "react-router" ODER mehr als 8 Pages/Routes
+Website        → keines davon → map-navigation.md WEGLASSEN
+```
+
+Nur wenn App-Projekt erkannt: Erstelle docs/maps/map-navigation.md
+
+Format:
+```
+# map-navigation.md
+# Navigations-Graph — nur für App-Projekte
+# Letzte Aktualisierung: DATUM
+
+## Screen-Graph
+
+Auth-Flow:
+  SplashScreen → LoginScreen → HomeScreen
+  SplashScreen → RegisterScreen → HomeScreen
+
+Haupt-Navigation:
+  HomeScreen → RecipeDetailScreen (param: recipeId)
+  HomeScreen → ProfileScreen
+  HomeScreen → ShoppingScreen → ShoppingDetailScreen (param: listId)
+
+## Routes (z.B. go_router / react-router)
+  /                → HomeScreen
+  /recipe/:id      → RecipeDetailScreen
+  /profile         → ProfileScreen
+  /shopping        → ShoppingScreen
+  /shopping/:id    → ShoppingDetailScreen
+
+## Shared State zwischen Screens
+  authState        → alle Screens
+  cartState        → HomeScreen, ShoppingScreen, ShoppingDetailScreen
+
+## Deep-Links (falls vorhanden)
+  cooksy://recipe/:id   → RecipeDetailScreen
+```
+
+Wenn kein App-Projekt → diesen Schritt komplett überspringen, keine Datei erstellen.
+
+---
+
+Erstelle docs/maps/ falls der Ordner nicht existiert.
+Benenne Dateien kebab-case: map-homepage.md, map-solutions.md etc.
+Bereich 1 und 2 der DNA-Datei NICHT verändern.

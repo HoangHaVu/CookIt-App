@@ -5,8 +5,4 @@
 Route: /login
 
 ## Sections & Komponenten
-
-### Main View
-Datei: src/app/Login.tsx
-Props: None (Generated Monolith)
-Imports: React
+(Keine seiten-spezifischen Sections, nutzt App-weite UI-Komponenten)

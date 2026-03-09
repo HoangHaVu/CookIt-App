@@ -1,7 +1,7 @@
 import { PantryHeader } from '../components/layout/PantryHeader';
 import { PantrySearch } from '../components/sections/PantrySearch';
 import { PantryCategory } from '../components/sections/PantryCategory';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 const GRAINS_ITEMS = [
   {
@@ -44,14 +44,6 @@ const CANNED_ITEMS = [
   },
 ];
 
-const PANTRY_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'planner', icon: 'calendar_today', label: 'Planner', path: '#' },
-  { id: 'recipes', icon: 'menu_book', label: 'Recipes', path: '#' },
-  { id: 'pantry', icon: 'inventory_2', label: 'Pantry', path: '/pantryinventory', fill: true },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
-
 export default function PantryInventory() {
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
@@ -81,7 +73,7 @@ export default function PantryInventory() {
         <span className="material-symbols-outlined text-3xl">add</span>
       </button>
 
-      <ModuleNav activeTab="pantry" variant="pantry" items={PANTRY_NAV} />
+      <AppNavigation />
     </div>
   );
 }

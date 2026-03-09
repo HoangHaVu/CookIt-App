@@ -1,219 +1,137 @@
+import { PageHeader } from '../components/layout/PageHeader';
+import { AppNavigation } from '../components/layout/AppNavigation';
+
+const MY_RECIPES = [
+  {
+    title: 'Classic Fettuccine Alfredo',
+    details: 'Created 3 weeks ago • 45 min',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDDNEo9w3xQg3sOhzYfWwVPneWxGzah4l4Ubt-LJqcdlfS0ICoJT0T5-MwgMmdvwCrm3VZi9doZJs6th8WsYbNpqEeTk6iSYvBWonM9RaNK6ukNBl2i4TDsCZzv7fWg_3Kkt3zHMQoFKNU5lXbOuDbHUUU-3JqazC3IGQJrQfllALKtUjbX4DoUIY3BltC1O-4FDJZOgi9H_I72eG9uigzY-4sJR-00uL-Dqzy23-iT87eqZcldMZoYNnCGAxx280ApDRINfLZvAHF5',
+    checked: true,
+  },
+  {
+    title: 'Midnight Carbonara',
+    details: 'Created 1 month ago • 25 min',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB360ORAsw6gCieTyDoxjjGOiHq_YYZTJedMA1cbUF_3L5t_RHCxDBSnAD96MKCYAkn9keze4O9LN9oqhTLOo7Bi0-aETXr4ripYcpfQWHA__l3kASuQJAkSeJAVsDsggR7kAUtiosmHhjico7rEOgCo2YI8Tpl6R9yJ_AEh3R3qcUMiK3SBoU-uEG9azca7sQpURlcUdGmZ0RPhWgVFiVcz4LL5GS0IrRWZhNFmf9eFmV80WVNpexjWHYcP-9m_g2dCyrN0YRS7MWH',
+    checked: false,
+  },
+  {
+    title: 'Spicy Arrabbiata Penne',
+    details: 'Created 2 months ago • 30 min',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3kGOcxrwfCmnzPboV6bVXGnT4rng6iXrKxa_LF5pl4S9kQzwI-D8SdqkwFqdsaIP3SWDRW3fK6AfG3IeTjCqW2oWcJM4uyOPmuuGk0w4Wj8zCpPZ9GbqTfw3ufYETx7YBqd-GwFlB8Ucxapq8FCvXGOps6Nmsm8Dr3zhtqdl4uchjJkgE-PaV96LnCxs711Az8Kb6tq4A2zAcoxBO8YKtfOKrnxkXDmj342pBpwzQANWcfrSoOXLezhxa6ZqCwiLXzGId7Q_TSP2q',
+    checked: false,
+  },
+  {
+    title: "Grandma's 5-Layer Lasagna",
+    details: 'Created 4 months ago • 120 min',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCPcjQChDxlTnb-Ka1-_MF0IzXSJe2jKN00_9Ujc12w3g5PFeJF4_lzzeMaw-zL_ubbgrg6tHy8h7SeWiDyfdFi6oQFcheXj-6P52PiVDnR47nLvWXhZ_0TDNgqIf9v2cGRO2PmQPgGOScKeqh7Oa5XMDt9fEDyiXzYqzwXYc_iHa5qDU19Lzlt2PxYh27Al2nYCQ5RcG7xSSEs72crvJTOxZBs7EYWcdbUE1wekdV3jPfZUCFXLjRg6x_NWxZKfN8ddkxhk0amcIOk',
+    checked: false,
+  }
+];
+
 export default function SubmitToChallenge() {
   return (
-    <>
-      <div className="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark shadow-xl overflow-x-hidden">
-        <div className="flex items-center p-4 pb-4 justify-between bg-brand-green text-white">
-          <div className="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-primary/10 rounded-full">
-            <span
-              className="material-symbols-outlined"
-              style={{ fontSize: '24px' }}
-            >
-              close
-            </span>
-          </div>
-          <h2 className="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">
-            Submit to Challenge
-          </h2>
-          <div className="flex w-10 items-center justify-end">
-            <button className="flex items-center justify-center rounded-full size-10 hover:bg-primary/10 text-slate-900 dark:text-slate-100 transition-colors">
-              <span
-                className="material-symbols-outlined"
-                style={{ fontSize: '24px' }}
-              >
-                info
-              </span>
-            </button>
-          </div>
-        </div>
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+      <PageHeader title="Submit Entry" rightActionIcon="info" />
 
-        <div className="px-4 pt-6">
-          <h2 className="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight pb-4">
+      <main className="flex-1 overflow-y-auto px-6 py-8 space-y-12 pb-40">
+        <section>
+          <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6 px-1">
             Current Challenge
           </h2>
-          <div className="flex items-stretch justify-between gap-4 rounded-2xl bg-white dark:bg-slate-800/50 p-4 border border-brand-green/10 shadow-md">
-            <div className="flex flex-col gap-1 flex-[2_2_0px]">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                <p className="text-primary text-xs font-semibold uppercase tracking-wider">
-                  Ends in 2 days
+          <div className="flex flex-col gap-1 rounded-[2.5rem] bg-white dark:bg-slate-900 p-8 border border-brand-green/10 shadow-xl overflow-hidden relative group">
+            <div className="absolute top-0 right-0 size-32 opacity-10 -rotate-12 translate-x-8 -translate-y-8 group-hover:rotate-0 transition-transform duration-700">
+              <span className="material-symbols-outlined text-8xl font-black text-brand-green">restaurant</span>
+            </div>
+
+            <div className="flex items-center gap-2 mb-4">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-primary animate-ping"></span>
+              <p className="text-primary text-[10px] font-black uppercase tracking-widest">
+                Ends in 2 days
+              </p>
+            </div>
+
+            <div className="flex items-stretch justify-between gap-6">
+              <div className="flex-1 min-w-0">
+                <p className="text-slate-900 dark:text-slate-50 text-2xl font-black leading-[1.1] tracking-tight mb-3">
+                  The Ultimate <span className="text-brand-green">Pasta Challenge</span>
+                </p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-bold leading-relaxed">
+                  Showcase your best homemade pasta creation from scratch.
                 </p>
               </div>
-              <p className="text-slate-900 dark:text-slate-50 text-base font-bold leading-tight">
-                The Ultimate Pasta Challenge
-              </p>
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-normal leading-snug mt-1">
-                Showcase your best homemade pasta creation from scratch.
-              </p>
+              <div
+                className="size-24 bg-center bg-no-repeat bg-cover rounded-3xl shrink-0 shadow-lg border-2 border-white dark:border-slate-800"
+                style={{
+                  backgroundImage:
+                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvmfC97BWbfGmnwPlGGG31-5mH4nX3TrYdBxRUCGBOzN3vlQw6IeuvYU8KbzE2NdmaGKxo3wbd5Ph-Fw17qirQtCbjGJp2aFuT5hPaozp6W1B0Xl612i2jKY21-CQbJEMXS_G0qSDxUAvqln3RYI6dB9afCclWnOsuAHFfDpAcfBy-UFmXX73w4xg4N1gTr5CkYz4Ijxqt4Tjg2AVUWSK4zVTw6XQT2GkaTd3geBfGJs5YNsNiU__vCreKb5ZkiV8UUAnGYmOaz2QK')",
+                }}
+              ></div>
             </div>
-            <div
-              className="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-lg flex-shrink-0"
-              data-alt="Delicious close up of gourmet pasta dish"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvmfC97BWbfGmnwPlGGG31-5mH4nX3TrYdBxRUCGBOzN3vlQw6IeuvYU8KbzE2NdmaGKxo3wbd5Ph-Fw17qirQtCbjGJp2aFuT5hPaozp6W1B0Xl612i2jKY21-CQbJEMXS_G0qSDxUAvqln3RYI6dB9afCclWnOsuAHFfDpAcfBy-UFmXX73w4xg4N1gTr5CkYz4Ijxqt4Tjg2AVUWSK4zVTw6XQT2GkaTd3geBfGJs5YNsNiU__vCreKb5ZkiV8UUAnGYmOaz2QK')",
-              }}
-            ></div>
           </div>
-        </div>
+        </section>
 
-        <div className="px-4 pt-8 pb-3">
-          <h2 className="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">
-            Select Your Recipe
-          </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            Pick one of your existing recipes to enter
-          </p>
-        </div>
+        <section className="space-y-6">
+          <div className="flex items-end justify-between px-1">
+            <div>
+              <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-1">
+                Select Your Recipe
+              </h2>
+              <p className="text-slate-500 font-bold text-xs uppercase tracking-tight">
+                Pick one of your creations
+              </p>
+            </div>
+            <div className="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+              <span className="material-symbols-outlined font-black">search</span>
+            </div>
+          </div>
 
-        <div className="px-4 py-3 sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-          <label className="flex flex-col min-w-40 h-12 w-full">
-            <div className="flex w-full flex-1 items-stretch rounded-xl h-full shadow-lg shadow-brand-green/5 ring-1 ring-inset ring-slate-200 dark:ring-slate-700">
-              <div className="text-primary flex border-none bg-white dark:bg-slate-800 items-center justify-center pl-4 rounded-l-xl border-r-0">
-                <span
-                  className="material-symbols-outlined text-slate-400"
-                  style={{ fontSize: '22px' }}
-                >
-                  search
-                </span>
-              </div>
-              <input
-                className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-white dark:bg-slate-800 h-full placeholder:text-slate-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                placeholder="Search your recipes..."
-                value=""
-              />
-            </div>
-          </label>
-        </div>
+          <div className="space-y-4">
+            {MY_RECIPES.map((recipe, i) => (
+              <label
+                key={i}
+                className="relative group flex items-center gap-4 p-4 rounded-[2rem] bg-white dark:bg-slate-900 border-2 border-transparent hover:border-brand-green/20 cursor-pointer transition-all has-[:checked]:border-brand-green has-[:checked]:bg-brand-green/5 shadow-sm active:scale-[0.98]"
+              >
+                <input
+                  defaultChecked={recipe.checked}
+                  className="hidden peer"
+                  name="recipe-selection"
+                  type="radio"
+                />
+                <div
+                  className="w-16 h-16 rounded-2xl bg-cover bg-center shrink-0 shadow-inner border border-slate-100 dark:border-slate-800"
+                  style={{ backgroundImage: `url('${recipe.imageSrc}')` }}
+                ></div>
+                <div className="flex flex-col flex-1 min-w-0 pr-4">
+                  <span className="text-slate-900 dark:text-slate-100 font-black text-sm truncate uppercase tracking-widest group-has-[:checked]:text-brand-green transition-colors">
+                    {recipe.title}
+                  </span>
+                  <span className="text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-tight mt-0.5">
+                    {recipe.details}
+                  </span>
+                </div>
+                <div className="flex items-center justify-center size-8 rounded-2xl border-2 border-slate-100 dark:border-slate-800 group-hover:border-brand-green/30 peer-checked:bg-brand-green peer-checked:border-brand-green shadow-sm transition-all">
+                  <span className="material-symbols-outlined text-white text-[20px] font-black opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all">
+                    check
+                  </span>
+                </div>
+              </label>
+            ))}
+          </div>
+        </section>
 
-        <div className="flex flex-col gap-3 px-4 pb-24">
-          <label className="relative group flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border-2 border-transparent hover:border-brand-green/20 cursor-pointer transition-all has-[:checked]:border-brand-green has-[:checked]:bg-accent-light/10 shadow-sm">
-            <input
-              checked={true}
-              className="hidden peer"
-              name="recipe-selection"
-              type="radio"
-            />
-            <div
-              className="w-16 h-16 rounded-lg bg-cover bg-center shrink-0"
-              data-alt="Creamy fettuccine alfredo recipe thumbnail"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDNEo9w3xQg3sOhzYfWwVPneWxGzah4l4Ubt-LJqcdlfS0ICoJT0T5-MwgMmdvwCrm3VZi9doZJs6th8WsYbNpqEeTk6iSYvBWonM9RaNK6ukNBl2i4TDsCZzv7fWg_3Kkt3zHMQoFKNU5lXbOuDbHUUU-3JqazC3IGQJrQfllALKtUjbX4DoUIY3BltC1O-4FDJZOgi9H_I72eG9uigzY-4sJR-00uL-Dqzy23-iT87eqZcldMZoYNnCGAxx280ApDRINfLZvAHF5')",
-              }}
-            ></div>
-            <div className="flex flex-col flex-1">
-              <span className="text-slate-900 dark:text-slate-100 font-bold text-base group-has-[:checked]:text-brand-green">
-                Classic Fettuccine Alfredo
-              </span>
-              <span className="text-slate-500 dark:text-slate-400 text-xs">
-                Created 3 weeks ago • 45 min
-              </span>
-            </div>
-            <div className="flex items-center justify-center size-6 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:bg-brand-green peer-checked:border-brand-green">
-              <span className="material-symbols-outlined text-white text-[16px] hidden peer-checked:block">
-                check
-              </span>
-            </div>
-          </label>
-
-          <label className="relative group flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border-2 border-transparent hover:border-brand-green/20 cursor-pointer transition-all has-[:checked]:border-brand-green has-[:checked]:bg-accent-light/10 shadow-sm">
-            <input
-              className="hidden peer"
-              name="recipe-selection"
-              type="radio"
-            />
-            <div
-              className="w-16 h-16 rounded-lg bg-cover bg-center shrink-0"
-              data-alt="Spaghetti carbonara with bacon"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuB360ORAsw6gCieTyDoxjjGOiHq_YYZTJedMA1cbUF_3L5t_RHCxDBSnAD96MKCYAkn9keze4O9LN9oqhTLOo7Bi0-aETXr4ripYcpfQWHA__l3kASuQJAkSeJAVsDsggR7kAUtiosmHhjico7rEOgCo2YI8Tpl6R9yJ_AEh3R3qcUMiK3SBoU-uEG9azca7sQpURlcUdGmZ0RPhWgVFiVcz4LL5GS0IrRWZhNFmf9eFmV80WVNpexjWHYcP-9m_g2dCyrN0YRS7MWH')",
-              }}
-            ></div>
-            <div className="flex flex-col flex-1">
-              <span className="text-slate-900 dark:text-slate-100 font-bold text-base group-has-[:checked]:text-brand-green">
-                Midnight Carbonara
-              </span>
-              <span className="text-slate-500 dark:text-slate-400 text-xs">
-                Created 1 month ago • 25 min
-              </span>
-            </div>
-            <div className="flex items-center justify-center size-6 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:bg-brand-green peer-checked:border-brand-green">
-              <span className="material-symbols-outlined text-white text-[16px] hidden peer-checked:block">
-                check
-              </span>
-            </div>
-          </label>
-
-          <label className="relative group flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border-2 border-transparent hover:border-brand-green/20 cursor-pointer transition-all has-[:checked]:border-brand-green has-[:checked]:bg-accent-light/10 shadow-sm">
-            <input
-              className="hidden peer"
-              name="recipe-selection"
-              type="radio"
-            />
-            <div
-              className="w-16 h-16 rounded-lg bg-cover bg-center shrink-0"
-              data-alt="Spicy arrabbiata penne pasta"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3kGOcxrwfCmnzPboV6bVXGnT4rng6iXrKxa_LF5pl4S9kQzwI-D8SdqkwFqdsaIP3SWDRW3fK6AfG3IeTjCqW2oWcJM4uyOPmuuGk0w4Wj8zCpPZ9GbqTfw3ufYETx7YBqd-GwFlB8Ucxapq8FCvXGOps6Nmsm8Dr3zhtqdl4uchjJkgE-PaV96LnCxs711Az8Kb6tq4A2zAcoxBO8YKtfOKrnxkXDmj342pBpwzQANWcfrSoOXLezhxa6ZqCwiLXzGId7Q_TSP2q')",
-              }}
-            ></div>
-            <div className="flex flex-col flex-1">
-              <span className="text-slate-900 dark:text-slate-100 font-bold text-base group-has-[:checked]:text-brand-green">
-                Spicy Arrabbiata Penne
-              </span>
-              <span className="text-slate-500 dark:text-slate-400 text-xs">
-                Created 2 months ago • 30 min
-              </span>
-            </div>
-            <div className="flex items-center justify-center size-6 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:bg-brand-green peer-checked:border-brand-green">
-              <span className="material-symbols-outlined text-white text-[16px] hidden peer-checked:block">
-                check
-              </span>
-            </div>
-          </label>
-
-          <label className="relative group flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border-2 border-transparent hover:border-brand-green/20 cursor-pointer transition-all has-[:checked]:border-brand-green has-[:checked]:bg-accent-light/10 shadow-sm">
-            <input
-              className="hidden peer"
-              name="recipe-selection"
-              type="radio"
-            />
-            <div
-              className="w-16 h-16 rounded-lg bg-cover bg-center shrink-0"
-              data-alt="Homemade meat lasagna layers"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPcjQChDxlTnb-Ka1-_MF0IzXSJe2jKN00_9Ujc12w3g5PFeJF4_lzzeMaw-zL_ubbgrg6tHy8h7SeWiDyfdFi6oQFcheXj-6P52PiVDnR47nLvWXhZ_0TDNgqIf9v2cGRO2PmQPgGOScKeqh7Oa5XMDt9fEDyiXzYqzwXYc_iHa5qDU19Lzlt2PxYh27Al2nYCQ5RcG7xSSEs72crvJTOxZBs7EYWcdbUE1wekdV3jPfZUCFXLjRg6x_NWxZKfN8ddkxhk0amcIOk')",
-              }}
-            ></div>
-            <div className="flex flex-col flex-1">
-              <span className="text-slate-900 dark:text-slate-100 font-bold text-base group-has-[:checked]:text-brand-green">
-                Grandma's 5-Layer Lasagna
-              </span>
-              <span className="text-slate-500 dark:text-slate-400 text-xs">
-                Created 4 months ago • 120 min
-              </span>
-            </div>
-            <div className="flex items-center justify-center size-6 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:bg-brand-green peer-checked:border-brand-green">
-              <span className="material-symbols-outlined text-white text-[16px] hidden peer-checked:block">
-                check
-              </span>
-            </div>
-          </label>
-        </div>
-
-        <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent">
-          <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/25 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
+        {/* Global Action Button inside main content */}
+        <div className="mt-8 mb-20 px-1">
+          <button className="w-full bg-primary hover:bg-orange-600 text-white font-black h-20 rounded-[2rem] shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all text-xl uppercase tracking-tighter flex items-center justify-center gap-3">
             <span>Enter Challenge</span>
-            <span className="material-symbols-outlined">send</span>
+            <span className="material-symbols-outlined text-3xl font-black">rocket_launch</span>
           </button>
-          <p className="text-center text-slate-400 text-[10px] mt-2 font-medium uppercase tracking-widest">
-            By submitting, you agree to challenge terms
+          <p className="text-center text-slate-400 text-[9px] mt-4 font-black uppercase tracking-[0.25em]">
+            By submitting, you agree to terms
           </p>
         </div>
-      </div>
-    </>
+      </main>
+
+      <AppNavigation activeTab="home" />
+    </div>
   );
 }

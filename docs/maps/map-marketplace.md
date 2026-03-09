@@ -5,8 +5,8 @@
 Route: /marketplace
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/Marketplace.tsx
-Props: None (Generated Monolith)
-Imports: React
+### ProductCard
+Datei: src/components/ui/ProductCard.tsx

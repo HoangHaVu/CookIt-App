@@ -1,8 +1,8 @@
 import { PageHeader } from '../components/layout/PageHeader';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
 import { ChallengePodium } from '../components/sections/ChallengePodium';
 import { RankingRow } from '../components/ui/RankingRow';
 import { StatsCard } from '../components/ui/StatsCard';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 const TOP_USERS = [
   {
@@ -49,14 +49,6 @@ const RANKINGS = [
   }
 ];
 
-const CHALLENGE_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'explore', icon: 'search', label: 'Explore', path: '#' },
-  { id: 'challenge', icon: 'emoji_events', label: 'Challenge', path: '/challengeleaderboard', fill: true },
-  { id: 'cook', icon: 'restaurant_menu', label: 'Cook', path: '#' },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
-
 export default function ChallengeLeaderboard() {
   return (
     <div className="max-w-md mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-x-hidden">
@@ -91,7 +83,7 @@ export default function ChallengeLeaderboard() {
         ))}
       </main>
 
-      <ModuleNav activeTab="challenge" variant="brand" items={CHALLENGE_NAV} />
+      <AppNavigation activeTab="home" />
     </div>
   );
 }

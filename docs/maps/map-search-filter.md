@@ -5,8 +5,8 @@
 Route: /searchfilter
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/SearchFilter.tsx
-Props: None (Generated Monolith)
-Imports: React
+### RecipeThumbnail
+Datei: src/components/ui/RecipeThumbnail.tsx

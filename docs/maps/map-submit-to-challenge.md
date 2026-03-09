@@ -5,8 +5,6 @@
 Route: /submittochallenge
 
 ## Sections & Komponenten
-
-### Main View
-Datei: src/app/SubmitToChallenge.tsx
-Props: None (Generated Monolith)
-Imports: React
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
+泛型: AppNavigation (→ map-layout.md)

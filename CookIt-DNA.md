@@ -119,108 +119,91 @@ Vercel-URL: N/A
 ---
 
 ## 🗺️ Bereich 3 — Seiten-Baum
-<!-- Generiert via generate-maps.md -->
 
 ```
-AchievementsBadges             → docs/maps/map-achievements-badges.md
-  ├── Main View
+Homepage (Green/Orange)           → docs/maps/map-homepage-green.md
+  ├── SearchHeader
+  ├── CategoryScroll
+  └── RecommendedRecipes
 
-ChallengeLeaderboard           → docs/maps/map-challenge-leaderboard.md
-  ├── Main View
+Recipe Detail                     → docs/maps/map-recipe-detail.md
+  ├── RecipeHeader
+  ├── RecipeBanner
+  ├── RecipeInfoHeader
+  ├── RecipeQuickStats
+  ├── IngredientsList
+  ├── InstructionsList
+  └── CommunityReviews
 
-CollectionDetail               → docs/maps/map-collection-detail.md
-  ├── Main View
+Create Recipe                     → docs/maps/map-create-recipe.md
+  ├── CreateRecipeHeader
+  ├── PhotoUploadSection
+  ├── RecipeFormFields
+  ├── RecipeTagsSection
+  └── RecipePrivacySection
 
-CookMode                       → docs/maps/map-cook-mode.md
-  ├── Main View
+Profile                           → docs/maps/map-profile.md
+  ├── ProfileHeader
+  ├── ProfileHero
+  ├── ProfileStatsSection
+  ├── ProfileTabs
+  └── ProfileRecipeGrid
 
-CreateChallenge                → docs/maps/map-create-challenge.md
-  ├── Main View
+Weekly Meal Planner               → docs/maps/map-weekly-meal-planner.md
+  ├── WeeklyPlannerHeader
+  ├── DayPicker
+  └── MealSection
 
-CreateGroup                    → docs/maps/map-create-group.md
-  ├── Main View
+Shopping List                     → docs/maps/map-shopping-list.md
+  ├── ShoppingHeader
+  └── ShoppingCategory
 
-CreateRecipe                   → docs/maps/map-create-recipe.md
-  ├── Main View
+Pantry Inventory                  → docs/maps/map-pantry-inventory.md
+  ├── PantryHeader
+  ├── PantrySearch
+  └── PantryCategory
 
-ExpirationTracking             → docs/maps/map-expiration-tracking.md
-  ├── Main View
+Private Cookbook                  → docs/maps/map-private-cookbook.md
+  ├── CookbookHeader
+  └── CollectionCard
 
-GroupActivityFeed              → docs/maps/map-group-activity-feed.md
-  ├── Main View
+Search & Filter                  → docs/maps/map-search-filter.md
+  ├── PageHeader
+  └── RecipeThumbnail
 
-HomepageGreen                  → docs/maps/map-homepage-green.md
-  ├── Main View
+Marketplace                       → docs/maps/map-marketplace.md
+  ├── PageHeader
+  └── ProductCard
 
-HomepageOrange                 → docs/maps/map-homepage-orange.md
-  ├── Main View
+Recipe Rankings                   → docs/maps/map-recipe-rankings.md
+  ├── RankingHeader
+  ├── RankingCard
+  └── RankingRow
 
-ImportConfirmation             → docs/maps/map-import-confirmation.md
-  ├── Main View
+Trending Creators                 → docs/maps/map-trending-creators.md
+  ├── PageHeader
+  └── CreatorCard
 
-InviteFriends                  → docs/maps/map-invite-friends.md
-  ├── Main View
+Achievements & Badges             → docs/maps/map-achievements-badges.md
+  ├── PageHeader
+  └── AchievementCard
 
-InviteMembers                  → docs/maps/map-invite-members.md
-  ├── Main View
+Challenge Leaderboard             → docs/maps/map-challenge-leaderboard.md
+  ├── PageHeader
+  └── ChallengePodium
 
-Login                          → docs/maps/map-login.md
-  ├── Main View
+Group Activity Feed              → docs/maps/map-group-activity-feed.md
+  ├── PageHeader
+  └── ActivityPost
 
-MagicImportScan                → docs/maps/map-magic-import-scan.md
-  ├── Main View
+Cook Mode                         → docs/maps/map-cook-mode.md
+  └── CookHeader
 
-Marketplace                    → docs/maps/map-marketplace.md
-  ├── Main View
-
-MealPlannerCalendar            → docs/maps/map-meal-planner-calendar.md
-  ├── Main View
-
-Onboarding                     → docs/maps/map-onboarding.md
-  ├── Main View
-
-PantryInventory                → docs/maps/map-pantry-inventory.md
-  ├── Main View
-
-PasswordReset                  → docs/maps/map-password-reset.md
-  ├── Main View
-
-PrivateCookbook                → docs/maps/map-private-cookbook.md
-  ├── Main View
-
-Profile                        → docs/maps/map-profile.md
-  ├── Main View
-
-RecipeDetail                   → docs/maps/map-recipe-detail.md
-  ├── Main View
-
-RecipeImport                   → docs/maps/map-recipe-import.md
-  ├── Main View
-
-RecipeRankings                 → docs/maps/map-recipe-rankings.md
-  ├── Main View
-
-SearchFilter                   → docs/maps/map-search-filter.md
-  ├── Main View
-
-ShoppingList                   → docs/maps/map-shopping-list.md
-  ├── Main View
-
-SignUp                         → docs/maps/map-sign-up.md
-  ├── Main View
-
-SubmitToChallenge              → docs/maps/map-submit-to-challenge.md
-  ├── Main View
-
-TrendingCreators               → docs/maps/map-trending-creators.md
-  ├── Main View
-
-WeeklyMealPlanner              → docs/maps/map-weekly-meal-planner.md
-  ├── Main View
-
-Layout + geteilte UI           → docs/maps/map-layout.md
-                               → docs/maps/map-ui-shared.md
+Layout + geteilte UI              → docs/maps/map-layout.md
+                                  → docs/maps/map-ui-shared.md
+Navigation Graph                  → docs/maps/map-navigation.md
 ```
+
 
 ---
 

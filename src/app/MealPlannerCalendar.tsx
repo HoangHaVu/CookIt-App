@@ -1,238 +1,127 @@
+import { PageHeader } from '../components/layout/PageHeader';
+import { AppNavigation } from '../components/layout/AppNavigation';
+
 export default function MealPlannerCalendar() {
   return (
-    <>
-      <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <div className="flex items-center bg-brand-dark p-4 pb-4 justify-between text-white shadow-md">
-          <div className="flex size-10 shrink-0 items-center justify-center">
-            <span className="material-symbols-outlined text-white">menu</span>
-          </div>
-          <h2 className="text-xl font-bold leading-tight tracking-tight flex-1 text-center">
-            Meal Planner
-          </h2>
-          <div className="flex size-10 items-center justify-end">
-            <button className="flex items-center justify-center rounded-full text-white">
-              <span className="material-symbols-outlined">account_circle</span>
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+      <PageHeader title="Meal Planner" rightActionIcon="account_circle" />
+
+      <main className="flex-1 pb-40 px-6 py-8 space-y-12">
+        {/* Calendar Section */}
+        <section className="bg-white dark:bg-slate-900 rounded-[3rem] shadow-2xl border-2 border-slate-50 dark:border-slate-800 p-8 space-y-8">
+          <div className="flex items-center justify-between">
+            <button className="size-12 flex items-center justify-center bg-slate-50 dark:bg-slate-800 rounded-2xl text-slate-400 hover:text-brand-green transition-all active:scale-90">
+              <span className="material-symbols-outlined font-black">chevron_left</span>
+            </button>
+            <div className="text-center">
+              <h3 className="text-lg font-black text-slate-800 dark:text-slate-100 uppercase tracking-tighter italic">October <span className="text-brand-green">2023</span></h3>
+            </div>
+            <button className="size-12 flex items-center justify-center bg-slate-50 dark:bg-slate-800 rounded-2xl text-slate-400 hover:text-brand-green transition-all active:scale-90">
+              <span className="material-symbols-outlined font-black">chevron_right</span>
             </button>
           </div>
-        </div>
-        <main className="flex-1 pb-24">
-          <div className="p-4">
-            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-brand-light/20 p-4">
-              <div className="flex items-center justify-between mb-4">
-                <button className="p-2 hover:bg-brand-light/20 rounded-full text-brand-dark">
-                  <span className="material-symbols-outlined">
-                    chevron_left
-                  </span>
-                </button>
-                <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                  October 2023
-                </p>
-                <button className="p-2 hover:bg-brand-light/20 rounded-full text-brand-dark">
-                  <span className="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </button>
-              </div>
-              <div className="grid grid-cols-7 text-center mb-2">
-                <p className="text-xs font-bold text-slate-400 uppercase">S</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">M</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">T</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">W</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">T</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">F</p>
-                <p className="text-xs font-bold text-slate-400 uppercase">S</p>
-              </div>
-              <div className="grid grid-cols-7 gap-1">
-                <div className="col-start-1 h-10 flex items-center justify-center text-slate-300">
-                  24
-                </div>
-                <div className="h-10 flex items-center justify-center text-slate-300">
-                  25
-                </div>
-                <div className="h-10 flex items-center justify-center text-slate-300">
-                  26
-                </div>
-                <div className="h-10 flex items-center justify-center text-slate-300">
-                  27
-                </div>
-                <div className="h-10 flex items-center justify-center text-slate-300">
-                  28
-                </div>
-                <div className="h-10 flex items-center justify-center text-slate-300">
-                  29
-                </div>
-                <div className="h-10 flex items-center justify-center text-slate-300">
-                  30
-                </div>
 
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  1
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  2
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  3
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full bg-brand-light text-brand-dark font-bold">
-                  4
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full bg-brand-dark text-white font-bold">
-                  5
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full bg-brand-light text-brand-dark font-bold">
-                  6
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  7
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  8
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  9
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  10
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  11
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  12
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  13
-                </button>
-                <button className="h-10 w-full flex items-center justify-center rounded-full hover:bg-brand-light/30">
-                  14
-                </button>
-              </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-7 text-center">
+              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
+                <span key={day} className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{day}</span>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-1">
+              {[24, 25, 26, 27, 28, 29, 30].map(d => (
+                <div key={d} className="h-12 flex items-center justify-center text-[10px] font-black text-slate-200 uppercase">{d}</div>
+              ))}
+              {[1, 2, 3].map(d => (
+                <button key={d} className="h-12 flex items-center justify-center text-xs font-black text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl transition-all">{d}</button>
+              ))}
+              <button className="h-12 flex items-center justify-center bg-brand-green/10 text-brand-green font-black rounded-2xl text-xs border-2 border-brand-green/20">4</button>
+              <button className="h-12 flex items-center justify-center bg-primary text-white font-black rounded-2xl text-xs shadow-lg shadow-primary/30 scale-110 relative z-10 border-2 border-white">5</button>
+              <button className="h-12 flex items-center justify-center bg-brand-green/10 text-brand-green font-black rounded-2xl text-xs border-2 border-brand-green/20">6</button>
+              {[7, 8, 9, 10, 11, 12, 13, 14].map(d => (
+                <button key={d} className="h-12 flex items-center justify-center text-xs font-black text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl transition-all">{d}</button>
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="px-4 mb-4">
-            <div className="bg-primary/10 rounded-xl p-4 border border-primary/20 flex items-center justify-between">
-              <div>
-                <h4 className="text-primary font-bold text-sm uppercase tracking-wider">
-                  Month Summary
-                </h4>
-                <p className="text-slate-700 dark:text-slate-300 text-sm">
-                  24 Meals Planned • 3 Groceries Lists
-                </p>
-              </div>
-              <button className="bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">add</span>{' '}
-                Add Recipe
-              </button>
+        {/* Summary Card */}
+        <section className="bg-brand-green text-white p-8 rounded-[3rem] shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 size-32 bg-white/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+          <div className="flex items-center justify-between gap-6 relative z-10">
+            <div>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60 mb-2">Month Summary</h4>
+              <p className="text-xl font-black uppercase tracking-tighter leading-tight italic">
+                24 Meals <br /><span className="text-primary italic">Planned</span>
+              </p>
             </div>
+            <button className="bg-white text-brand-green size-16 rounded-[1.5rem] flex items-center justify-center shadow-2xl hover:bg-slate-50 active:scale-90 transition-all">
+              <span className="material-symbols-outlined text-3xl font-black">add</span>
+            </button>
+          </div>
+        </section>
+
+        {/* Schedule Section */}
+        <section className="space-y-8">
+          <div className="flex items-center gap-3 px-1">
+            <div className="size-10 rounded-xl bg-brand-green/10 flex items-center justify-center text-brand-green">
+              <span className="material-symbols-outlined text-xl font-black">schedule</span>
+            </div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">Today's schedule</h3>
           </div>
 
-          <h3 className="text-slate-900 dark:text-slate-100 text-lg font-bold px-4 mb-2">
-            Today's Schedule
-          </h3>
-          <div className="px-4 space-y-1">
-            <div className="grid grid-cols-[40px_1fr] gap-x-3">
-              <div className="flex flex-col items-center">
-                <div className="size-10 rounded-full bg-brand-light/30 flex items-center justify-center text-brand-dark">
-                  <span className="material-symbols-outlined">egg</span>
+          <div className="space-y-6">
+            {[
+              { type: 'Breakfast', menu: 'Avocado Toast', time: '08:00 AM', icon: 'egg' },
+              { type: 'Lunch', menu: 'Quinoa Salad', time: '12:30 PM', icon: 'eco' },
+              { type: 'Dinner', menu: 'Grilled Salmon', time: '07:00 PM', icon: 'set_meal' }
+            ].map((meal, i) => (
+              <div key={meal.type} className="flex gap-6 group">
+                <div className="flex flex-col items-center">
+                  <div className={`size-14 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:rotate-6 ${i === 2 ? 'bg-brand-green text-white shadow-brand-green/20' : 'bg-white dark:bg-slate-900 text-slate-400 border-2 border-slate-50 dark:border-slate-800'}`}>
+                    <span className="material-symbols-outlined font-black text-2xl">{meal.icon}</span>
+                  </div>
+                  {i < 2 && <div className="w-1 bg-slate-100 dark:bg-slate-800 flex-1 my-2 rounded-full"></div>}
                 </div>
-                <div className="w-0.5 bg-brand-light h-12"></div>
-              </div>
-              <div className="py-2">
-                <p className="font-semibold text-slate-900 dark:text-slate-100">
-                  Breakfast: Avocado Toast
-                </p>
-                <p className="text-slate-500 text-sm">08:00 AM</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-[40px_1fr] gap-x-3">
-              <div className="flex flex-col items-center">
-                <div className="size-10 rounded-full bg-brand-light/30 flex items-center justify-center text-brand-dark">
-                  <span className="material-symbols-outlined">eco</span>
+                <div className="py-2 flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-[9px] font-black uppercase tracking-widest text-slate-300 group-hover:text-primary transition-colors">{meal.type}</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-slate-300">{meal.time}</p>
+                  </div>
+                  <p className="text-lg font-black text-slate-800 dark:text-slate-100 uppercase tracking-tight">{meal.menu}</p>
                 </div>
-                <div className="w-0.5 bg-brand-light h-12"></div>
               </div>
-              <div className="py-2">
-                <p className="font-semibold text-slate-900 dark:text-slate-100">
-                  Lunch: Quinoa Salad
-                </p>
-                <p className="text-slate-500 text-sm">12:30 PM</p>
-              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Highlights */}
+        <section className="space-y-8">
+          <div className="flex items-center gap-3 px-1">
+            <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <span className="material-symbols-outlined text-xl font-black">auto_awesome</span>
             </div>
-            <div className="grid grid-cols-[40px_1fr] gap-x-3">
-              <div className="flex flex-col items-center">
-                <div className="size-10 rounded-full bg-brand-light/30 flex items-center justify-center text-brand-dark">
-                  <span className="material-symbols-outlined">set_meal</span>
-                </div>
-                <div className="h-6"></div>
-              </div>
-              <div className="py-2">
-                <p className="font-semibold text-slate-900 dark:text-slate-100">
-                  Dinner: Grilled Salmon
-                </p>
-                <p className="text-slate-500 text-sm">07:00 PM</p>
-              </div>
-            </div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">Upcoming Highlights</h3>
           </div>
 
-          <h3 className="text-slate-900 dark:text-slate-100 text-lg font-bold px-4 mt-6 mb-2">
-            Upcoming Highlights
-          </h3>
-          <div className="px-4 flex gap-4 overflow-x-auto pb-4 no-scrollbar">
-            <div className="min-w-[140px] bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shrink-0">
-              <p className="text-xs text-brand-dark font-bold">OCT 12</p>
-              <p className="text-sm font-medium">Pasta Night</p>
-              <div className="mt-2 h-1 w-full bg-brand-light rounded-full"></div>
-            </div>
-            <div className="min-w-[140px] bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shrink-0">
-              <p className="text-xs text-brand-dark font-bold">OCT 15</p>
-              <p className="text-sm font-medium">Family Brunch</p>
-              <div className="mt-2 h-1 w-full bg-brand-light rounded-full"></div>
-            </div>
-            <div className="min-w-[140px] bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shrink-0">
-              <p className="text-xs text-brand-dark font-bold">OCT 21</p>
-              <p className="text-sm font-medium">Steak Dinner</p>
-              <div className="mt-2 h-1 w-full bg-brand-light rounded-full"></div>
-            </div>
+          <div className="flex gap-4 overflow-x-auto pb-8 no-scrollbar -mx-6 px-6">
+            {[
+              { date: 'OCT 12', title: 'Pasta Night' },
+              { date: 'OCT 15', title: 'Family Brunch' },
+              { date: 'OCT 21', title: 'Steak Dinner' }
+            ].map(h => (
+              <div key={h.title} className="min-w-[160px] bg-white dark:bg-slate-900 p-6 rounded-[2.5rem] border-2 border-slate-50 dark:border-slate-800 shadow-xl hover:border-brand-green/20 transition-all group shrink-0">
+                <p className="text-[9px] font-black text-brand-green uppercase tracking-widest mb-4">{h.date}</p>
+                <p className="text-sm font-black uppercase tracking-tight text-slate-800 dark:text-slate-100 mb-6">{h.title}</p>
+                <div className="h-1.5 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full w-1/3 bg-primary rounded-full group-hover:w-full transition-all duration-700"></div>
+                </div>
+              </div>
+            ))}
           </div>
-        </main>
+        </section>
+      </main>
 
-        <div className="fixed bottom-0 left-0 right-0 border-t border-brand-light/20 bg-brand-dark px-4 pb-4 pt-2 shadow-lg">
-          <div className="flex gap-2 max-w-md mx-auto justify-around">
-            <a className="flex flex-col items-center gap-1 text-white" href="#">
-              <span
-                className="material-symbols-outlined"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                calendar_month
-              </span>
-              <p className="text-[10px] font-medium">Planner</p>
-            </a>
-            <a
-              className="flex flex-col items-center gap-1 text-white/60 hover:text-white"
-              href="#"
-            >
-              <span className="material-symbols-outlined">menu_book</span>
-              <p className="text-[10px] font-medium">Recipes</p>
-            </a>
-            <a
-              className="flex flex-col items-center gap-1 text-white/60 hover:text-white"
-              href="#"
-            >
-              <span className="material-symbols-outlined">shopping_cart</span>
-              <p className="text-[10px] font-medium">Groceries</p>
-            </a>
-            <a
-              className="flex flex-col items-center gap-1 text-white/60 hover:text-white"
-              href="#"
-            >
-              <span className="material-symbols-outlined">settings</span>
-              <p className="text-[10px] font-medium">Settings</p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </>
+      <AppNavigation activeTab="planner" />
+    </div>
   );
 }

@@ -1,133 +1,97 @@
+import { PageHeader } from '../components/layout/PageHeader';
+import { InviteCard } from '../components/ui/InviteCard';
+import { AppNavigation } from '../components/layout/AppNavigation';
+
+const SUGGESTED_CONTACTS = [
+  {
+    name: 'Alice Chen',
+    subtitle: '12 mutual foodie friends',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBFLt2q7yuGK5-5G5iYMdHueM7WFFfth7EzirPvQauvYmogNLcvA_MBLEFh71DkvrbCno8BZgCVvWp_4zfgxPJ2ZZavRDwNMXrmGDFtuPgiTxi_tZdwx4FXU8kaTcNffVSeRRhMbcNPr3iR6gIniJX1uDhVbkKX4I1Hbv5pPRBHlKIriiqmEk5WHh01lhX77X6-Aai8mzyv5uKn8YEHN_lsU621mUpOcuu7yoMa0fsjXlN-GzcbimLM3cme-fAjhEuciDOAXAgvYNCI',
+  },
+  {
+    name: 'Mark Thompson',
+    subtitle: '8 mutual foodie friends',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCmZppiG9Yv-maJd1Uk9FF20hTs3xBRYvos7EojmTUHbSO-e-WO1UR8rmAKUeWjHjhnEYWp3Czw3tRzqFmbJdwEq5F-rBJfQY4rOpp1GO9Mv94eQx47-vpc4L4WDewTUnbfhwkyzyb4h8YJhDuXg7bnbSCAgCDEVOfPCH7raG-kopPX_SOzXLA75UXFemZLZwmRdPzXH5J8r4FhN68ljcRYxfKL3LAER2YvdSLdHt2dJNtWVAxXO0h7hKCyILuU5EFTicgR-xjfQHwo',
+    isInvited: true,
+  },
+  {
+    name: 'Sarah Miller',
+    subtitle: '5 mutual foodie friends',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBc_fSOx6tohxn6eZP9zv1CWwGqwuac0jeo_Fu7KYsY923G4XYYNa53hNaO-NinZFqLl9oyjp-fa4fjUa8O4jNJYcWIiBlB4Qkb9_O1QN0tr79iJZolxP_k1e8YW1ajXiPsPohdcZNbeLLVVqezN5fhdMvoIifcdS1QnfdopcRPOMdquU-kDZkKZUQfP7durAhkak40FaYthi5Zju09unbg5R5rFhRFyObEy6tB26nL5J-buuJpLrrcG1E-b8SVPn6oUeLXRztIStvA',
+  }
+];
+
 export default function InviteMembers() {
   return (
-    <>
-      <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-        <header className="flex items-center bg-header-dark p-4 pb-4 justify-between shadow-md">
-          <div className="text-white flex size-10 shrink-0 items-center justify-center cursor-pointer">
-            <span className="material-symbols-outlined">arrow_back</span>
-          </div>
-          <h2 className="text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">
-            Invite Members
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+      <header className="bg-brand-green text-white pb-12 px-6 pt-12 rounded-b-[3rem] shadow-2xl relative z-10">
+        <PageHeader title="Gather the Circle" transparent={true} rightActionIcon="share" />
+        <div className="mt-8 text-center px-4">
+          <h2 className="text-3xl font-black leading-tight mb-2 tracking-tighter uppercase">
+            Expand Your <span className="text-primary italic">Kitchen</span>
           </h2>
-          <div className="flex size-10 items-center justify-end">
-            <button className="flex cursor-pointer items-center justify-center rounded-xl bg-transparent text-white p-2">
-              <span className="material-symbols-outlined">share</span>
-            </button>
-          </div>
-        </header>
-        <main className="flex-1 flex flex-col gap-2 p-4 max-w-2xl mx-auto w-full">
-          <h3 className="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight pt-4 pb-2">
+          <p className="text-white/70 font-bold uppercase tracking-widest text-[9px]">
+            Invite fellow chefs and foodie enthusiasts.
+          </p>
+        </div>
+      </header>
+
+      <main className="flex-1 px-6 py-10 space-y-10 pb-48 -mt-8 relative z-20">
+        <section className="space-y-6">
+          <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 flex items-center gap-3">
+            <span className="material-symbols-outlined font-black text-sm">groups_3</span>
             Suggested contacts
           </h3>
 
-          <div className="flex items-center gap-4 bg-white dark:bg-slate-800/50 rounded-xl px-4 min-h-[72px] py-3 justify-between shadow-sm border border-slate-100 dark:border-slate-700">
-            <div className="flex items-center gap-4">
-              <div
-                className="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 border-2 border-primary/20"
-                data-alt="Portrait of Alice Chen smiling for profile"
-                style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFLt2q7yuGK5-5G5iYMdHueM7WFFfth7EzirPvQauvYmogNLcvA_MBLEFh71DkvrbCno8BZgCVvWp_4zfgxPJ2ZZavRDwNMXrmGDFtuPgiTxi_tZdwx4FXU8kaTcNffVSeRRhMbcNPr3iR6gIniJX1uDhVbkKX4I1Hbv5pPRBHlKIriiqmEk5WHh01lhX77X6-Aai8mzyv5uKn8YEHN_lsU621mUpOcuu7yoMa0fsjXlN-GzcbimLM3cme-fAjhEuciDOAXAgvYNCI')",
-                }}
-              ></div>
-              <div className="flex flex-col justify-center">
-                <p className="text-slate-900 dark:text-slate-100 text-base font-semibold leading-normal line-clamp-1">
-                  Alice Chen
-                </p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-1">
-                  12 mutual foodie friends
-                </p>
-              </div>
+          <div className="flex flex-col gap-4">
+            {SUGGESTED_CONTACTS.map((contact, i) => (
+              <InviteCard key={i} {...contact} />
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-primary/5 dark:bg-primary/10 p-8 rounded-[2.5rem] border-2 border-primary/20 shadow-xl shadow-primary/5 transition-all group hover:bg-primary/10">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="size-12 rounded-2xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30 rotate-3 group-hover:rotate-0 transition-transform">
+              <span className="material-symbols-outlined text-2xl font-black">link</span>
             </div>
-            <div className="shrink-0">
-              <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold transition-colors hover:bg-slate-300">
-                <span className="truncate">Invite</span>
-              </button>
+            <div>
+              <h4 className="text-xs font-black text-primary uppercase tracking-[0.25em] mb-1">
+                Invite Link
+              </h4>
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">
+                Direct share link
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 bg-white dark:bg-slate-800/50 rounded-xl px-4 min-h-[72px] py-3 justify-between shadow-sm border border-slate-100 dark:border-slate-700">
-            <div className="flex items-center gap-4">
-              <div
-                className="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 border-2 border-primary/20"
-                data-alt="Portrait of Mark Thompson in casual attire"
-                style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmZppiG9Yv-maJd1Uk9FF20hTs3xBRYvos7EojmTUHbSO-e-WO1UR8rmAKUeWjHjhnEYWp3Czw3tRzqFmbJdwEq5F-rBJfQY4rOpp1GO9Mv94eQx47-vpc4L4WDewTUnbfhwkyzyb4h8YJhDuXg7bnbSCAgCDEVOfPCH7raG-kopPX_SOzXLA75UXFemZLZwmRdPzXH5J8r4FhN68ljcRYxfKL3LAER2YvdSLdHt2dJNtWVAxXO0h7hKCyILuU5EFTicgR-xjfQHwo')",
-                }}
-              ></div>
-              <div className="flex flex-col justify-center">
-                <p className="text-slate-900 dark:text-slate-100 text-base font-semibold leading-normal line-clamp-1">
-                  Mark Thompson
-                </p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-1">
-                  8 mutual foodie friends
-                </p>
-              </div>
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <input
+                className="w-full h-14 px-6 rounded-2xl border-none bg-white dark:bg-slate-900/50 text-slate-800 dark:text-slate-100 font-bold text-sm transition-all focus:ring-0 shadow-inner"
+                readOnly={true}
+                type="text"
+                value="cookapp.com/join/f8x2k"
+              />
             </div>
-            <div className="shrink-0">
-              <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold transition-colors hover:bg-slate-300">
-                <span className="truncate">Invite</span>
-              </button>
-            </div>
+            <button className="bg-primary hover:bg-orange-600 text-white size-14 rounded-2xl flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary/25 border-4 border-white dark:border-slate-800 scale-105 active:rotate-12">
+              <span className="material-symbols-outlined text-2xl font-black">content_copy</span>
+            </button>
           </div>
+          <p className="mt-6 text-slate-400 dark:text-slate-500 text-[10px] font-bold italic tracking-wide text-center uppercase tracking-tight opacity-70">
+            Share this link to invite multiple members at once
+          </p>
+        </section>
 
-          <div className="flex items-center gap-4 bg-white dark:bg-slate-800/50 rounded-xl px-4 min-h-[72px] py-3 justify-between shadow-sm border border-slate-100 dark:border-slate-700">
-            <div className="flex items-center gap-4">
-              <div
-                className="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 border-2 border-primary/20"
-                data-alt="Portrait of Sarah Miller with a warm smile"
-                style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBc_fSOx6tohxn6eZP9zv1CWwGqwuac0jeo_Fu7KYsY923G4XYYNa53hNaO-NinZFqLl9oyjp-fa4fjUa8O4jNJYcWIiBlB4Qkb9_O1QN0tr79iJZolxP_k1e8YW1ajXiPsPohdcZNbeLLVVqezN5fhdMvoIifcdS1QnfdopcRPOMdquU-kDZkKZUQfP7durAhkak40FaYthi5Zju09unbg5R5rFhRFyObEy6tB26nL5J-buuJpLrrcG1E-b8SVPn6oUeLXRztIStvA')",
-                }}
-              ></div>
-              <div className="flex flex-col justify-center">
-                <p className="text-slate-900 dark:text-slate-100 text-base font-semibold leading-normal line-clamp-1">
-                  Sarah Miller
-                </p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-1">
-                  5 mutual foodie friends
-                </p>
-              </div>
-            </div>
-            <div className="shrink-0">
-              <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold transition-colors hover:bg-slate-300">
-                <span className="truncate">Invite</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-8 bg-sage-light dark:bg-sage-light/20 p-6 rounded-xl border border-sage-light/50">
-            <h4 className="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-wider mb-3">
-              Share Invite Link
-            </h4>
-            <div className="flex gap-2">
-              <div className="flex-1">
-                <input
-                  className="w-full h-12 px-4 rounded-lg border-none bg-white/80 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 font-medium focus:ring-2 focus:ring-primary/50"
-                  readOnly={true}
-                  type="text"
-                  value="cookapp.com/join/f8x2k"
-                />
-              </div>
-              <button className="bg-primary hover:bg-primary/90 text-white px-4 rounded-lg flex items-center justify-center transition-transform active:scale-95 shadow-lg shadow-primary/20">
-                <span className="material-symbols-outlined">content_copy</span>
-              </button>
-            </div>
-            <p className="mt-3 text-slate-700 dark:text-slate-300 text-xs italic">
-              Share this link with friends so they can join your kitchen
-              directly.
-            </p>
-          </div>
-        </main>
-
-        <div className="sticky bottom-0 left-0 right-0 p-4 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
-          <button className="w-full py-4 bg-primary text-white text-lg font-bold rounded-xl shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 active:scale-[0.98]">
+        {/* Action Button moved into flow */}
+        <div className="mt-12 mb-8">
+          <button className="w-full bg-primary hover:bg-orange-600 text-white font-black h-20 rounded-[2.5rem] shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all text-xl uppercase tracking-tighter">
             Done Inviting
           </button>
         </div>
-      </div>
-    </>
+      </main>
+
+      <AppNavigation activeTab="profile" />
+    </div>
   );
 }

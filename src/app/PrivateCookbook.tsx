@@ -1,6 +1,6 @@
 import { CookbookHeader } from '../components/layout/CookbookHeader';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
 import { CollectionCard } from '../components/ui/CollectionCard';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 const COLLECTIONS = [
   {
@@ -8,7 +8,6 @@ const COLLECTIONS = [
     recipeCount: 24,
     lastUpdated: '2 days ago',
     images: [
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAkwGHyAIsZsB6cbJsyG69v9wKdIsu7XxdfhiUtl0ajFX4pMySMPwVx2ssIWonjMBgFTJRT-wbq4m71z4vUe5n5mXK8-XDkCiwm_2AKhD5CefHncUcB3KPNZmHUmtKr5sQaLLywT6LgMED2HjFqNaKtJjyGBzmoGyJP8_NYlwNzfK65G9Et0VP-p3Qn__NDOJ0iQsxo_UYK8meoIW8Ro9Wc5aYVC--FkEqbc82yivyh3tDMVYkAlEyAnRcrVFsbSV-mwO8vNVXQ-UMU',
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDLo34rx15oUeip3OkePUF-dWbBfTdG9L9UjgFUuTiif2UZdH1SQ5zRNX0CX3gC3dGaBAyWtP-uJXJY9fuAJFCciGIQV2Uz5ZBGCgZ7YowXJukqe5g6lAhNheRNBdRA3INNCwh3HI_9gxzEYj07W4c7-Tqfk73KCMK57mQPqnjYzml-imfk4CqVlV0y4a9B4otpP2lowZvizUHUg4rk7EFmCmkOSAwYHnlbIdbfmyaPAmcD2IYtDC6N5baZGo5cnDkW8SsTqMVDW8J4',
       'https://lh3.googleusercontent.com/aida-public/AB6AXuBok__JMSqnYGjvbP8b7IszCcNTWiyZvaRKXHkw5NLVgOHOfO0TPJSODpLei6aV3U2p70rw3t6n-wgJ0X-54vFZYMOx77wqa3FNLSn_QaO3s2ZwV9VlLpkEjwZUM07-m8L4vGoHLk6pvMkFaka4jQ4zpQjtVRoyArB50xre6lUeUJmFGq0jIUFvt26vB8plkfGQfM7mPF_3qBj_sPQCsUP7ZFSdfMGMjH-1POg7WpHe-au25SgbIaMm7vXac03GJp65T3oWqHifPcYI',
     ],
@@ -33,12 +32,6 @@ const COLLECTIONS = [
   }
 ];
 
-const COOKBOOK_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'explore', icon: 'search', label: 'Search', path: '#' },
-  { id: 'cookbook', icon: 'menu_book', label: 'Cookbook', path: '/privatecookbook', fill: true },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
 
 export default function PrivateCookbook() {
   return (
@@ -71,7 +64,7 @@ export default function PrivateCookbook() {
         </div>
       </main>
 
-      <ModuleNav activeTab="cookbook" variant="brand" items={COOKBOOK_NAV} />
+      <AppNavigation activeTab="recipes" />
     </div>
   );
 }

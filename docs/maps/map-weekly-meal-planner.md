@@ -5,8 +5,12 @@
 Route: /weeklymealplanner
 
 ## Sections & Komponenten
+### WeeklyPlannerHeader
+Datei: src/components/layout/WeeklyPlannerHeader.tsx
 
-### Main View
-Datei: src/app/WeeklyMealPlanner.tsx
-Props: None (Generated Monolith)
-Imports: React
+### DayPicker
+Datei: src/components/sections/DayPicker.tsx
+
+### MealSection
+Datei: src/components/sections/MealSection.tsx
+Imports: MealCard (→ map-ui-shared.md)

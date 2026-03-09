@@ -2,7 +2,7 @@ import { WeeklyPlannerHeader } from '../components/layout/WeeklyPlannerHeader';
 import { DayPicker } from '../components/sections/DayPicker';
 import { MealSection } from '../components/sections/MealSection';
 import { MealCard } from '../components/ui/MealCard';
-import { PlannerNav } from '../components/layout/PlannerNav';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 export default function WeeklyMealPlanner() {
   return (
@@ -44,7 +44,8 @@ export default function WeeklyMealPlanner() {
         </button>
       </main>
 
-      <PlannerNav />
+      <AppNavigation activeTab="planner" />
     </div>
+
   );
 }

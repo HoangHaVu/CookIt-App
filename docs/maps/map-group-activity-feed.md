@@ -5,8 +5,8 @@
 Route: /groupactivityfeed
 
 ## Sections & Komponenten
+### PageHeader
+Datei: src/components/layout/PageHeader.tsx
 
-### Main View
-Datei: src/app/GroupActivityFeed.tsx
-Props: None (Generated Monolith)
-Imports: React
+### ActivityPost
+Datei: src/components/ui/ActivityPost.tsx

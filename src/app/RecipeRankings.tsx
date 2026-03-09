@@ -1,6 +1,6 @@
 import { RankingHeader } from '../components/layout/RankingHeader';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
 import { RankingCard } from '../components/ui/RankingCard';
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 const TOP_RANKINGS = [
   {
@@ -48,14 +48,6 @@ const TOP_RANKINGS = [
   }
 ];
 
-const EXPLORE_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'explore', icon: 'explore', label: 'Explore', path: '/reciperankings', fill: true },
-  { id: 'cook', icon: 'restaurant', label: 'Cook', path: '#' },
-  { id: 'awards', icon: 'emoji_events', label: 'Awards', path: '#' },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
-
 export default function RecipeRankings() {
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
@@ -75,7 +67,7 @@ export default function RecipeRankings() {
         </div>
       </main>
 
-      <ModuleNav activeTab="explore" variant="brand" items={EXPLORE_NAV} />
+      <AppNavigation activeTab="home" />
     </div>
   );
 }

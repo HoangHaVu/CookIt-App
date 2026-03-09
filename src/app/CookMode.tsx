@@ -1,118 +1,120 @@
-export default function CookMode() {
-  return (
-    <>
-      <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <header className="flex items-center px-4 py-4 justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
-          <button className="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
-            <span className="material-symbols-outlined text-slate-900 dark:text-slate-100">
-              close
-            </span>
-          </button>
-          <div className="text-center">
-            <h2 className="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-widest">
-              Step 3 of 12
-            </h2>
-            <p className="text-success text-xs font-semibold">
-              Slow Roasting Phase
-            </p>
-          </div>
-          <button className="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
-            <span className="material-symbols-outlined text-slate-900 dark:text-slate-100">
-              more_vert
-            </span>
-          </button>
-        </header>
+import { CookHeader } from '../components/layout/CookHeader';
 
-        <div className="px-6 py-2">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-              Preparation Progress
+export default function CookMode() {
+  const currentStep = 3;
+  const totalSteps = 12;
+  const progressPercent = Math.round((currentStep / totalSteps) * 100);
+
+  return (
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-4xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+      <CookHeader currentStep={currentStep} totalSteps={totalSteps} phaseName="Slow Roasting Phase" />
+
+      <main className="flex-1 pb-40">
+        {/* Progress Section */}
+        <div className="px-8 py-6 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-sm">
+          <div className="flex items-end justify-between mb-3 px-1">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
+              Session Progress
             </span>
-            <span className="text-xs font-bold text-success">25% Complete</span>
+            <span className="text-xs font-black text-brand-green uppercase tracking-widest">
+              {progressPercent}% Complete
+            </span>
           </div>
-          <div className="w-full h-2 bg-success/10 rounded-full overflow-hidden">
+          <div className="w-full h-4 bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-inner border border-slate-200 dark:border-slate-700">
             <div
-              className="h-full bg-success rounded-full"
-              style={{ width: '25%' }}
+              className="h-full bg-brand-green rounded-2xl shadow-[0_0_15px_rgba(33,83,67,0.3)] transition-all duration-1000"
+              style={{ width: `${progressPercent}%` }}
             ></div>
           </div>
         </div>
 
-        <div className="w-full px-4 py-4">
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-lg border border-slate-200 dark:border-slate-800">
+        {/* Media Content */}
+        <div className="w-full px-6 py-8">
+          <div className="relative aspect-video w-full overflow-hidden rounded-[2.5rem] shadow-2xl border-8 border-white dark:border-slate-800 shadow-brand-green/10">
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              data-alt="Close up of herbs being chopped on a wooden board"
+              className="absolute inset-0 bg-cover bg-center h-full transition-transform duration-10000 hover:scale-110"
+              data-alt="Close up of herbs being chopped"
               style={{
                 backgroundImage:
                   "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfwgp5cACSYAo8IOc-sVuUV2gcLr_JDv1u6JbVCxJJQ49xhG53lpPL-T2KYKAYpgjeueOFCKp3PlVNToh3XPAaEbATrlooI3cqE8cLcATgMrL87fZZpbMoyPfitht3VPmyvDn1x-KV7cxn6jVu-XZUyYI3aF5UWvMc-FSVjxLBn5K_nCbPkNmqNyJMGajoK4wZeGqrrOX_2M22zQfV42Pj1_cr2rD0l0daia0qnxSevdz_SpGilVwxp7gqnr7fOFZWRi3vFGcEgX1t')",
               }}
             ></div>
-            <div className="absolute bottom-4 right-4">
-              <button className="flex items-center justify-center size-12 rounded-full bg-white/90 dark:bg-slate-900/90 shadow-lg text-primary">
-                <span className="material-symbols-outlined">fullscreen</span>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-6 right-6">
+              <button className="flex items-center justify-center size-14 rounded-2xl bg-white/20 backdrop-blur-md shadow-2xl text-white border border-white/30 hover:bg-white/40 transition-all active:scale-90">
+                <span className="material-symbols-outlined text-3xl font-black">fullscreen</span>
               </button>
+            </div>
+            <div className="absolute top-6 left-6">
+              <span className="bg-brand-green text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl shadow-lg shadow-black/20">
+                Visual Tutorial
+              </span>
             </div>
           </div>
         </div>
 
-        <main className="flex-1 px-6 pt-4 pb-32">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-start justify-between gap-4">
-              <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 leading-tight">
-                Prepare the Herb Infusion
-              </h1>
-              <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-success/5 border border-success/20 min-w-[80px]">
-                <span className="material-symbols-outlined text-success text-3xl">
-                  timer
-                </span>
-                <span className="text-success font-bold text-lg">05:00</span>
-              </div>
+        {/* Instructions Content */}
+        <div className="px-8 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <h1 className="text-4xl font-black text-slate-900 dark:text-slate-100 leading-tight tracking-tight flex-1">
+              Prepare the <br /><span className="text-brand-green">Herb Infusion</span>
+            </h1>
+            <div className="flex flex-col items-center justify-center p-5 rounded-[2rem] bg-brand-green/5 border-2 border-brand-green/10 min-w-[110px] shadow-sm">
+              <span className="material-symbols-outlined text-brand-green text-3xl font-black mb-1">
+                timer
+              </span>
+              <span className="text-brand-green font-black text-2xl tracking-tighter">05:00</span>
             </div>
-            <div className="space-y-4">
-              <p className="text-xl leading-relaxed text-slate-700 dark:text-slate-300">
-                Finely mince the{' '}
-                <span className="font-bold text-primary">fresh rosemary</span>{' '}
-                and <span className="font-bold text-primary">thyme</span>.
-                Combine them in a small ceramic bowl with the extra virgin olive
-                oil and a pinch of sea salt.
-              </p>
-              <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400 italic">
+          </div>
+
+          <div className="space-y-6">
+            <p className="text-2xl leading-relaxed text-slate-700 dark:text-slate-300 font-medium tracking-tight">
+              Finely mince the{' '}
+              <span className="font-black text-primary underline decoration-primary/20 underline-offset-4">fresh rosemary</span>{' '}
+              and <span className="font-black text-primary underline decoration-primary/20 underline-offset-4">thyme</span>.
+              Combine them in a small ceramic bowl with the extra virgin olive
+              oil and a pinch of sea salt.
+            </p>
+            <div className="relative pl-8 border-l-4 border-slate-200 dark:border-slate-800 py-2">
+              <span className="absolute left-0 top-0 -translate-x-1/2 bg-white dark:bg-background-dark text-slate-300 material-symbols-outlined font-black">format_quote</span>
+              <p className="text-xl leading-relaxed text-slate-500 dark:text-slate-400 font-bold italic">
                 "The aroma should start blooming as soon as the herbs hit the
                 oil. Ensure the herbs are fully submerged to prevent oxidation."
               </p>
             </div>
+          </div>
 
-            <div className="p-4 rounded-lg bg-primary/5 border-l-4 border-primary flex gap-4 items-start">
-              <span className="material-symbols-outlined text-primary">
-                lightbulb
-              </span>
-              <div>
-                <h4 className="font-bold text-primary text-sm uppercase">
-                  Chef's Tip
-                </h4>
-                <p className="text-sm text-slate-700 dark:text-slate-300">
-                  Use a sharp knife to avoid bruising the herbs, which can lead
-                  to a bitter taste.
-                </p>
-              </div>
+          {/* Tip Card */}
+          <div className="p-8 rounded-[2.5rem] bg-primary/5 dark:bg-primary/10 border border-primary/20 flex gap-6 items-start shadow-xl shadow-primary/5">
+            <div className="bg-primary text-white size-14 rounded-2xl flex items-center justify-center shadow-lg shadow-primary/30 shrink-0">
+              <span className="material-symbols-outlined text-3xl font-black">lightbulb</span>
+            </div>
+            <div>
+              <h4 className="font-black text-primary text-xs uppercase tracking-[0.2em] mb-2">
+                Chef's Secret Tip
+              </h4>
+              <p className="text-lg text-slate-800 dark:text-slate-200 font-bold leading-relaxed">
+                Use a sharp knife to avoid bruising the herbs, which can lead
+                to a bitter taste.
+              </p>
             </div>
           </div>
-        </main>
+        </div>
+      </main>
 
-        <footer className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark">
-          <div className="flex items-center gap-4 max-w-4xl mx-auto">
-            <button className="flex-1 h-16 rounded-xl border-2 border-slate-200 dark:border-slate-800 flex items-center justify-center gap-2 font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-              <span className="material-symbols-outlined">arrow_back</span>
-              Back
-            </button>
-            <button className="flex-[2] h-16 rounded-xl bg-primary text-white flex items-center justify-center gap-2 font-bold text-xl shadow-lg shadow-primary/30 hover:brightness-110 active:scale-[0.98] transition-all">
-              Next Step
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </button>
-          </div>
-        </footer>
-      </div>
-    </>
+      {/* Control Footer */}
+      <footer className="fixed bottom-0 left-0 right-0 p-8 pt-10 bg-gradient-to-t from-background-light via-background-light/95 to-transparent dark:from-background-dark dark:via-background-dark/95 z-40 max-w-4xl mx-auto">
+        <div className="flex items-center gap-6">
+          <button className="flex-1 h-20 rounded-3xl border-4 border-slate-100 dark:border-slate-800 flex items-center justify-center gap-3 font-black text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all uppercase tracking-widest text-sm active:scale-95">
+            <span className="material-symbols-outlined font-black">arrow_back</span>
+            Back
+          </button>
+          <button className="flex-[2] h-20 rounded-3xl bg-primary text-white flex items-center justify-center gap-4 font-black text-2xl shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all uppercase tracking-tighter">
+            Next Step
+            <span className="material-symbols-outlined text-4xl font-black">arrow_forward</span>
+          </button>
+        </div>
+      </footer>
+    </div>
   );
 }

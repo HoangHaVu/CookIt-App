@@ -1,361 +1,124 @@
+import { ActivityPost } from '../components/ui/ActivityPost';
+import { AppNavigation } from '../components/layout/AppNavigation';
+
+const POSTS = [
+  {
+    author: 'Maria Chen',
+    authorImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAiM4XY9tWcMnzEPcKcY0T_QlaIxDyGBkGV-rm1UvZH8g1JudJraYwKSbeyf7QF95VwwpyiPpFQ6-j7JTrfSZ7zUeuPxqT1MCJqkdo5UZPlZXgcS7cBo-QcsMAmQz8-qniiEBggc961PQs1Gl1V9fR_HC-Zebm1eJLf0jxR7QuOA7z-20IzqA7Rds_eGbFBS0fCZnV_aefOFa42Rs33fP2zI4uZzZLP1hMZI3ATdgq4HLQay8ZXaHBRbWprWcgkbYEq5WxzAAJTSWYi',
+    authorBadge: 'Baking Expert',
+    timeAgo: '2h ago',
+    content: "Just finished baking this! The crust is super flaky. Used my grandmother's secret technique for the glaze. #baking #summer #berrytart",
+    postImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKd4kQtnc8bibgiFQ1ZXjj3TyOl3CY8KVHLE1omeX0TfYcDl9GrfnciAQSUdhDrAmcGjeKs6AL6eJmIhj_yLisrjUwnE7l99f1mgdokBELBZBAb6OVClDIi6Rdn7sYRGHuJyJGd7FZmr9GLyLcRpZKzifq5pas_IqieGtyne1GNI8ncxnbL9JpOm0BBoj9XSTGgHZ3qSHrZI0Fg5RlxAuPdVESvmFLP2-DAJBRdkDxlx5rFIe_1Pe_MNcO0UQftaEOsXHmxb2xavjs',
+    likes: 42,
+    comments: 12,
+    shares: 5,
+  },
+  {
+    author: 'David Wilson',
+    authorImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBCrcJdkggMY9psbNJnYduuKEuNRwoS5iLG-aZqMJqO1VqAVXpwfKt92PLwW2r_O6D0AetcRMFKzaQ1VjDK5LhJyP0zJjeadxJn7wJpmNP5qQiWpXwMpqmvZcwh-6xdxv5X4qViTzkQbLSl-mGy6UMReVD9Gbtt27QXGoKxNiLc5FrMYjBWwxBqq_bgNuUsYLcu91eEFDeauVNURvaUgIVAw1WBlZwvaCBVlVRRskNUzLuE_kXcEw3Exr7vdxjXGt-IGZwnOUEZ0hIl',
+    authorBadge: 'Grill Master',
+    timeAgo: '5h ago',
+    content: '"The dry rub is the key here. Make sure to let it sit for at least 2 hours!"',
+    likes: 89,
+    comments: 24,
+    shares: 8,
+    recipeCard: {
+      title: 'Smoked BBQ Ribs',
+      prepTime: '15 mins prep',
+      cookTime: '6 hours cook',
+      rating: 4.5,
+      reviews: 24,
+      imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARrMyiBKop-gIkpcK191B3_g8aEpTBQ844e5CyWC_jK68Blqlis73Tg0pmKDnPC67e0wMUY1kbSp-c7W6M1yVTclHrPJ_wP9UOCzk7W5Ed46cep59Z19V7_R8Zs_SPVHGNBtvfkLbNztO6rBP22KYsU5jyyEjKSS09QvnSURkEHtRMh5V-2afhhqz7wt5S080YBGYa4FuYH-jtXegarnqgWsxlRVlT6c9KXuyrWWUJKwVN8wAZEKS3VprHv5-qNiLCxvuJKxZ3OV8A',
+    }
+  }
+];
+
 export default function GroupActivityFeed() {
   return (
-    <>
-      <div className="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark shadow-xl overflow-x-hidden border-x border-primary/10">
-        <header className="sticky top-0 z-50 bg-brand-green text-white curved-header pb-2">
-          <div className="flex items-center p-4 justify-between">
-            <div className="text-primary flex size-10 shrink-0 items-center justify-center bg-primary/10 rounded-lg">
-              <span className="material-symbols-outlined">skillet</span>
-            </div>
-            <h2 className="dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 ml-3">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+      <header className="sticky top-0 z-50 bg-brand-green text-white pb-4 rounded-b-[2.5rem] shadow-2xl">
+        <div className="flex items-center p-6 justify-between">
+          <div className="text-white flex size-12 shrink-0 items-center justify-center bg-white/10 rounded-2xl border border-white/20 shadow-xl">
+            <span className="material-symbols-outlined font-black text-3xl">skillet</span>
+          </div>
+          <div className="flex-1 ml-4 px-1">
+            <h2 className="text-xl font-black tracking-tight leading-tight uppercase">
               Cooking Enthusiasts
             </h2>
-            <div className="flex items-center gap-2">
-              <button className="flex items-center justify-center rounded-full size-10 hover:bg-primary/10 transition-colors">
-                <span className="material-symbols-outlined text-white">
-                  search
-                </span>
-              </button>
-              <button className="flex items-center justify-center rounded-full size-10 hover:bg-primary/10 transition-colors relative">
-                <span className="material-symbols-outlined text-white">
-                  notifications
-                </span>
-                <span className="material-symbols-outlined text-white"></span>
-              </button>
-            </div>
+            <p className="text-[10px] text-white/60 font-black uppercase tracking-widest mt-0.5">Circle Stream</p>
           </div>
-          <div className="px-4">
-            <div className="flex border-b border-primary/10 gap-8">
-              <a
-                className="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2"
-                href="#"
-              >
-                <p className="text-sm font-bold text-white">Feed</p>
-              </a>
-              <a
-                className="flex flex-col items-center justify-center border-b-2 border-transparent text-white/60 pb-3 pt-2 hover:text-white transition-colors"
-                href="#"
-              >
-                <p className="text-sm font-bold">Recipes</p>
-              </a>
-              <a
-                className="flex flex-col items-center justify-center border-b-2 border-transparent text-white/60 pb-3 pt-2 hover:text-white transition-colors"
-                href="#"
-              >
-                <p className="text-sm font-bold">Members</p>
-              </a>
-            </div>
+          <div className="flex items-center gap-2">
+            <button className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors">
+              <span className="material-symbols-outlined text-white font-black">search</span>
+            </button>
+            <button className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors">
+              <span className="material-symbols-outlined text-white font-black">notifications</span>
+            </button>
           </div>
-        </header>
-        <main className="flex-1">
-          <div className="flex items-start px-4 py-4 gap-3">
-            <div className="bg-primary/20 rounded-full size-10 shrink-0 flex items-center justify-center overflow-hidden border border-primary/10">
+        </div>
+
+        <nav className="px-6 mt-2 overflow-hidden">
+          <div className="flex gap-8 border-b border-white/10">
+            {['Feed', 'Recipes', 'Members'].map(tab => {
+              const isActive = tab === 'Feed';
+              return (
+                <button
+                  key={tab}
+                  className={`flex flex-col items-center justify-center border-b-4 pb-4 pt-2 transition-all uppercase tracking-[0.2em] text-[10px] font-black ${isActive ? 'border-primary text-white' : 'border-transparent text-white/50 hover:text-white'
+                    }`}
+                >
+                  {tab}
+                </button>
+              );
+            })}
+          </div>
+        </nav>
+      </header>
+
+      <main className="flex-1 px-6 pt-10 space-y-12 pb-48">
+        {/* Post Input Section */}
+        <section className="flex flex-col gap-4 bg-white dark:bg-slate-900 p-6 rounded-[2.5rem] shadow-xl border border-slate-100 dark:border-slate-800">
+          <div className="flex items-start gap-4">
+            <div className="size-12 rounded-[1.2rem] bg-brand-green/10 border-2 border-brand-green/20 overflow-hidden shadow-inner shrink-0 scale-95 origin-left">
               <img
                 alt="User"
-                data-alt="Close up portrait of a smiling amateur chef"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC2rYzDk03cl2XFv17aeO0ttaVyqNcZdEHOz_pBOphQCgPrNJS3FV7pFq_ih-72ChyxfO1q4DTeoq6RRZrYNlSsRxdleK2LpVZmiopUB2ki1lHggGBiuYrRHJp7KqUwfh69V-ZwqFSGDOg4O0bMKxbVzeF5JlD-angOWTjUm0UnxnketBXnl9HsaKUPHe07aNwnd8l2hObGKdKEzsk7iM2TMngc5rfGZKGTUjUmn6Uga36jfmiZF5zHpyiRw4eTOy8oMi-ntr1TLAL"
               />
             </div>
-            <div className="flex flex-1 flex-col gap-2">
-              <div className="flex flex-col rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 shadow-sm overflow-hidden">
-                <textarea
-                  className="w-full min-h-[100px] resize-none border-none bg-transparent focus:ring-0 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 text-base p-4"
-                  placeholder="Share a recipe or food photo..."
-                ></textarea>
-                <div className="flex items-center justify-between p-3 border-t border-primary/5 bg-slate-50/50 dark:bg-slate-900/20">
-                  <div className="flex items-center gap-1">
-                    <button className="flex items-center justify-center p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors">
-                      <span className="material-symbols-outlined text-xl">
-                        photo_camera
-                      </span>
-                    </button>
-                    <button className="flex items-center justify-center p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors">
-                      <span className="material-symbols-outlined text-xl">
-                        menu_book
-                      </span>
-                    </button>
-                    <button className="flex items-center justify-center p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors">
-                      <span className="material-symbols-outlined text-xl">
-                        location_on
-                      </span>
-                    </button>
-                  </div>
-                  <button className="bg-primary text-white px-6 py-2 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-all shadow-md active:scale-95">
-                    Post
-                  </button>
-                </div>
-              </div>
-            </div>
+            <textarea
+              className="flex-1 min-h-[80px] mt-1 resize-none border-none bg-transparent focus:ring-0 text-slate-900 dark:text-slate-100 placeholder:text-slate-300 font-bold text-sm"
+              placeholder="Share a recipe or food photo..."
+            ></textarea>
           </div>
-          <div className="p-4 flex flex-col gap-6">
-            <div className="flex flex-col rounded-xl overflow-hidden border border-primary/10 bg-white dark:bg-slate-800 shadow-sm">
-              <div className="flex items-center gap-3 p-4">
-                <img
-                  alt="Maria"
-                  className="size-10 rounded-full border border-primary/10"
-                  data-alt="Profile picture of a female home cook"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiM4XY9tWcMnzEPcKcY0T_QlaIxDyGBkGV-rm1UvZH8g1JudJraYwKSbeyf7QF95VwwpyiPpFQ6-j7JTrfSZ7zUeuPxqT1MCJqkdo5UZPlZXgcS7cBo-QcsMAmQz8-qniiEBggc961PQs1Gl1V9fR_HC-Zebm1eJLf0jxR7QuOA7z-20IzqA7Rds_eGbFBS0fCZnV_aefOFa42Rs33fP2zI4uZzZLP1hMZI3ATdgq4HLQay8ZXaHBRbWprWcgkbYEq5WxzAAJTSWYi"
-                />
-                <div className="flex flex-col">
-                  <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                    Maria Chen
-                  </span>
-                  <span className="text-xs text-slate-500">
-                    2h ago •{' '}
-                    <span className="text-brand-green font-bold">
-                      Baking Expert
-                    </span>
-                  </span>
-                </div>
-                <button className="ml-auto text-slate-400">
-                  <span className="material-symbols-outlined">more_horiz</span>
+
+          <div className="flex items-center justify-between pt-4 border-t border-slate-50 dark:border-slate-800">
+            <div className="flex items-center gap-1">
+              {['photo_camera', 'menu_book', 'location_on'].map(icon => (
+                <button key={icon} className="size-10 flex items-center justify-center text-slate-300 hover:text-brand-green hover:bg-brand-green/5 rounded-xl transition-all">
+                  <span className="material-symbols-outlined text-xl font-black">{icon}</span>
                 </button>
-              </div>
-              <div className="px-4 pb-3">
-                <p className="text-slate-700 dark:text-slate-300 text-base">
-                  Just finished baking this! The crust is super flaky. Used my
-                  grandmother's secret technique for the glaze. #baking #summer
-                  #berrytart
-                </p>
-              </div>
-              <div className="w-full aspect-[4/3] bg-slate-200 relative">
-                <img
-                  alt="Berry Tart"
-                  className="w-full h-full object-cover"
-                  data-alt="Glistening summer berry tart with fresh strawberries and blueberries"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKd4kQtnc8bibgiFQ1ZXjj3TyOl3CY8KVHLE1omeX0TfYcDl9GrfnciAQSUdhDrAmcGjeKs6AL6eJmIhj_yLisrjUwnE7l99f1mgdokBELBZBAb6OVClDIi6Rdn7sYRGHuJyJGd7FZmr9GLyLcRpZKzifq5pas_IqieGtyne1GNI8ncxnbL9JpOm0BBoj9XSTGgHZ3qSHrZI0Fg5RlxAuPdVESvmFLP2-DAJBRdkDxlx5rFIe_1Pe_MNcO0UQftaEOsXHmxb2xavjs"
-                />
-              </div>
-              <div className="flex items-center justify-between p-4 border-b border-primary/5">
-                <div className="flex -space-x-2">
-                  <div className="size-6 rounded-full bg-primary border-2 border-white dark:border-slate-800 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-[12px] text-white">
-                      favorite
-                    </span>
-                  </div>
-                  <div className="size-6 rounded-full bg-blue-500 border-2 border-white dark:border-slate-800 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-[12px] text-white">
-                      thumb_up
-                    </span>
-                  </div>
-                  <span className="pl-4 text-xs font-medium text-slate-500">
-                    42 likes
-                  </span>
-                </div>
-                <span className="text-xs font-medium text-slate-500">
-                  12 comments • 5 shares
-                </span>
-              </div>
-              <div className="flex items-center justify-around p-1">
-                <button className="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-sm font-medium">
-                  <span className="material-symbols-outlined text-lg">
-                    favorite
-                  </span>{' '}
-                  Like
-                </button>
-                <button className="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-sm font-medium">
-                  <span className="material-symbols-outlined text-lg">
-                    chat_bubble
-                  </span>{' '}
-                  Comment
-                </button>
-                <button className="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-sm font-medium">
-                  <span className="material-symbols-outlined text-lg">
-                    share
-                  </span>{' '}
-                  Share
-                </button>
-              </div>
+              ))}
             </div>
-            <div className="flex flex-col rounded-xl overflow-hidden border border-primary/10 bg-white dark:bg-slate-800 shadow-sm">
-              <div className="flex items-center gap-3 p-4">
-                <img
-                  alt="David"
-                  className="size-10 rounded-full border border-primary/10"
-                  data-alt="Profile picture of a man in a chef hat"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCrcJdkggMY9psbNJnYduuKEuNRwoS5iLG-aZqMJqO1VqAVXpwfKt92PLwW2r_O6D0AetcRMFKzaQ1VjDK5LhJyP0zJjeadxJn7wJpmNP5qQiWpXwMpqmvZcwh-6xdxv5X4qViTzkQbLSl-mGy6UMReVD9Gbtt27QXGoKxNiLc5FrMYjBWwxBqq_bgNuUsYLcu91eEFDeauVNURvaUgIVAw1WBlZwvaCBVlVRRskNUzLuE_kXcEw3Exr7vdxjXGt-IGZwnOUEZ0hIl"
-                />
-                <div className="flex flex-col">
-                  <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                    David Wilson
-                  </span>
-                  <span className="text-brand-green font-bold">
-                    5h ago •{' '}
-                    <span className="text-brand-green font-bold">
-                      Grill Master
-                    </span>
-                  </span>
-                </div>
-                <button className="ml-auto text-slate-400">
-                  <span className="material-symbols-outlined">more_horiz</span>
-                </button>
-              </div>
-              <div className="px-4 pb-4">
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 flex gap-4">
-                  <div className="size-16 bg-white rounded-lg border border-primary/10 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                    <img
-                      alt="Ribs"
-                      className="object-cover h-full w-full"
-                      data-alt="Slow cooked barbecue ribs on a wooden board"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuARrMyiBKop-gIkpcK191B3_g8aEpTBQ844e5CyWC_jK68Blqlis73Tg0pmKDnPC67e0wMUY1kbSp-c7W6M1yVTclHrPJ_wP9UOCzk7W5Ed46cep59Z19V7_R8Zs_SPVHGNBtvfkLbNztO6rBP22KYsU5jyyEjKSS09QvnSURkEHtRMh5V-2afhhqz7wt5S080YBGYa4FuYH-jtXegarnqgWsxlRVlT6c9KXuyrWWUJKwVN8wAZEKS3VprHv5-qNiLCxvuJKxZ3OV8A"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <h4 className="font-bold text-slate-900 dark:text-slate-100">
-                      Smoked BBQ Ribs
-                    </h4>
-                    <p className="text-xs text-slate-500">
-                      15 mins prep • 6 hours cook
-                    </p>
-                    <div className="flex items-center mt-1 text-primary">
-                      <span className="material-symbols-outlined text-xs fill-1">
-                        star
-                      </span>
-                      <span className="material-symbols-outlined text-xs fill-1">
-                        star
-                      </span>
-                      <span className="material-symbols-outlined text-xs fill-1">
-                        star
-                      </span>
-                      <span className="material-symbols-outlined text-xs fill-1">
-                        star
-                      </span>
-                      <span className="material-symbols-outlined text-xs">
-                        star
-                      </span>
-                      <span className="text-[10px] ml-1 text-slate-500">
-                        (24)
-                      </span>
-                    </div>
-                  </div>
-                  <button className="ml-auto self-center bg-primary text-white text-xs px-3 py-1.5 rounded-lg font-bold">
-                    View
-                  </button>
-                </div>
-                <p className="mt-3 text-slate-700 dark:text-slate-300 text-sm italic">
-                  "The dry rub is the key here. Make sure to let it sit for at
-                  least 2 hours!"
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col rounded-xl overflow-hidden border border-primary/10 bg-white dark:bg-slate-800 shadow-sm mb-20">
-              <div className="flex items-center gap-3 p-4">
-                <img
-                  alt="Elena"
-                  className="size-10 rounded-full border border-primary/10"
-                  data-alt="Portrait of a woman with a clean culinary style"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo8HWPAL7OTrVG_-OcnOOle3MEoEVoQ9D488nN4-DxWgX2yEDLXuCVdk0rUP6DXyzWzaJSKuM2VtGhQErvtKeOEL6pHx-bpkHBEOU5Q4m2oHgkvc16YzImNlu7HQAyJO7eBTG-_QA_x1wvVjWqPBb89WfYBJCD6Mnegg7mHCeXh6zLxfFJBeN5n-B23Qrz0oHTzKMCooX4uiQSEAWRjgn9ZpUJqO-0L-g4kYbTASC5cesg8BwNNQNWcWZnvzvO23mi9shnTY-_7SqU"
-                />
-                <div className="flex flex-col">
-                  <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                    Elena Rodriguez
-                  </span>
-                  <span className="text-xs text-slate-500">8h ago</span>
-                </div>
-                <button className="ml-auto text-slate-400">
-                  <span className="material-symbols-outlined">more_horiz</span>
-                </button>
-              </div>
-              <div className="px-4 pb-3">
-                <p className="text-slate-700 dark:text-slate-300 text-base">
-                  Question for the group: What's your favorite substitute for
-                  heavy cream in pasta sauces? Trying to go a bit lighter today.
-                  🍝
-                </p>
-              </div>
-              <div className="px-4 pb-4 flex flex-col gap-3">
-                <div className="flex gap-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900/40">
-                  <img
-                    alt="Reply"
-                    className="size-8 rounded-full"
-                    data-alt="Small profile icon for a user comment"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOyVo9rlI1KosIdJ3FKxvswqolHDUCHovDR0uLhdSDxNdyNcJ9DIo6mUQ83Y2H_0G_441_2llvBpld357nBKBpea3VAj4nUKr0vU4UNz8_BJ3cm-L1FIVs7AHD6s7g24bfIVNhxvSgjKamE-Smfq1mFRDDlQimykejL58k_nfvo8tvxRiPdF-0oWuUXCMO-udyaP10Fy6yOp06AFPr_iVYQusLeeH0ODbf6wRNPCRer2-hllkYgRT90dku_Pqj4lZDF81TN7aeZMkV"
-                  />
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-xs">Sam J.</span>
-                      <span className="text-[10px] text-slate-500">4h ago</span>
-                    </div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Greek yogurt works wonders! Just don't let it boil or it
-                      will curdle.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900/40">
-                  <img
-                    alt="Reply"
-                    className="size-8 rounded-full"
-                    data-alt="Small profile icon for a user comment"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkd33_s-Vv9PtWdRO7kT9vpdLq-bN8YEv9VTCbknf9-WeU59xqFSGkP8j8PIJ6zw1rZp4BoeOUcic95cBQ-Q7gB070v6HH_OMwidHgQgvJpcPsdRm3-10968OB61VWPHVj_xaBjbYRg3ZCwFQRt1Qejfcec-bj8Cjqu7oQEj53MmXwKpIl71cSUIeCckktLkI4-Xcu7bn85keAH7mhdAWsiYKkhmqOgkNjGjR5EsHMVn7uC5cSeZGL8WvkKzcaPNEkStiJzNht9ylO"
-                  />
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-xs">Chef Mike</span>
-                      <span className="text-[10px] text-slate-500">2h ago</span>
-                    </div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Blended silken tofu. You get the protein and the
-                      creaminess without the fat!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-        <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-brand-green text-white/60 px-6 py-4 flex items-center justify-between z-50 rounded-t-[2.5rem] shadow-[0_-10px_30px_rgba(26,60,52,0.3)]">
-          <a
-            className="flex flex-col items-center gap-1 text-brand-green"
-            href="#"
-          >
-            <div className="nav-pill px-5 py-1 flex items-center justify-center">
-              <span className="material-symbols-outlined fill-1">home</span>
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-wider">
-              Home
-            </span>
-          </a>
-          <a
-            className="flex flex-col items-center gap-1 text-white/60"
-            href="#"
-          >
-            <div className="px-5 py-1 flex items-center justify-center">
-              <span className="material-symbols-outlined">group</span>
-            </div>
-            <span className="text-[10px] font-medium uppercase tracking-wider">
-              Groups
-            </span>
-          </a>
-          <div className="relative -top-6">
-            <button className="size-14 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-transform">
-              <span className="material-symbols-outlined text-3xl">add</span>
+            <button className="bg-primary hover:bg-orange-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-primary/30 transition-all active:scale-95">
+              Share Post
             </button>
           </div>
-          <a
-            className="flex flex-col items-center gap-1 text-white/60"
-            href="#"
-          >
-            <div className="px-5 py-1 flex items-center justify-center">
-              <span className="material-symbols-outlined">bookmark</span>
-            </div>
-            <span className="text-[10px] font-medium uppercase tracking-wider">
-              Saved
-            </span>
-          </a>
-          <a
-            className="flex flex-col items-center gap-1 text-white/60"
-            href="#"
-          >
-            <div className="px-5 py-1 flex items-center justify-center">
-              <span className="material-symbols-outlined">person</span>
-            </div>
-            <span className="text-[10px] font-medium uppercase tracking-wider">
-              Profile
-            </span>
-          </a>
-        </nav>
-      </div>
-    </>
+        </section>
+
+        {/* Activity List */}
+        <div className="space-y-10">
+          {POSTS.map((post, i) => (
+            <ActivityPost key={i} {...post} />
+          ))}
+        </div>
+      </main>
+
+      {/* Floating Add Button */}
+      <button className="absolute bottom-24 right-6 size-20 bg-primary text-white rounded-[2rem] shadow-[0_15px_30px_-5px_rgba(255,165,0,0.5)] flex items-center justify-center hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all ring-8 ring-white dark:ring-slate-900 z-40">
+        <span className="material-symbols-outlined text-4xl font-black">add</span>
+      </button>
+
+      <AppNavigation activeTab="home" />
+    </div>
   );
 }

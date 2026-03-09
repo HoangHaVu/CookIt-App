@@ -1,14 +1,6 @@
 import { PageHeader } from '../components/layout/PageHeader';
-import { ModuleNav, NavItem } from '../components/layout/ModuleNav';
 import { AchievementCard } from '../components/ui/AchievementCard';
-
-const ACHIEVEMENTS_NAV: NavItem[] = [
-  { id: 'home', icon: 'home', label: 'Home', path: '/' },
-  { id: 'recipes', icon: 'menu_book', label: 'Recipes', path: '#' },
-  { id: 'awards', icon: 'emoji_events', label: 'Awards', path: '/achievementsbadges', fill: true },
-  { id: 'community', icon: 'group', label: 'Community', path: '#' },
-  { id: 'profile', icon: 'person', label: 'Profile', path: '/profile' },
-];
+import { AppNavigation } from '../components/layout/AppNavigation';
 
 export default function AchievementsBadges() {
   return (
@@ -122,7 +114,7 @@ export default function AchievementsBadges() {
         </section>
       </main>
 
-      <ModuleNav activeTab="awards" variant="brand" items={ACHIEVEMENTS_NAV} />
+      <AppNavigation activeTab="profile" />
     </div>
   );
 }

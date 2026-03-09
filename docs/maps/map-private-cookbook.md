@@ -5,8 +5,8 @@
 Route: /privatecookbook
 
 ## Sections & Komponenten
+### CookbookHeader
+Datei: src/components/layout/CookbookHeader.tsx
 
-### Main View
-Datei: src/app/PrivateCookbook.tsx
-Props: None (Generated Monolith)
-Imports: React
+### CollectionCard
+Datei: src/components/ui/CollectionCard.tsx
