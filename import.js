@@ -18,7 +18,23 @@ const TARGET_SCREENS = {
     "Meal Planner Calendar - New Style": "MealPlannerCalendar",
     "Homepage - Orange Button Style": "HomepageOrange",
     "Homepage - Refined Two-Tone Green Style": "HomepageGreen",
-    "Create Group - New Style": "CreateGroup"
+    "Create Group - New Style": "CreateGroup",
+    "Private Cookbook - New Style": "PrivateCookbook",
+    "Cook Mode - Updated Style": "CookMode",
+    "Achievements & Badges - New Style": "AchievementsBadges",
+    "Sign Up - New Style": "SignUp",
+    "Login - New Style": "Login",
+    "Trending Creators": "TrendingCreators",
+    "Recipe Rankings": "RecipeRankings",
+    "Recipe Import - Updated Style": "RecipeImport",
+    "Import Confirmation": "ImportConfirmation",
+    "Invite Friends": "InviteFriends",
+    "Expiration Tracking - New Style": "ExpirationTracking",
+    "Search & Filter - Updated Style": "SearchFilter",
+    "Magic Import Scan": "MagicImportScan",
+    "Collection Detail - New Style": "CollectionDetail",
+    "Password Reset - New Style": "PasswordReset",
+    "Marketplace - Updated Style": "Marketplace"
 };
 
 const main = async () => {
