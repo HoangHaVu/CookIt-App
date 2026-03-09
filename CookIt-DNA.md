@@ -103,15 +103,17 @@ Ordner:        kebab-case
 
 ### Scripts
 ```bash
-
+npm run dev
+npm run build
+npm run preview
 ```
 
 ### Externe Ressourcen
 ```
-Spline-URL:
-CMS-Project:
-GitHub-Repo:
-Vercel-URL:
+Spline-URL: N/A
+CMS-Project: N/A
+GitHub-Repo: N/A (lokal initialisiert)
+Vercel-URL: N/A
 ```
 
 ---
