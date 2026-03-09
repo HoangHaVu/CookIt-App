@@ -119,10 +119,108 @@ Vercel-URL: N/A
 ---
 
 ## 🗺️ Bereich 3 — Seiten-Baum
-<!-- Generiert via generate-maps.md (in Antigravity oder Cursor/Ollama) -->
-<!-- Flache Übersicht: Seite → Sections — Claude liest das immer -->
-<!-- Für tiefere Details: docs/maps/map-SEITENNAME.md -->
-<!-- Layout + UI-Shared stehen NICHT hier — nur in ihren zentralen Map-Dateien -->
+<!-- Generiert via generate-maps.md -->
+
+```
+AchievementsBadges             → docs/maps/map-achievements-badges.md
+  ├── Main View
+
+ChallengeLeaderboard           → docs/maps/map-challenge-leaderboard.md
+  ├── Main View
+
+CollectionDetail               → docs/maps/map-collection-detail.md
+  ├── Main View
+
+CookMode                       → docs/maps/map-cook-mode.md
+  ├── Main View
+
+CreateChallenge                → docs/maps/map-create-challenge.md
+  ├── Main View
+
+CreateGroup                    → docs/maps/map-create-group.md
+  ├── Main View
+
+CreateRecipe                   → docs/maps/map-create-recipe.md
+  ├── Main View
+
+ExpirationTracking             → docs/maps/map-expiration-tracking.md
+  ├── Main View
+
+GroupActivityFeed              → docs/maps/map-group-activity-feed.md
+  ├── Main View
+
+HomepageGreen                  → docs/maps/map-homepage-green.md
+  ├── Main View
+
+HomepageOrange                 → docs/maps/map-homepage-orange.md
+  ├── Main View
+
+ImportConfirmation             → docs/maps/map-import-confirmation.md
+  ├── Main View
+
+InviteFriends                  → docs/maps/map-invite-friends.md
+  ├── Main View
+
+InviteMembers                  → docs/maps/map-invite-members.md
+  ├── Main View
+
+Login                          → docs/maps/map-login.md
+  ├── Main View
+
+MagicImportScan                → docs/maps/map-magic-import-scan.md
+  ├── Main View
+
+Marketplace                    → docs/maps/map-marketplace.md
+  ├── Main View
+
+MealPlannerCalendar            → docs/maps/map-meal-planner-calendar.md
+  ├── Main View
+
+Onboarding                     → docs/maps/map-onboarding.md
+  ├── Main View
+
+PantryInventory                → docs/maps/map-pantry-inventory.md
+  ├── Main View
+
+PasswordReset                  → docs/maps/map-password-reset.md
+  ├── Main View
+
+PrivateCookbook                → docs/maps/map-private-cookbook.md
+  ├── Main View
+
+Profile                        → docs/maps/map-profile.md
+  ├── Main View
+
+RecipeDetail                   → docs/maps/map-recipe-detail.md
+  ├── Main View
+
+RecipeImport                   → docs/maps/map-recipe-import.md
+  ├── Main View
+
+RecipeRankings                 → docs/maps/map-recipe-rankings.md
+  ├── Main View
+
+SearchFilter                   → docs/maps/map-search-filter.md
+  ├── Main View
+
+ShoppingList                   → docs/maps/map-shopping-list.md
+  ├── Main View
+
+SignUp                         → docs/maps/map-sign-up.md
+  ├── Main View
+
+SubmitToChallenge              → docs/maps/map-submit-to-challenge.md
+  ├── Main View
+
+TrendingCreators               → docs/maps/map-trending-creators.md
+  ├── Main View
+
+WeeklyMealPlanner              → docs/maps/map-weekly-meal-planner.md
+  ├── Main View
+
+Layout + geteilte UI           → docs/maps/map-layout.md
+                               → docs/maps/map-ui-shared.md
+```
 
 ---
 
