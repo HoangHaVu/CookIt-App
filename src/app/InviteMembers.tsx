@@ -31,7 +31,7 @@ export default function InviteMembers() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <header className="bg-brand-green text-white pb-12 px-6 pt-12 rounded-b-[3rem] shadow-2xl relative z-10">
         <PageHeader title="Gather the Circle" transparent={true} rightActionIcon="share" />
         <div className="mt-8 text-center px-4">

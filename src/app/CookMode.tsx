@@ -44,7 +44,7 @@ export default function CookMode() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-4xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <CookHeader currentStep={currentStep} totalSteps={totalSteps} phaseName="Slow Roasting Phase" />
 
       <main className="flex-1 pb-40">
@@ -146,7 +146,7 @@ export default function CookMode() {
       </main>
 
       {/* Control Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 p-8 pt-10 bg-gradient-to-t from-background-light via-background-light/95 to-transparent dark:from-background-dark dark:via-background-dark/95 z-40 max-w-4xl mx-auto">
+      <footer className="fixed bottom-0 left-0 right-0 p-8 pt-10 bg-gradient-to-t from-background-light via-background-light/95 to-transparent dark:from-background-dark dark:via-background-dark/95 z-40 max-w-[480px] mx-auto">
         <div className="flex items-center gap-6">
           <button
             onClick={handlePrevStep}

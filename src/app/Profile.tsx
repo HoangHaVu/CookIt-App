@@ -12,7 +12,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState<ProfileTab>('My Recipes');
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-xl">
       <ProfileHeader />
       <ProfileHero />
       <ProfileStatsSection />

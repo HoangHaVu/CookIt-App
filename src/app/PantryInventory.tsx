@@ -58,7 +58,7 @@ export default function PantryInventory() {
   const showCanned = activeFilter === 'All' || activeFilter === 'Canned';
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+    <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
       <PantryHeader onExpirationClick={() => navigate('/expirationtracking')} />
       <PantrySearch />
 

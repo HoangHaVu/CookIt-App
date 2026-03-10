@@ -33,7 +33,7 @@ export default function SubmitToChallenge() {
   const [selectedId, setSelectedId] = useState<string>('r1');
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Submit Entry" rightActionIcon="info" />
 
       <main className="flex-1 overflow-y-auto px-6 py-8 space-y-12 pb-40">

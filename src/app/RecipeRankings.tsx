@@ -50,7 +50,7 @@ const TOP_RANKINGS = [
 
 export default function RecipeRankings() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+    <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <RankingHeader title="Top Rated Recipes" />
 
       <main className="flex-1 px-4 py-8 space-y-6 pb-32">

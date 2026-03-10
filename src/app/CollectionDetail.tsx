@@ -47,7 +47,11 @@ export default function CollectionDetail() {
 
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
-      <PageHeader title="Summer Favorites" rightActionIcon="more_horiz" />
+      <PageHeader
+        title="Summer Favorites"
+        rightActionIcon="more_horiz"
+        onRightAction={() => navigate('/createrecipe')}
+      />
 
       <main className="flex-1 pb-40">
         {/* Banner Section */}

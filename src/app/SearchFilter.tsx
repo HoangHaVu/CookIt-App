@@ -29,7 +29,7 @@ export default function SearchFilter() {
   });
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col max-w-4xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+    <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       {/* Search Header */}
       <section className="bg-brand-green text-white pb-32 px-8 pt-16 rounded-b-[4rem] shadow-2xl relative z-10">
         <div className="flex items-center justify-between mb-10">

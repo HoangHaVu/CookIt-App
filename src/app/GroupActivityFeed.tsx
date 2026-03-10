@@ -4,8 +4,8 @@ import { ActivityPost } from '../components/ui/ActivityPost';
 import { AppNavigation } from '../components/layout/AppNavigation';
 import { EmptyState } from '../components/ui/EmptyState';
 
-type FeedTab = 'Feed' | 'Recipes' | 'Members';
-const FEED_TABS: FeedTab[] = ['Feed', 'Recipes', 'Members'];
+type FeedTab = 'Activity' | 'Recipes' | 'Members';
+const FEED_TABS: FeedTab[] = ['Activity', 'Recipes', 'Members'];
 
 const POSTS = [
   {
@@ -41,32 +41,51 @@ const POSTS = [
 
 export default function GroupActivityFeed() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<FeedTab>('Feed');
+  const [activeTab, setActiveTab] = useState<FeedTab>('Activity');
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <header className="sticky top-0 z-50 bg-brand-green text-white pb-4 rounded-b-[2.5rem] shadow-2xl">
-        <div className="flex items-center p-6 justify-between">
-          <div className="text-white flex size-12 shrink-0 items-center justify-center bg-white/10 rounded-2xl border border-white/20 shadow-xl">
-            <span className="material-symbols-outlined font-black text-3xl">skillet</span>
+        <div className="flex items-center px-4 pt-4 pb-2 gap-3">
+          {/* Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors active:scale-90 shrink-0"
+          >
+            <span className="material-symbols-outlined text-white font-black">arrow_back</span>
+          </button>
+
+          {/* Group Icon + Info */}
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="size-10 shrink-0 flex items-center justify-center bg-white/10 rounded-xl border border-white/20">
+              <span className="material-symbols-outlined font-black text-xl">skillet</span>
+            </div>
+            <div className="min-w-0">
+              <h2 className="text-base font-black tracking-tight leading-tight uppercase truncate">
+                Cooking Enthusiasts
+              </h2>
+              <p className="text-[10px] text-white/60 font-black uppercase tracking-widest">42 Members</p>
+            </div>
           </div>
-          <div className="flex-1 ml-4 px-1">
-            <h2 className="text-xl font-black tracking-tight leading-tight uppercase">
-              Cooking Enthusiasts
-            </h2>
-            <p className="text-[10px] text-white/60 font-black uppercase tracking-widest mt-0.5">Circle Stream</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <button onClick={() => navigate('/searchfilter')} className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors">
-              <span className="material-symbols-outlined text-white font-black">search</span>
+
+          {/* Actions */}
+          <div className="flex items-center gap-1 shrink-0">
+            <button
+              onClick={() => navigate('/invitemembers')}
+              className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors active:scale-90"
+            >
+              <span className="material-symbols-outlined text-white font-black">person_add</span>
             </button>
-            <button onClick={() => navigate('/invitemembers')} className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors">
-              <span className="material-symbols-outlined text-white font-black">notifications</span>
+            <button
+              onClick={() => navigate('/searchfilter')}
+              className="flex items-center justify-center rounded-2xl size-10 hover:bg-white/10 transition-colors active:scale-90"
+            >
+              <span className="material-symbols-outlined text-white font-black">search</span>
             </button>
           </div>
         </div>
 
-        <nav className="px-6 mt-2 overflow-hidden">
+        <nav className="px-6 mt-1 overflow-hidden">
           <div className="flex gap-8 border-b border-white/10">
             {FEED_TABS.map((tab) => (
               <button
@@ -86,7 +105,7 @@ export default function GroupActivityFeed() {
       </header>
 
       <main className="flex-1 px-6 pt-10 space-y-12 pb-48">
-        {activeTab === 'Feed' && (
+        {activeTab === 'Activity' && (
           <>
             {/* Post Input Section */}
             <section className="flex flex-col gap-4 bg-white dark:bg-slate-900 p-6 rounded-[2.5rem] shadow-xl border border-slate-100 dark:border-slate-800">
@@ -144,9 +163,12 @@ export default function GroupActivityFeed() {
         )}
       </main>
 
-      {/* Floating Add Button */}
-      <button className="absolute bottom-24 right-6 size-20 bg-primary text-white rounded-[2rem] shadow-[0_15px_30px_-5px_rgba(255,165,0,0.5)] flex items-center justify-center hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all ring-8 ring-white dark:ring-slate-900 z-40">
-        <span className="material-symbols-outlined text-4xl font-black">add</span>
+      {/* FAB — Neuen Post erstellen */}
+      <button
+        onClick={() => setActiveTab('Activity')}
+        className="absolute bottom-24 right-6 size-16 bg-primary text-white rounded-[1.5rem] shadow-[0_15px_30px_-5px_rgba(255,165,0,0.5)] flex items-center justify-center hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all ring-8 ring-white dark:ring-slate-900 z-40"
+      >
+        <span className="material-symbols-outlined text-3xl font-black">edit_note</span>
       </button>
 
       <AppNavigation activeTab="home" />

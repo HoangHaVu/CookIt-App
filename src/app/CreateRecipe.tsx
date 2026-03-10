@@ -41,7 +41,7 @@ export default function CreateRecipe() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col max-w-2xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+    <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <CreateRecipeHeader />
 
       <main className="flex-1 overflow-y-auto pb-48">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
 import { ChallengePodium } from '../components/sections/ChallengePodium';
 import { RankingRow } from '../components/ui/RankingRow';
@@ -40,12 +41,13 @@ const CREATOR_RANKINGS = [
 ];
 
 export default function ChallengeLeaderboard() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<LeaderboardTab>('Recipes');
 
   const rankings = activeTab === 'Recipes' ? RECIPE_RANKINGS : CREATOR_RANKINGS;
 
   return (
-    <div className="max-w-md mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-x-hidden">
+    <div className="max-w-[480px] mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-x-hidden">
       <PageHeader title="Summer Grilling Challenge" />
 
       <div className="px-4 py-2">
@@ -82,6 +84,23 @@ export default function ChallengeLeaderboard() {
         {rankings.map((item) => (
           <RankingRow key={item.rank} {...item} />
         ))}
+
+        <div className="flex flex-col gap-3 pt-4">
+          <button
+            onClick={() => navigate('/submittochallenge')}
+            className="w-full bg-primary text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 hover:bg-orange-600 active:scale-95 transition-all flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-outlined font-black">upload</span>
+            Submit Your Recipe
+          </button>
+          <button
+            onClick={() => navigate('/createchallenge')}
+            className="w-full border-2 border-brand-green text-brand-green py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-green/10 active:scale-95 transition-all flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-outlined font-black">add_circle</span>
+            Create New Challenge
+          </button>
+        </div>
       </main>
 
       <AppNavigation activeTab="home" />

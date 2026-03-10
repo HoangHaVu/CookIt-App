@@ -52,7 +52,7 @@ export default function ExpirationTracking() {
   const showSoon = activeTab === 'All' || activeTab === 'Expiring Soon';
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Expiration Tracking" />
 
       {/* Filter Tabs */}

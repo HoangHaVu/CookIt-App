@@ -28,7 +28,7 @@ export default function MagicImportScan() {
   const statusIcon = scanState === 'done' ? 'check_circle' : 'auto_fix_high';
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-black shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-black shadow-2xl">
       <header className="absolute top-0 left-0 right-0 z-50">
         <PageHeader title="Magic Import" transparent={true} rightActionIcon="help_outline" />
       </header>

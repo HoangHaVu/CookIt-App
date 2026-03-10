@@ -5,7 +5,7 @@ import { AppNavigation } from '../components/layout/AppNavigation';
 export default function RecipeImport() {
   const navigate = useNavigate();
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Magic Preview" rightActionIcon="auto_awesome" />
 
       <main className="flex-1 pb-48 px-6 py-8 space-y-12">

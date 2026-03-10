@@ -5,6 +5,7 @@ interface PageHeaderProps {
     showBackButton?: boolean;
     showShareButton?: boolean;
     onBack?: () => void;
+    onRightAction?: () => void;
     transparent?: boolean;
     rightActionIcon?: string;
 }
@@ -14,6 +15,7 @@ export function PageHeader({
     showBackButton = true,
     showShareButton = true,
     onBack,
+    onRightAction,
     transparent = false,
     rightActionIcon = 'share'
 }: PageHeaderProps) {
@@ -49,7 +51,7 @@ export function PageHeader({
             </h1>
 
             {showShareButton ? (
-                <button className="size-12 flex items-center justify-center rounded-2xl transition-all active:scale-95 hover:bg-white/10">
+                <button onClick={onRightAction} className="size-12 flex items-center justify-center rounded-2xl transition-all active:scale-95 hover:bg-white/10">
                     <span className="material-symbols-outlined font-black">{rightActionIcon}</span>
                 </button>
             ) : (

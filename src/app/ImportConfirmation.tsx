@@ -5,7 +5,7 @@ import { AppNavigation } from '../components/layout/AppNavigation';
 export default function ImportConfirmation() {
   const navigate = useNavigate();
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Import Status" />
 
       <main className="flex-1 flex flex-col px-8 py-12 items-center pb-48">

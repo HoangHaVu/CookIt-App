@@ -38,7 +38,7 @@ export default function ShoppingList() {
     items.map((item) => ({ ...item, isChecked: checkedNames.has(item.name) }));
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark max-w-xl mx-auto shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark max-w-[480px] mx-auto shadow-2xl">
       <ShoppingHeader activeTab="All Items" />
 
       <main className="flex-1 w-full pb-48">

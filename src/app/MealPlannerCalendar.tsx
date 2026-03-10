@@ -48,7 +48,7 @@ export default function MealPlannerCalendar() {
   const isSelected = (d: number) => d === selectedDay;
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Meal Planner" rightActionIcon="account_circle" />
 
       <main className="flex-1 pb-40 px-6 py-8 space-y-12">

@@ -17,7 +17,10 @@ export function ProfileHeader() {
                 Profile
             </h2>
             <div className="flex w-10 items-center justify-end">
-                <button className="flex cursor-pointer items-center justify-center rounded-xl size-10 bg-transparent text-slate-900 dark:text-slate-100 text-white">
+                <button
+                    onClick={() => navigate('/achievementsbadges')}
+                    className="flex cursor-pointer items-center justify-center rounded-xl size-10 bg-transparent text-slate-900 dark:text-slate-100 text-white hover:bg-white/10 transition-colors active:scale-90"
+                >
                     <span className="material-symbols-outlined text-white">
                         settings
                     </span>

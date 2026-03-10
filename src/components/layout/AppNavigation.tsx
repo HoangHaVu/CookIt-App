@@ -22,7 +22,7 @@ export function AppNavigation({ activeTab: propActiveTab }: AppNavigationProps) 
     const navigate = useNavigate();
 
     return (
-        <nav className="fixed bottom-0 z-[60] left-0 right-0 max-w-xl mx-auto border-t border-white/10 bg-brand-green px-6 pb-8 pt-4 text-white/70 shadow-[0_-15px_35px_rgba(14,117,71,0.4)] rounded-t-[3rem] transition-all duration-500">
+        <nav className="fixed bottom-0 z-[60] left-0 right-0 max-w-[480px] mx-auto border-t border-white/10 bg-brand-green px-6 pb-8 pt-4 text-white/70 shadow-[0_-15px_35px_rgba(14,117,71,0.4)] rounded-t-[3rem] transition-all duration-500">
             <div className="flex justify-around items-center">
                 <Link
                     className={`flex flex-col items-center gap-2 transition-all hover:scale-110 active:scale-90 ${activeTab === 'home' ? 'text-white' : 'opacity-60 hover:opacity-100'}`}
@@ -44,9 +44,9 @@ export function AppNavigation({ activeTab: propActiveTab }: AppNavigationProps) 
                     <span className="text-[9px] font-black uppercase tracking-[0.2em]">Planner</span>
                 </Link>
 
-                <div className="relative -top-12 px-2 group">
-                    <button onClick={() => navigate('/createrecipe')} className="flex h-20 w-20 items-center justify-center rounded-[2rem] bg-primary text-white shadow-[0_15px_40px_-10px_rgba(255,165,0,0.6)] ring-[12px] ring-background-light dark:ring-background-dark active:scale-90 transition-all hover:scale-110 hover:-translate-y-1 hover:rotate-6">
-                        <span className="material-symbols-outlined text-5xl font-black">add</span>
+                <div className="relative -top-10 px-2 group">
+                    <button onClick={() => navigate('/createrecipe')} className="flex h-16 w-16 items-center justify-center rounded-[1.75rem] bg-primary text-white shadow-[0_12px_35px_-8px_rgba(255,165,0,0.6)] active:scale-90 transition-all hover:scale-110 hover:-translate-y-1 hover:rotate-6">
+                        <span className="material-symbols-outlined text-4xl font-black">add</span>
                     </button>
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                         <span className="bg-slate-900 text-white text-[8px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg whitespace-nowrap shadow-2xl">Create Recipe</span>

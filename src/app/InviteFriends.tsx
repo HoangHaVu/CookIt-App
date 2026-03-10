@@ -24,7 +24,7 @@ export default function InviteFriends() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+    <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <header className="bg-brand-green text-white pb-20 px-6 pt-12 rounded-b-[3rem] shadow-2xl relative z-10 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <img

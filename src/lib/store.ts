@@ -35,6 +35,13 @@ interface AppState {
   // Recently viewed
   recentlyViewedIds: string[];
   markRecipeViewed: (recipeId: string) => void;
+
+  // Profile
+  updateProfile: (updates: Partial<Pick<User, 'name' | 'username' | 'bio'>>) => void;
+
+  // Appearance
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
 // Sets aren't JSON-serializable, so we persist as arrays and rehydrate
@@ -45,6 +52,7 @@ interface PersistedState {
   favoritedRecipeIds: string[];
   mealPlan: MealPlanEntry[];
   recentlyViewedIds: string[];
+  darkMode: boolean;
 }
 
 export const useAppStore = create<AppState>()(
@@ -108,6 +116,25 @@ export const useAppStore = create<AppState>()(
         set((state) => {
           const filtered = state.recentlyViewedIds.filter((id) => id !== recipeId);
           return { recentlyViewedIds: [recipeId, ...filtered].slice(0, 20) };
+        }),
+
+      // ── Profile Update ─────────────────────────────────────
+      updateProfile: (updates) =>
+        set((state) => ({
+          currentUser: state.currentUser ? { ...state.currentUser, ...updates } : null,
+        })),
+
+      // ── Appearance ─────────────────────────────────────────
+      darkMode: false,
+      toggleDarkMode: () =>
+        set((state) => {
+          const next = !state.darkMode;
+          if (next) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          return { darkMode: next };
         }),
     }),
     {

@@ -5,11 +5,13 @@ import { useAppStore } from '../lib/store';
 
 export default function AchievementsBadges() {
   const currentUser = useAppStore((s) => s.currentUser);
+  const darkMode = useAppStore((s) => s.darkMode);
+  const toggleDarkMode = useAppStore((s) => s.toggleDarkMode);
   const displayName = currentUser ? `Chef ${currentUser.name}` : 'Chef';
   const avatarSrc = currentUser?.avatarUrl ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4S58cPNTkS3VfVglw8Z-onJx0yA6aHnhusVyoP8JUgA5e7HxpadlW4dPV4QT3Xyz7o66OCdtvAxSit_4RRZJF1FHhaeX0vH7xFOy-LJu8gBKZbVvqlZGXtbBxQVhjIgiRrSrtU1FO64UoJRoLkBAcqrhXydUehZHVoL48dboSG0Df4qcvxMDQIMbjqrz6yPFA2VGTeGNdbwNYWcCyieC8cQ3E8ZMeHjcuwGDtPmyRbPY0XzscjuJh8q7hGD6H1X14HLaw9jre75h-';
 
   return (
-    <div className="max-w-md mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-x-hidden">
+    <div className="max-w-[480px] mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-x-hidden">
       <PageHeader title="Achievements" />
 
       <section className="p-6 bg-white dark:bg-slate-900 shadow-sm border-b border-slate-100 dark:border-slate-800">
@@ -116,6 +118,41 @@ export default function AchievementsBadges() {
             isUnlocked={true}
             colorVariant="green"
           />
+        </section>
+
+        {/* Appearance Settings */}
+        <section>
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h3 className="text-brand-green font-bold text-lg flex items-center gap-2">
+              <span className="material-symbols-outlined text-2xl">palette</span> Appearance
+            </h3>
+          </div>
+          <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 p-5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`size-10 rounded-xl flex items-center justify-center ${darkMode ? 'bg-slate-800' : 'bg-amber-50'}`}>
+                  <span className="material-symbols-outlined text-xl">{darkMode ? 'dark_mode' : 'light_mode'}</span>
+                </div>
+                <div>
+                  <p className="text-sm font-black text-slate-900 dark:text-slate-100 uppercase tracking-wider">
+                    {darkMode ? 'Dark Mode' : 'Light Mode'}
+                  </p>
+                  <p className="text-[11px] text-slate-400 font-medium">
+                    {darkMode ? 'Dunkles Design aktiv' : 'Helles Design aktiv'}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={toggleDarkMode}
+                className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none ${darkMode ? 'bg-brand-green' : 'bg-slate-200'}`}
+                aria-label="Toggle dark mode"
+              >
+                <span
+                  className={`absolute top-1 left-1 size-5 bg-white rounded-full shadow-md transition-transform duration-300 ${darkMode ? 'translate-x-7' : 'translate-x-0'}`}
+                />
+              </button>
+            </div>
+          </div>
         </section>
       </main>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { WeeklyPlannerHeader } from '../components/layout/WeeklyPlannerHeader';
 import { DayPicker } from '../components/sections/DayPicker';
 import { MealSection } from '../components/sections/MealSection';
@@ -39,6 +40,7 @@ const DAILY_MEALS = [
 ];
 
 export default function WeeklyMealPlanner() {
+  const navigate = useNavigate();
   const [selectedDay, setSelectedDay] = useState(0);
   const mealPlanFromStore = useAppStore((s) => s.mealPlan);
   const weekRange = getWeekRange();
@@ -47,7 +49,7 @@ export default function WeeklyMealPlanner() {
   const storeMealsForDay = mealPlanFromStore.filter((_, i) => i % 7 === selectedDay);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark max-w-md mx-auto shadow-2xl">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark max-w-[480px] mx-auto shadow-2xl">
       <WeeklyPlannerHeader dateRange={weekRange} />
       <DayPicker onDayChange={setSelectedDay} />
 
@@ -88,6 +90,14 @@ export default function WeeklyMealPlanner() {
         <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-accent-sage p-4 text-header-green dark:text-accent-sage font-bold hover:bg-accent-sage/10 transition-colors active:scale-95">
           <span className="material-symbols-outlined">add_circle</span>
           Add Snack or Drink
+        </button>
+
+        <button
+          onClick={() => navigate('/shoppinglist')}
+          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-brand-green text-white p-4 font-black text-sm uppercase tracking-widest shadow-lg shadow-brand-green/20 hover:bg-brand-green/90 transition-all active:scale-95"
+        >
+          <span className="material-symbols-outlined font-black">shopping_cart</span>
+          View Shopping List
         </button>
       </main>
 

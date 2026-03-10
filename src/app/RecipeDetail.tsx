@@ -16,7 +16,7 @@ export default function RecipeDetail() {
   const recipe = MOCK_RECIPES.find((r) => r.id === id) ?? MOCK_RECIPES[0];
 
   return (
-    <div className="relative mx-auto max-w-md min-h-screen bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+    <div className="relative mx-auto max-w-[480px] min-h-screen bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <RecipeHeader />
       <RecipeBanner
         imageSrc={recipe.imageSrc}

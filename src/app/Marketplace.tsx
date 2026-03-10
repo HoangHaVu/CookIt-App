@@ -62,7 +62,7 @@ export default function Marketplace() {
   const trending = filtered.filter((p) => !recTitles.has(p.title));
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col max-w-5xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+    <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <PageHeader title="Marketplace" rightActionIcon="shopping_cart" />
 
       <main className="flex-1 pb-40">
