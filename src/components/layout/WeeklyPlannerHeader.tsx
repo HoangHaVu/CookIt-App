@@ -19,7 +19,7 @@ export function WeeklyPlannerHeader({ dateRange = 'Oct 23 - Oct 29' }: WeeklyPla
                 <h1 className="text-lg font-bold leading-tight">Weekly Planner</h1>
                 <p className="text-xs opacity-80">{dateRange}</p>
             </div>
-            <button className="flex size-10 items-center justify-center rounded-full hover:bg-white/10">
+            <button onClick={() => navigate('/mealplannercalendar')} className="flex size-10 items-center justify-center rounded-full hover:bg-white/10">
                 <span className="material-symbols-outlined">calendar_month</span>
             </button>
         </header>

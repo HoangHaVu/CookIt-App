@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppStore } from '../lib/store';
 
 export default function Onboarding() {
   const navigate = useNavigate();
+  const login = useAppStore((s) => s.login);
 
   return (
     <div className="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden max-w-[480px] mx-auto shadow-2xl">
@@ -76,7 +78,7 @@ export default function Onboarding() {
           </div>
 
           <div className="mt-10">
-            <button className="flex items-center gap-2 group">
+            <button onClick={() => { login(); navigate('/'); }} className="flex items-center gap-2 group">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 group-hover:text-brand-green transition-colors">Browse as Guest</span>
               <span className="material-symbols-outlined text-slate-300 group-hover:text-brand-green transition-all font-black group-hover:translate-x-1">arrow_forward</span>
             </button>

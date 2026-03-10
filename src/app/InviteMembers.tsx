@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
 import { InviteCard } from '../components/ui/InviteCard';
 import { AppNavigation } from '../components/layout/AppNavigation';
@@ -12,7 +14,6 @@ const SUGGESTED_CONTACTS = [
     name: 'Mark Thompson',
     subtitle: '8 mutual foodie friends',
     imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCmZppiG9Yv-maJd1Uk9FF20hTs3xBRYvos7EojmTUHbSO-e-WO1UR8rmAKUeWjHjhnEYWp3Czw3tRzqFmbJdwEq5F-rBJfQY4rOpp1GO9Mv94eQx47-vpc4L4WDewTUnbfhwkyzyb4h8YJhDuXg7bnbSCAgCDEVOfPCH7raG-kopPX_SOzXLA75UXFemZLZwmRdPzXH5J8r4FhN68ljcRYxfKL3LAER2YvdSLdHt2dJNtWVAxXO0h7hKCyILuU5EFTicgR-xjfQHwo',
-    isInvited: true,
   },
   {
     name: 'Sarah Miller',
@@ -22,6 +23,13 @@ const SUGGESTED_CONTACTS = [
 ];
 
 export default function InviteMembers() {
+  const navigate = useNavigate();
+  const [invitedNames, setInvitedNames] = useState<Set<string>>(new Set(['Mark Thompson']));
+
+  const invite = (name: string) => {
+    setInvitedNames((prev) => new Set([...prev, name]));
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <header className="bg-brand-green text-white pb-12 px-6 pt-12 rounded-b-[3rem] shadow-2xl relative z-10">
@@ -44,8 +52,13 @@ export default function InviteMembers() {
           </h3>
 
           <div className="flex flex-col gap-4">
-            {SUGGESTED_CONTACTS.map((contact, i) => (
-              <InviteCard key={i} {...contact} />
+            {SUGGESTED_CONTACTS.map((contact) => (
+              <InviteCard
+                key={contact.name}
+                {...contact}
+                isInvited={invitedNames.has(contact.name)}
+                onInvite={() => invite(contact.name)}
+              />
             ))}
           </div>
         </section>
@@ -83,10 +96,12 @@ export default function InviteMembers() {
           </p>
         </section>
 
-        {/* Action Button moved into flow */}
         <div className="mt-12 mb-8">
-          <button className="w-full bg-primary hover:bg-orange-600 text-white font-black h-20 rounded-[2.5rem] shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all text-xl uppercase tracking-tighter">
-            Done Inviting
+          <button
+            onClick={() => navigate('/groupactivityfeed')}
+            className="w-full bg-primary hover:bg-orange-600 text-white font-black h-20 rounded-[2.5rem] shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all text-xl uppercase tracking-tighter"
+          >
+            Done Inviting {invitedNames.size > 0 && `(${invitedNames.size})`}
           </button>
         </div>
       </main>

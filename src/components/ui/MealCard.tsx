@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 interface MealCardProps {
     title: string;
     subtitle: string;
@@ -6,6 +8,7 @@ interface MealCardProps {
 }
 
 export function MealCard({ title, subtitle, imageSrc, imageAlt }: MealCardProps) {
+    const navigate = useNavigate();
     return (
         <div className="rounded-xl bg-white dark:bg-slate-900 overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 transition-all active:scale-[0.98]">
             <div className="flex h-32">
@@ -26,7 +29,7 @@ export function MealCard({ title, subtitle, imageSrc, imageAlt }: MealCardProps)
                         </p>
                     </div>
                     <div className="flex justify-end">
-                        <button className="flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-sm hover:bg-orange-600 transition-colors">
+                        <button onClick={() => navigate('/recipedetail')} className="flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-sm hover:bg-orange-600 transition-colors">
                             Recipe{' '}
                             <span className="material-symbols-outlined text-sm">
                                 arrow_forward

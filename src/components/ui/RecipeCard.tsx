@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { useAppStore } from '../../lib/store';
+
 export interface RecipeCardProps {
     imageSrc: string;
     imageAlt: string;
@@ -7,6 +10,7 @@ export interface RecipeCardProps {
     rating: number;
     reviewsCount: string;
     isBookmarked?: boolean;
+    recipeId?: string;
 }
 
 export function RecipeCard({
@@ -18,9 +22,17 @@ export function RecipeCard({
     rating,
     reviewsCount,
     isBookmarked = false,
+    recipeId,
 }: RecipeCardProps) {
+    const navigate = useNavigate();
+    const toggleFavorite = useAppStore((s) => s.toggleFavorite);
+    const isFavoritedInStore = useAppStore((s) => recipeId ? s.isFavorited(recipeId) : isBookmarked);
+    const saved = isFavoritedInStore;
+
+    const detailPath = recipeId ? `/recipedetail/${recipeId}` : '/recipedetail';
+
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl border-2 border-slate-50 dark:border-slate-800 group hover:border-brand-green/20 transition-all cursor-pointer">
+        <div onClick={() => navigate(detailPath)} className="bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl border-2 border-slate-50 dark:border-slate-800 group hover:border-brand-green/20 transition-all cursor-pointer">
             <div className="relative h-64 overflow-hidden">
                 <img
                     alt={title}
@@ -29,8 +41,11 @@ export function RecipeCard({
                     src={imageSrc}
                 />
                 <div className="absolute top-6 right-6 z-20">
-                    <button className={`size-12 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-xl border border-white/20 transition-all active:scale-90 ${isBookmarked ? 'bg-primary text-white' : 'bg-white/80 text-primary'}`}>
-                        <span className={`material-symbols-outlined font-black ${isBookmarked ? 'fill-1' : ''}`}>bookmark</span>
+                    <button
+                        onClick={(e) => { e.stopPropagation(); if (recipeId) toggleFavorite(recipeId); }}
+                        className={`size-12 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-xl border border-white/20 transition-all active:scale-90 ${saved ? 'bg-primary text-white' : 'bg-white/80 text-primary'}`}
+                    >
+                        <span className={`material-symbols-outlined font-black ${saved ? 'fill-1' : ''}`}>bookmark</span>
                     </button>
                 </div>
                 <div className="absolute bottom-6 left-6 z-20">
@@ -52,7 +67,7 @@ export function RecipeCard({
                         <span className="text-[11px] font-black text-slate-900 dark:text-slate-100">{rating}</span>
                         <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest">({reviewsCount} reviews)</span>
                     </div>
-                    <button className="bg-primary hover:bg-orange-600 text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 transition-all active:scale-95">
+                    <button onClick={(e) => { e.stopPropagation(); navigate(detailPath); }} className="bg-primary hover:bg-orange-600 text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 transition-all active:scale-95">
                         Explore Recipe
                     </button>
                 </div>

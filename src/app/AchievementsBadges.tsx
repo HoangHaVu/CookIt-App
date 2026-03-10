@@ -1,8 +1,13 @@
 import { PageHeader } from '../components/layout/PageHeader';
 import { AchievementCard } from '../components/ui/AchievementCard';
 import { AppNavigation } from '../components/layout/AppNavigation';
+import { useAppStore } from '../lib/store';
 
 export default function AchievementsBadges() {
+  const currentUser = useAppStore((s) => s.currentUser);
+  const displayName = currentUser ? `Chef ${currentUser.name}` : 'Chef';
+  const avatarSrc = currentUser?.avatarUrl ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4S58cPNTkS3VfVglw8Z-onJx0yA6aHnhusVyoP8JUgA5e7HxpadlW4dPV4QT3Xyz7o66OCdtvAxSit_4RRZJF1FHhaeX0vH7xFOy-LJu8gBKZbVvqlZGXtbBxQVhjIgiRrSrtU1FO64UoJRoLkBAcqrhXydUehZHVoL48dboSG0Df4qcvxMDQIMbjqrz6yPFA2VGTeGNdbwNYWcCyieC8cQ3E8ZMeHjcuwGDtPmyRbPY0XzscjuJh8q7hGD6H1X14HLaw9jre75h-';
+
   return (
     <div className="max-w-md mx-auto bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-x-hidden">
       <PageHeader title="Achievements" />
@@ -12,15 +17,15 @@ export default function AchievementsBadges() {
           <div className="relative">
             <img
               className="size-20 rounded-full object-cover border-4 border-accent-sage shadow-md"
-              data-alt="Professional chef portrait"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4S58cPNTkS3VfVglw8Z-onJx0yA6aHnhusVyoP8JUgA5e7HxpadlW4dPV4QT3Xyz7o66OCdtvAxSit_4RRZJF1FHhaeX0vH7xFOy-LJu8gBKZbVvqlZGXtbBxQVhjIgiRrSrtU1FO64UoJRoLkBAcqrhXydUehZHVoL48dboSG0Df4qcvxMDQIMbjqrz6yPFA2VGTeGNdbwNYWcCyieC8cQ3E8ZMeHjcuwGDtPmyRbPY0XzscjuJh8q7hGD6H1X14HLaw9jre75h-"
+              alt={displayName}
+              src={avatarSrc}
             />
             <div className="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full ring-2 ring-white dark:ring-slate-900 shadow-sm">
               LVL 15
             </div>
           </div>
           <div className="flex-1">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Chef Alex Rivera</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">{displayName}</h2>
             <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">
               24 Badges Earned • Master Cook
             </p>

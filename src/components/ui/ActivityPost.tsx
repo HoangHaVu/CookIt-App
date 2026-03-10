@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface ActivityPostProps {
     author: string;
     authorImage: string;
@@ -30,6 +32,8 @@ export function ActivityPost({
     shares,
     recipeCard
 }: ActivityPostProps) {
+    const [liked, setLiked] = useState(false);
+
     return (
         <div className="flex flex-col rounded-[2.5rem] overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 dark:shadow-none transition-all hover:shadow-2xl">
             <div className="flex items-center gap-4 p-6">
@@ -119,7 +123,7 @@ export function ActivityPost({
                         </div>
                     ))}
                     <span className="pl-6 text-[10px] font-black uppercase tracking-widest text-slate-400 self-center">
-                        {likes} Likes
+                        {likes + (liked ? 1 : 0)} Likes
                     </span>
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
@@ -128,8 +132,12 @@ export function ActivityPost({
             </div>
 
             <div className="flex items-center justify-around p-3 bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800 mt-2">
-                <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-white dark:hover:bg-slate-800 rounded-xl text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest transition-all active:scale-95">
-                    <span className="material-symbols-outlined text-sm font-black">favorite</span> Like
+                <button
+                    onClick={() => setLiked((v) => !v)}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 hover:bg-white dark:hover:bg-slate-800 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 ${liked ? 'text-primary' : 'text-slate-500 dark:text-slate-400'}`}
+                >
+                    <span className={`material-symbols-outlined text-sm font-black ${liked ? 'fill-1' : ''}`}>favorite</span>
+                    {liked ? 'Liked' : 'Like'}
                 </button>
                 <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-white dark:hover:bg-slate-800 rounded-xl text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest transition-all active:scale-95">
                     <span className="material-symbols-outlined text-sm font-black">chat_bubble</span> Comment

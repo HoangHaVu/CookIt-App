@@ -1,26 +1,26 @@
+import { useAppStore } from '../../lib/store';
+
 export function ProfileHero() {
+    const user = useAppStore((s) => s.currentUser);
+    if (!user) return null;
+
     return (
         <div className="flex p-4 @container">
             <div className="flex w-full flex-col gap-4 items-center">
                 <div className="flex gap-4 flex-col items-center">
                     <div
                         className="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-accent-light"
-                        data-alt="Professional chef portrait in a kitchen setting"
-                        style={{
-                            backgroundImage:
-                                "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwljrFK-DB5IaRJG4sxZ7IkF0AFiPiwAsNQq1hHB2bes45CURCF5PZf_E4LTlGG6I-xIWkyWRhi9SovC6_2vAde8ZDCj96WFKqfjMNn9QLoHfI7RlH-mav32pVZ-OIK7tExjeMc46yqwaRjtjh884Or8MRnKZcZW5tugdRwLSz551AiVj0sOd8R_2MKov7PWnp32TQqE5lpSc0L92ZvFWEVZmdDySuA-OEKbVzTh1u9DMnBMtmxlU9WbZ1r5cbzrthC6_oZNpat3FV')",
-                        }}
+                        style={{ backgroundImage: `url('${user.avatarUrl}')` }}
                     ></div>
                     <div className="flex flex-col items-center justify-center">
                         <p className="text-slate-900 dark:text-slate-100 text-[22px] font-bold leading-tight text-center">
-                            Alex Thompson
+                            {user.name}
                         </p>
                         <p className="text-primary font-medium text-sm mb-2">
-                            @chef_alex_t
+                            @{user.username}
                         </p>
                         <p className="text-slate-600 dark:text-slate-400 text-base font-normal leading-relaxed text-center px-4">
-                            Passionate home cook &amp; food photographer. Exploring
-                            flavors from around the world one spice at a time.
+                            {user.bio}
                         </p>
                     </div>
                 </div>

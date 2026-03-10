@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
 import { AppNavigation } from '../components/layout/AppNavigation';
@@ -34,8 +35,15 @@ const COLLECTION_RECIPES = [
   }
 ];
 
+type CollectionTab = 'All Recipes' | 'Recently Added';
+
 export default function CollectionDetail() {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<CollectionTab>('All Recipes');
+
+  const displayedRecipes = activeTab === 'Recently Added'
+    ? COLLECTION_RECIPES.slice(-2)
+    : COLLECTION_RECIPES;
 
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
@@ -70,13 +78,14 @@ export default function CollectionDetail() {
         {/* Filters/Tabs */}
         <section className="px-8 mt-12 mb-8">
           <div className="flex gap-8 border-b-4 border-slate-50 dark:border-slate-800">
-            {['All Recipes', 'Recently Added'].map((tab, i) => (
+            {(['All Recipes', 'Recently Added'] as CollectionTab[]).map((tab) => (
               <button
                 key={tab}
-                className={`pb-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all relative ${i === 0 ? 'text-brand-green' : 'text-slate-300'}`}
+                onClick={() => setActiveTab(tab)}
+                className={`pb-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all relative ${activeTab === tab ? 'text-brand-green' : 'text-slate-300'}`}
               >
                 {tab}
-                {i === 0 && <div className="absolute bottom-[-4px] left-0 right-0 h-4 bg-brand-green rounded-full shadow-lg shadow-brand-green/20"></div>}
+                {activeTab === tab && <div className="absolute bottom-[-4px] left-0 right-0 h-4 bg-brand-green rounded-full shadow-lg shadow-brand-green/20"></div>}
               </button>
             ))}
           </div>
@@ -84,13 +93,13 @@ export default function CollectionDetail() {
 
         {/* Recipe Grid */}
         <section className="px-8 grid grid-cols-2 gap-4">
-          {COLLECTION_RECIPES.map((recipe, i) => (
+          {displayedRecipes.map((recipe, i) => (
             <RecipeThumbnail key={i} {...recipe} />
           ))}
         </section>
 
         <div className="fixed bottom-32 right-8 z-30">
-          <button className="size-20 bg-primary hover:bg-orange-600 text-white rounded-[1.5rem] shadow-[0_20px_50px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center transition-all hover:-translate-y-2 active:scale-90">
+          <button onClick={() => navigate('/createrecipe')} className="size-20 bg-primary hover:bg-orange-600 text-white rounded-[1.5rem] shadow-[0_20px_50px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center transition-all hover:-translate-y-2 active:scale-90">
             <span className="material-symbols-outlined text-4xl font-black">add</span>
           </button>
         </div>

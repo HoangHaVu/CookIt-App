@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PantryHeader } from '../components/layout/PantryHeader';
 import { PantrySearch } from '../components/sections/PantrySearch';
 import { PantryCategory } from '../components/sections/PantryCategory';
@@ -44,29 +46,43 @@ const CANNED_ITEMS = [
   },
 ];
 
+type PantryFilter = 'All' | 'Grains' | 'Spices' | 'Canned';
+const FILTERS: PantryFilter[] = ['All', 'Grains', 'Spices', 'Canned'];
+
 export default function PantryInventory() {
+  const navigate = useNavigate();
+  const [activeFilter, setActiveFilter] = useState<PantryFilter>('All');
+
+  const showGrains = activeFilter === 'All' || activeFilter === 'Grains';
+  const showSpices = activeFilter === 'All' || activeFilter === 'Spices';
+  const showCanned = activeFilter === 'All' || activeFilter === 'Canned';
+
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
-      <PantryHeader />
+      <PantryHeader onExpirationClick={() => navigate('/expirationtracking')} />
       <PantrySearch />
 
       {/* Category Pills */}
       <div className="flex gap-3 px-4 py-2 overflow-x-auto no-scrollbar">
-        <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary text-white px-5 shadow-sm">
-          <span className="text-sm font-semibold">All</span>
-        </button>
-        {['Grains', 'Spices', 'Canned'].map((cat) => (
-          <button key={cat} className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-accent-sage/20 text-nav-bg px-5 border border-accent-sage/30">
-            <span className="text-sm font-medium">{cat}</span>
-            <span className="material-symbols-outlined text-[18px]">expand_more</span>
+        {FILTERS.map((filter) => (
+          <button
+            key={filter}
+            onClick={() => setActiveFilter(filter)}
+            className={`flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-xl px-5 transition-all active:scale-95 ${
+              activeFilter === filter
+                ? 'bg-primary text-white shadow-sm'
+                : 'bg-accent-sage/20 text-nav-bg border border-accent-sage/30'
+            }`}
+          >
+            <span className="text-sm font-semibold">{filter}</span>
           </button>
         ))}
       </div>
 
       <main className="flex-1 overflow-y-auto px-4 pt-4 pb-32">
-        <PantryCategory title="Grains" itemsCount={4} items={GRAINS_ITEMS} />
-        <PantryCategory title="Spices" itemsCount={12} items={SPICES_ITEMS} />
-        <PantryCategory title="Canned Goods" itemsCount={6} items={CANNED_ITEMS} />
+        {showGrains && <PantryCategory title="Grains" itemsCount={4} items={GRAINS_ITEMS} />}
+        {showSpices && <PantryCategory title="Spices" itemsCount={12} items={SPICES_ITEMS} />}
+        {showCanned && <PantryCategory title="Canned Goods" itemsCount={6} items={CANNED_ITEMS} />}
       </main>
 
       <button className="absolute bottom-24 right-6 size-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-20">

@@ -8,9 +8,10 @@ interface ShoppingCategoryProps {
         subtext?: string;
         isChecked?: boolean;
     }>;
+    onToggle?: (name: string) => void;
 }
 
-export function ShoppingCategory({ title, itemsCount, items }: ShoppingCategoryProps) {
+export function ShoppingCategory({ title, itemsCount, items, onToggle }: ShoppingCategoryProps) {
     return (
         <section>
             <div className="bg-category-bg px-4 py-2 mt-4 flex items-center justify-between">
@@ -23,7 +24,11 @@ export function ShoppingCategory({ title, itemsCount, items }: ShoppingCategoryP
             </div>
             <div className="px-4 divide-y divide-slate-100 dark:divide-slate-800">
                 {items.map((item, i) => (
-                    <ShoppingItem key={i} {...item} />
+                    <ShoppingItem
+                        key={i}
+                        {...item}
+                        onToggle={onToggle ? () => onToggle(item.name) : undefined}
+                    />
                 ))}
             </div>
         </section>

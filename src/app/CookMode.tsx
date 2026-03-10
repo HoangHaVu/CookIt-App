@@ -1,9 +1,47 @@
+import { useState, useEffect, useRef } from 'react';
 import { CookHeader } from '../components/layout/CookHeader';
 
+const STEP_DURATION = 5 * 60; // 5 minutes in seconds
+
 export default function CookMode() {
-  const currentStep = 3;
+  const [currentStep, setCurrentStep] = useState(3);
   const totalSteps = 12;
   const progressPercent = Math.round((currentStep / totalSteps) * 100);
+
+  const [seconds, setSeconds] = useState(STEP_DURATION);
+  const [isRunning, setIsRunning] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (isRunning && seconds > 0) {
+      intervalRef.current = setInterval(() => setSeconds((s) => s - 1), 1000);
+    } else if (!isRunning || seconds === 0) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [isRunning, seconds]);
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  };
+
+  const handleNextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep((s) => s + 1);
+      setSeconds(STEP_DURATION);
+      setIsRunning(false);
+    }
+  };
+
+  const handlePrevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep((s) => s - 1);
+      setSeconds(STEP_DURATION);
+      setIsRunning(false);
+    }
+  };
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-4xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
@@ -59,12 +97,17 @@ export default function CookMode() {
             <h1 className="text-4xl font-black text-slate-900 dark:text-slate-100 leading-tight tracking-tight flex-1">
               Prepare the <br /><span className="text-brand-green">Herb Infusion</span>
             </h1>
-            <div className="flex flex-col items-center justify-center p-5 rounded-[2rem] bg-brand-green/5 border-2 border-brand-green/10 min-w-[110px] shadow-sm">
-              <span className="material-symbols-outlined text-brand-green text-3xl font-black mb-1">
-                timer
+            <button
+              onClick={() => setIsRunning((r) => !r)}
+              className={`flex flex-col items-center justify-center p-5 rounded-[2rem] min-w-[110px] shadow-sm border-2 transition-all active:scale-95 ${isRunning ? 'bg-brand-green text-white border-brand-green shadow-brand-green/30' : 'bg-brand-green/5 text-brand-green border-brand-green/10'}`}
+            >
+              <span className="material-symbols-outlined text-3xl font-black mb-1">
+                {isRunning ? 'pause' : 'timer'}
               </span>
-              <span className="text-brand-green font-black text-2xl tracking-tighter">05:00</span>
-            </div>
+              <span className={`font-black text-2xl tracking-tighter ${seconds < 60 ? 'text-primary' : ''}`}>
+                {formatTime(seconds)}
+              </span>
+            </button>
           </div>
 
           <div className="space-y-6">
@@ -105,13 +148,23 @@ export default function CookMode() {
       {/* Control Footer */}
       <footer className="fixed bottom-0 left-0 right-0 p-8 pt-10 bg-gradient-to-t from-background-light via-background-light/95 to-transparent dark:from-background-dark dark:via-background-dark/95 z-40 max-w-4xl mx-auto">
         <div className="flex items-center gap-6">
-          <button className="flex-1 h-20 rounded-3xl border-4 border-slate-100 dark:border-slate-800 flex items-center justify-center gap-3 font-black text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all uppercase tracking-widest text-sm active:scale-95">
+          <button
+            onClick={handlePrevStep}
+            disabled={currentStep <= 1}
+            className="flex-1 h-20 rounded-3xl border-4 border-slate-100 dark:border-slate-800 flex items-center justify-center gap-3 font-black text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all uppercase tracking-widest text-sm active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
+          >
             <span className="material-symbols-outlined font-black">arrow_back</span>
             Back
           </button>
-          <button className="flex-[2] h-20 rounded-3xl bg-primary text-white flex items-center justify-center gap-4 font-black text-2xl shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all uppercase tracking-tighter">
-            Next Step
-            <span className="material-symbols-outlined text-4xl font-black">arrow_forward</span>
+          <button
+            onClick={handleNextStep}
+            disabled={currentStep >= totalSteps}
+            className="flex-[2] h-20 rounded-3xl bg-primary text-white flex items-center justify-center gap-4 font-black text-2xl shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all uppercase tracking-tighter disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+          >
+            {currentStep < totalSteps ? 'Next Step' : 'Done!'}
+            <span className="material-symbols-outlined text-4xl font-black">
+              {currentStep < totalSteps ? 'arrow_forward' : 'check_circle'}
+            </span>
           </button>
         </div>
       </footer>

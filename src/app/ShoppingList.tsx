@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ShoppingHeader } from '../components/layout/ShoppingHeader';
 import { ShoppingCategory } from '../components/sections/ShoppingCategory';
 import { AppNavigation } from '../components/layout/AppNavigation';
@@ -17,7 +18,25 @@ const MEAT_ITEMS = [
   { name: 'Chicken Breast (2 lbs)', subtext: 'For: Grilled Chicken Salad' },
 ];
 
+const TOTAL_ITEMS = PRODUCE_ITEMS.length + DAIRY_ITEMS.length + MEAT_ITEMS.length;
+
 export default function ShoppingList() {
+  const [checkedNames, setCheckedNames] = useState<Set<string>>(new Set());
+
+  const toggle = (name: string) => {
+    setCheckedNames((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  };
+
+  const uncheckedCount = TOTAL_ITEMS - checkedNames.size;
+
+  const withChecked = (items: typeof PRODUCE_ITEMS) =>
+    items.map((item) => ({ ...item, isChecked: checkedNames.has(item.name) }));
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark max-w-xl mx-auto shadow-2xl">
       <ShoppingHeader activeTab="All Items" />
@@ -33,15 +52,35 @@ export default function ShoppingList() {
           </p>
         </div>
 
-        <ShoppingCategory title="Produce" itemsCount={3} items={PRODUCE_ITEMS} />
-        <ShoppingCategory title="Dairy & Eggs" itemsCount={2} items={DAIRY_ITEMS} />
-        <ShoppingCategory title="Meat & Proteins" itemsCount={1} items={MEAT_ITEMS} />
+        <ShoppingCategory
+          title="Produce"
+          itemsCount={PRODUCE_ITEMS.length}
+          items={withChecked(PRODUCE_ITEMS)}
+          onToggle={toggle}
+        />
+        <ShoppingCategory
+          title="Dairy & Eggs"
+          itemsCount={DAIRY_ITEMS.length}
+          items={withChecked(DAIRY_ITEMS)}
+          onToggle={toggle}
+        />
+        <ShoppingCategory
+          title="Meat & Proteins"
+          itemsCount={MEAT_ITEMS.length}
+          items={withChecked(MEAT_ITEMS)}
+          onToggle={toggle}
+        />
 
-        {/* Unified Checkout Button inside main content */}
+        {/* Unified Checkout Button */}
         <div className="px-6 py-12">
-          <button className="bg-primary hover:bg-orange-600 w-full py-6 rounded-3xl text-white font-black text-lg shadow-[0_20px_50px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center gap-3 transition-all active:scale-95 uppercase tracking-tighter">
-            <span className="material-symbols-outlined text-3xl font-black">shopping_basket</span>
-            Checkout (6 items)
+          <button
+            disabled={uncheckedCount === 0}
+            className="bg-primary hover:bg-orange-600 disabled:opacity-40 w-full py-6 rounded-3xl text-white font-black text-lg shadow-[0_20px_50px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center gap-3 transition-all active:scale-95 uppercase tracking-tighter"
+          >
+            <span className="material-symbols-outlined text-3xl font-black">
+              {uncheckedCount === 0 ? 'check_circle' : 'shopping_basket'}
+            </span>
+            {uncheckedCount === 0 ? 'All Done!' : `Checkout (${uncheckedCount} items)`}
           </button>
         </div>
       </main>

@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export interface AppNavigationProps {
     activeTab?: 'home' | 'planner' | 'recipes' | 'profile';
@@ -19,6 +19,7 @@ export function AppNavigation({ activeTab: propActiveTab }: AppNavigationProps) 
     };
 
     const activeTab = getActiveTab();
+    const navigate = useNavigate();
 
     return (
         <nav className="fixed bottom-0 z-[60] left-0 right-0 max-w-xl mx-auto border-t border-white/10 bg-brand-green px-6 pb-8 pt-4 text-white/70 shadow-[0_-15px_35px_rgba(14,117,71,0.4)] rounded-t-[3rem] transition-all duration-500">
@@ -44,7 +45,7 @@ export function AppNavigation({ activeTab: propActiveTab }: AppNavigationProps) 
                 </Link>
 
                 <div className="relative -top-12 px-2 group">
-                    <button className="flex h-20 w-20 items-center justify-center rounded-[2rem] bg-primary text-white shadow-[0_15px_40px_-10px_rgba(255,165,0,0.6)] ring-[12px] ring-background-light dark:ring-background-dark active:scale-90 transition-all hover:scale-110 hover:-translate-y-1 hover:rotate-6">
+                    <button onClick={() => navigate('/createrecipe')} className="flex h-20 w-20 items-center justify-center rounded-[2rem] bg-primary text-white shadow-[0_15px_40px_-10px_rgba(255,165,0,0.6)] ring-[12px] ring-background-light dark:ring-background-dark active:scale-90 transition-all hover:scale-110 hover:-translate-y-1 hover:rotate-6">
                         <span className="material-symbols-outlined text-5xl font-black">add</span>
                     </button>
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">

@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { PageHeader } from '../components/layout/PageHeader';
 import { ExpirationItem } from '../components/ui/ExpirationItem';
 import { AppNavigation } from '../components/layout/AppNavigation';
+
+type Tab = 'All' | 'Expiring Soon' | 'Expired';
 
 const EXPIRED_ITEMS = [
   {
@@ -40,69 +43,86 @@ const SOON_ITEMS = [
   },
 ];
 
+const TABS: Tab[] = ['All', 'Expiring Soon', 'Expired'];
+
 export default function ExpirationTracking() {
+  const [activeTab, setActiveTab] = useState<Tab>('Expiring Soon');
+
+  const showExpired = activeTab === 'All' || activeTab === 'Expired';
+  const showSoon = activeTab === 'All' || activeTab === 'Expiring Soon';
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Expiration Tracking" />
 
-      {/* Persistence Tabs */}
+      {/* Filter Tabs */}
       <div className="bg-brand-green/95 border-t border-white/10">
         <div className="flex px-4 overflow-x-auto no-scrollbar">
-          <button className="flex-none px-6 py-4 border-b-4 border-transparent text-white/70 font-bold text-sm hover:text-white transition-all uppercase tracking-widest">
-            All Items
-          </button>
-          <button className="flex-none px-6 py-4 border-b-4 border-primary text-white font-black text-sm uppercase tracking-widest shadow-[0_4px_10px_rgba(255,165,0,0.3)]">
-            Expiring Soon
-          </button>
-          <button className="flex-none px-6 py-4 border-b-4 border-transparent text-white/70 font-bold text-sm hover:text-white transition-all uppercase tracking-widest">
-            Expired
-          </button>
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`flex-none px-6 py-4 border-b-4 font-bold text-sm uppercase tracking-widest transition-all ${
+                activeTab === tab
+                  ? 'border-primary text-white font-black shadow-[0_4px_10px_rgba(255,165,0,0.3)]'
+                  : 'border-transparent text-white/70 hover:text-white'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
       </div>
 
       <main className="flex-1 overflow-y-auto p-4 space-y-8 pb-48">
-        <section>
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h2 className="text-red-600 dark:text-red-400 font-black uppercase tracking-widest text-xs flex items-center gap-2">
-              <span className="material-symbols-outlined text-lg">error</span>
-              Critical - Expired
-            </h2>
-            <span className="bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-300 text-[10px] font-black px-2.5 py-1 rounded-full border border-red-100 dark:border-red-800">
-              2 Items
-            </span>
-          </div>
-          <div className="space-y-4">
-            {EXPIRED_ITEMS.map((item, i) => (
-              <ExpirationItem key={i} {...item} />
-            ))}
-          </div>
-        </section>
+        {showExpired && (
+          <section>
+            <div className="flex items-center justify-between mb-4 px-1">
+              <h2 className="text-red-600 dark:text-red-400 font-black uppercase tracking-widest text-xs flex items-center gap-2">
+                <span className="material-symbols-outlined text-lg">error</span>
+                Critical - Expired
+              </h2>
+              <span className="bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-300 text-[10px] font-black px-2.5 py-1 rounded-full border border-red-100 dark:border-red-800">
+                {EXPIRED_ITEMS.length} Items
+              </span>
+            </div>
+            <div className="space-y-4">
+              {EXPIRED_ITEMS.map((item, i) => (
+                <ExpirationItem key={i} {...item} />
+              ))}
+            </div>
+          </section>
+        )}
 
-        <section>
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h2 className="text-amber-600 dark:text-amber-400 font-black uppercase tracking-widest text-xs flex items-center gap-2">
-              <span className="material-symbols-outlined text-lg">warning</span>
-              Expiring Soon
-            </h2>
-            <span className="bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full border border-amber-100 dark:border-amber-800">
-              3 Items
-            </span>
-          </div>
-          <div className="space-y-4">
-            {SOON_ITEMS.map((item, i) => (
-              <ExpirationItem key={i} {...item} />
-            ))}
-          </div>
-        </section>
+        {showSoon && (
+          <section>
+            <div className="flex items-center justify-between mb-4 px-1">
+              <h2 className="text-amber-600 dark:text-amber-400 font-black uppercase tracking-widest text-xs flex items-center gap-2">
+                <span className="material-symbols-outlined text-lg">warning</span>
+                Expiring Soon
+              </h2>
+              <span className="bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full border border-amber-100 dark:border-amber-800">
+                {SOON_ITEMS.length} Items
+              </span>
+            </div>
+            <div className="space-y-4">
+              {SOON_ITEMS.map((item, i) => (
+                <ExpirationItem key={i} {...item} />
+              ))}
+            </div>
+          </section>
+        )}
 
-        <div className="p-8 bg-accent-sage/10 rounded-[2rem] border border-accent-sage/30 text-center shadow-inner mt-8">
-          <div className="bg-white dark:bg-slate-900 size-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-            <span className="material-symbols-outlined text-accent-sage text-4xl">check_circle</span>
+        {activeTab === 'All' && (
+          <div className="p-8 bg-accent-sage/10 rounded-[2rem] border border-accent-sage/30 text-center shadow-inner mt-8">
+            <div className="bg-white dark:bg-slate-900 size-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+              <span className="material-symbols-outlined text-accent-sage text-4xl">check_circle</span>
+            </div>
+            <p className="text-slate-700 dark:text-slate-300 text-sm font-bold leading-relaxed px-4">
+              12 other items are safely stored with plenty of time left.
+            </p>
           </div>
-          <p className="text-slate-700 dark:text-slate-300 text-sm font-bold leading-relaxed px-4">
-            12 other items are safely stored with plenty of time left.
-          </p>
-        </div>
+        )}
       </main>
 
       <button className="fixed bottom-24 right-6 bg-primary text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform z-30 ring-4 ring-white dark:ring-slate-900">

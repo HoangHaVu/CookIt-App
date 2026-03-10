@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
+import { useAppStore } from '../lib/store';
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const login = useAppStore((s) => s.login);
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
@@ -93,7 +95,10 @@ export default function SignUp() {
             </label>
           </div>
 
-          <button className="w-full h-20 bg-primary hover:bg-orange-600 text-white font-black rounded-3xl transition-all shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] mt-4 hover:-translate-y-1 active:scale-95 uppercase tracking-widest text-lg">
+          <button
+            onClick={() => { login(); navigate('/'); }}
+            className="w-full h-20 bg-primary hover:bg-orange-600 text-white font-black rounded-3xl transition-all shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] mt-4 hover:-translate-y-1 active:scale-95 uppercase tracking-widest text-lg"
+          >
             Create Account
           </button>
         </section>

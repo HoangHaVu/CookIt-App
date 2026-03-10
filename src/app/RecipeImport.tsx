@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
 import { AppNavigation } from '../components/layout/AppNavigation';
 
 export default function RecipeImport() {
+  const navigate = useNavigate();
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Magic Preview" rightActionIcon="auto_awesome" />
@@ -101,11 +103,17 @@ export default function RecipeImport() {
 
         {/* Action Buttons moved into main scrollable area */}
         <div className="flex gap-4 mt-12 pb-12">
-          <button className="flex-1 bg-white dark:bg-slate-900 text-slate-400 h-20 rounded-[2.5rem] border-4 border-slate-100 dark:border-slate-800 font-black uppercase tracking-widest text-[10px] shadow-2xl flex items-center justify-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-all">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex-1 bg-white dark:bg-slate-900 text-slate-400 h-20 rounded-[2.5rem] border-4 border-slate-100 dark:border-slate-800 font-black uppercase tracking-widest text-[10px] shadow-2xl flex items-center justify-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-all"
+          >
             <span className="material-symbols-outlined font-black">close</span>
             Discard
           </button>
-          <button className="flex-[2] bg-primary text-white h-20 rounded-[2.5rem] font-black uppercase tracking-tighter text-xl shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center gap-4 hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all">
+          <button
+            onClick={() => navigate('/importconfirmation')}
+            className="flex-[2] bg-primary text-white h-20 rounded-[2.5rem] font-black uppercase tracking-tighter text-xl shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center gap-4 hover:shadow-primary/60 hover:-translate-y-1 active:scale-95 transition-all"
+          >
             <span className="material-symbols-outlined text-3xl font-black">check_circle</span>
             Confirm Import
           </button>

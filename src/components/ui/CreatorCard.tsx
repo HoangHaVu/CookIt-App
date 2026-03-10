@@ -5,6 +5,7 @@ interface CreatorCardProps {
     followers: string;
     imageSrc: string;
     isFollowing?: boolean;
+    onToggleFollow?: () => void;
 }
 
 export function CreatorCard({
@@ -13,7 +14,8 @@ export function CreatorCard({
     handle,
     followers,
     imageSrc,
-    isFollowing = false
+    isFollowing = false,
+    onToggleFollow,
 }: CreatorCardProps) {
     return (
         <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 transition-all active:scale-[0.98]">
@@ -40,7 +42,8 @@ export function CreatorCard({
                 </p>
             </div>
             <button
-                className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md ${isFollowing
+                onClick={onToggleFollow}
+                className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md active:scale-95 ${isFollowing
                         ? 'bg-slate-100 dark:bg-slate-800 text-slate-500 shadow-none border border-slate-200 dark:border-slate-700'
                         : 'bg-primary text-white hover:bg-orange-600 shadow-primary/20'
                     }`}

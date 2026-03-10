@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { AppNavigation } from '../components/layout/AppNavigation';
 import { PageHeader } from '../components/layout/PageHeader';
 import { ProductCard } from '../components/ui/ProductCard';
@@ -41,7 +42,25 @@ const TRENDING_PRODUCTS = [
   }
 ];
 
+type MarketCat = 'All' | 'Kitchen Tools' | 'Ingredients' | 'Bakeware' | 'Pantry';
+const MARKET_CATS: MarketCat[] = ['All', 'Kitchen Tools', 'Ingredients', 'Bakeware', 'Pantry'];
+
+const ALL_PRODUCTS = [...RECOMMENDED_PRODUCTS, ...TRENDING_PRODUCTS];
+
 export default function Marketplace() {
+  const [activeCategory, setActiveCategory] = useState<MarketCat>('All');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filtered = ALL_PRODUCTS.filter((p) => {
+    const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const recTitles = new Set(RECOMMENDED_PRODUCTS.map((p) => p.title));
+  const recommended = filtered.filter((p) => recTitles.has(p.title));
+  const trending = filtered.filter((p) => !recTitles.has(p.title));
+
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-5xl mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <PageHeader title="Marketplace" rightActionIcon="shopping_cart" />
@@ -54,17 +73,21 @@ export default function Marketplace() {
             <input
               className="w-full h-16 pl-16 pr-6 rounded-3xl border-none bg-white/10 backdrop-blur-xl text-white font-bold text-sm placeholder:text-white/40 focus:ring-0 shadow-inner group-focus-within:bg-white/20 transition-all"
               placeholder="Search tools & organic ingredients"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
           <div className="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-4 -mx-6 px-6">
-            {['All', 'Kitchen Tools', 'Ingredients', 'Bakeware', 'Pantry'].map((cat, i) => (
+            {MARKET_CATS.map((cat) => (
               <button
                 key={cat}
-                className={`flex h-12 shrink-0 items-center justify-center px-8 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 ${i === 0
-                  ? 'bg-primary text-white shadow-xl shadow-primary/30 border-2 border-primary'
-                  : 'bg-white/5 text-white/70 border-2 border-white/10 hover:bg-white/10'
-                  }`}
+                onClick={() => setActiveCategory(cat)}
+                className={`flex h-12 shrink-0 items-center justify-center px-8 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 ${
+                  activeCategory === cat
+                    ? 'bg-primary text-white shadow-xl shadow-primary/30 border-2 border-primary'
+                    : 'bg-white/5 text-white/70 border-2 border-white/10 hover:bg-white/10'
+                }`}
               >
                 {cat}
               </button>
@@ -85,7 +108,7 @@ export default function Marketplace() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            {RECOMMENDED_PRODUCTS.map((product, i) => (
+            {recommended.map((product, i) => (
               <ProductCard key={i} {...product} />
             ))}
           </div>
@@ -101,7 +124,7 @@ export default function Marketplace() {
           </div>
 
           <div className="grid gap-4">
-            {TRENDING_PRODUCTS.map((product, i) => (
+            {trending.map((product, i) => (
               <ProductCard key={i} {...product} variant="list" />
             ))}
           </div>

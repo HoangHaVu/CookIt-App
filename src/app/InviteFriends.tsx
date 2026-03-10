@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { PageHeader } from '../components/layout/PageHeader';
 import { InviteCard } from '../components/ui/InviteCard';
 import { AppNavigation } from '../components/layout/AppNavigation';
@@ -10,6 +11,18 @@ const CONTACTS = [
 ];
 
 export default function InviteFriends() {
+  const [invitedNames, setInvitedNames] = useState<Set<string>>(new Set());
+  const [copied, setCopied] = useState(false);
+
+  const invite = (name: string) => {
+    setInvitedNames((prev) => new Set([...prev, name]));
+  };
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
       <header className="bg-brand-green text-white pb-20 px-6 pt-12 rounded-b-[3rem] shadow-2xl relative z-10 overflow-hidden">
@@ -44,12 +57,22 @@ export default function InviteFriends() {
             <span className="text-xl font-mono font-black text-slate-800 dark:text-slate-100 tracking-[0.3em] ml-4">
               FRIEND2024
             </span>
-            <button className="bg-primary hover:bg-orange-600 text-white size-12 rounded-2xl flex items-center justify-center transition-all active:scale-90 shadow-lg shadow-primary/20">
-              <span className="material-symbols-outlined font-black">content_copy</span>
+            <button
+              onClick={handleCopy}
+              className={`text-white size-12 rounded-2xl flex items-center justify-center transition-all active:scale-90 shadow-lg ${
+                copied ? 'bg-brand-green' : 'bg-primary hover:bg-orange-600 shadow-primary/20'
+              }`}
+            >
+              <span className="material-symbols-outlined font-black">
+                {copied ? 'check' : 'content_copy'}
+              </span>
             </button>
           </div>
           <p className="text-slate-400 dark:text-slate-500 text-[10px] font-black uppercase tracking-widest mt-6 opacity-80 leading-relaxed">
-            Share this code to give friends <br /> <span className="text-primary">20% off</span> their first order!
+            {copied
+              ? <span className="text-brand-green">Copied to clipboard!</span>
+              : <>Share this code to give friends <br /> <span className="text-primary">20% off</span> their first order!</>
+            }
           </p>
         </section>
 
@@ -65,8 +88,13 @@ export default function InviteFriends() {
           </div>
 
           <div className="flex flex-col gap-4">
-            {CONTACTS.map((contact, i) => (
-              <InviteCard key={i} {...contact} />
+            {CONTACTS.map((contact) => (
+              <InviteCard
+                key={contact.name}
+                {...contact}
+                isInvited={invitedNames.has(contact.name)}
+                onInvite={() => invite(contact.name)}
+              />
             ))}
           </div>
         </section>

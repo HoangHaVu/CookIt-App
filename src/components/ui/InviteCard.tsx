@@ -4,9 +4,10 @@ interface InviteCardProps {
     imageSrc?: string;
     initials?: string;
     isInvited?: boolean;
+    onInvite?: () => void;
 }
 
-export function InviteCard({ name, subtitle, imageSrc, initials, isInvited }: InviteCardProps) {
+export function InviteCard({ name, subtitle, imageSrc, initials, isInvited, onInvite }: InviteCardProps) {
     return (
         <div className="flex items-center gap-4 bg-white dark:bg-slate-900 rounded-[2rem] px-6 py-4 justify-between shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 transition-all hover:border-brand-green/30 group active:scale-[0.98]">
             <div className="flex items-center gap-5">
@@ -37,6 +38,7 @@ export function InviteCard({ name, subtitle, imageSrc, initials, isInvited }: In
             </div>
             <div className="shrink-0 ml-2">
                 <button
+                    onClick={isInvited ? undefined : onInvite}
                     className={`flex min-w-[80px] items-center justify-center rounded-xl h-10 px-4 text-[10px] font-black uppercase tracking-widest transition-all ${isInvited
                         ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-default'
                         : 'bg-primary text-white shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-90'

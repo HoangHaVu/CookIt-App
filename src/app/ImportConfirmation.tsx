@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '../components/layout/PageHeader';
 import { AppNavigation } from '../components/layout/AppNavigation';
 
 export default function ImportConfirmation() {
+  const navigate = useNavigate();
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Import Status" />
@@ -59,11 +61,17 @@ export default function ImportConfirmation() {
         </div>
 
         <div className="w-full space-y-4 mt-12 mb-8">
-          <button className="w-full h-20 bg-primary hover:bg-orange-600 text-white font-black rounded-[2rem] transition-all shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center gap-4 hover:-translate-y-1 active:scale-95 uppercase tracking-tighter text-xl">
+          <button
+            onClick={() => navigate('/privatecookbook')}
+            className="w-full h-20 bg-primary hover:bg-orange-600 text-white font-black rounded-[2rem] transition-all shadow-[0_15px_40px_-10px_rgba(255,165,0,0.5)] flex items-center justify-center gap-4 hover:-translate-y-1 active:scale-95 uppercase tracking-tighter text-xl"
+          >
             <span>View Cookbook</span>
             <span className="material-symbols-outlined text-3xl font-black">menu_book</span>
           </button>
-          <button className="w-full h-20 bg-slate-50 dark:bg-slate-800 text-slate-400 font-black rounded-[2rem] border-4 border-slate-100 dark:border-slate-800 transition-all flex items-center justify-center gap-4 hover:bg-slate-100 dark:hover:bg-slate-700 active:scale-95 uppercase tracking-widest text-xs">
+          <button
+            onClick={() => navigate('/magicimportscan')}
+            className="w-full h-20 bg-slate-50 dark:bg-slate-800 text-slate-400 font-black rounded-[2rem] border-4 border-slate-100 dark:border-slate-800 transition-all flex items-center justify-center gap-4 hover:bg-slate-100 dark:hover:bg-slate-700 active:scale-95 uppercase tracking-widest text-xs"
+          >
             <span>Scan Another</span>
             <span className="material-symbols-outlined text-2xl font-black">barcode_scanner</span>
           </button>

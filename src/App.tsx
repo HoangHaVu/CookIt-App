@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAppStore } from './lib/store';
+import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import SubmitToChallenge from './app/SubmitToChallenge';
 import ChallengeLeaderboard from './app/ChallengeLeaderboard';
 import WeeklyMealPlanner from './app/WeeklyMealPlanner';
@@ -33,252 +35,57 @@ import CreateRecipe from './app/CreateRecipe';
 import Profile from './app/Profile';
 
 function App() {
+  const isAuthenticated = useAppStore((s) => s.isAuthenticated); // used for root redirect
+
   return (
     <BrowserRouter>
       <div className="font-display bg-background-light text-gray-900 min-h-screen">
         <Routes>
+          {/* Public routes */}
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/passwordreset" element={<PasswordReset />} />
+
+          {/* Root redirect */}
           <Route
             path="/"
-            element={
-              <div className="p-8 max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold mb-6 text-brand-green">
-                  CookIt! Screens
-                </h1>
-                <div className="flex flex-col gap-4">
-                  <Link
-                    to="/submittochallenge"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    SubmitToChallenge Screen
-                  </Link>
-                  <Link
-                    to="/challengeleaderboard"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    ChallengeLeaderboard Screen
-                  </Link>
-                  <Link
-                    to="/weeklymealplanner"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    WeeklyMealPlanner Screen
-                  </Link>
-                  <Link
-                    to="/homepagegreen"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    HomepageGreen Screen
-                  </Link>
-                  <Link
-                    to="/importconfirmation"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    ImportConfirmation Screen
-                  </Link>
-                  <Link
-                    to="/expirationtracking"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    ExpirationTracking Screen
-                  </Link>
-                  <Link
-                    to="/recipedetail"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    RecipeDetail Screen
-                  </Link>
-                  <Link
-                    to="/marketplace"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    Marketplace Screen
-                  </Link>
-                  <Link
-                    to="/privatecookbook"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    PrivateCookbook Screen
-                  </Link>
-                  <Link
-                    to="/searchfilter"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    SearchFilter Screen
-                  </Link>
-                  <Link
-                    to="/creategroup"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    CreateGroup Screen
-                  </Link>
-                  <Link
-                    to="/cookmode"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    CookMode Screen
-                  </Link>
-                  <Link
-                    to="/mealplannercalendar"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    MealPlannerCalendar Screen
-                  </Link>
-                  <Link
-                    to="/collectiondetail"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    CollectionDetail Screen
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    SignUp Screen
-                  </Link>
-                  <Link
-                    to="/groupactivityfeed"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    GroupActivityFeed Screen
-                  </Link>
-                  <Link
-                    to="/login"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    Login Screen
-                  </Link>
-                  <Link
-                    to="/magicimportscan"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    MagicImportScan Screen
-                  </Link>
-                  <Link
-                    to="/shoppinglist"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    ShoppingList Screen
-                  </Link>
-                  <Link
-                    to="/invitefriends"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    InviteFriends Screen
-                  </Link>
-                  <Link
-                    to="/trendingcreators"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    TrendingCreators Screen
-                  </Link>
-                  <Link
-                    to="/achievementsbadges"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    AchievementsBadges Screen
-                  </Link>
-                  <Link
-                    to="/createchallenge"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    CreateChallenge Screen
-                  </Link>
-                  <Link
-                    to="/pantryinventory"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    PantryInventory Screen
-                  </Link>
-                  <Link
-                    to="/recipeimport"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    RecipeImport Screen
-                  </Link>
-                  <Link
-                    to="/onboarding"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    Onboarding Screen
-                  </Link>
-                  <Link
-                    to="/passwordreset"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    PasswordReset Screen
-                  </Link>
-                  <Link
-                    to="/homepageorange"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    HomepageOrange Screen
-                  </Link>
-                  <Link
-                    to="/invitemembers"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    InviteMembers Screen
-                  </Link>
-                  <Link
-                    to="/reciperankings"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    RecipeRankings Screen
-                  </Link>
-                  <Link
-                    to="/createrecipe"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    CreateRecipe Screen
-                  </Link>
-                  <Link
-                    to="/profile"
-                    className="text-primary hover:underline text-lg"
-                  >
-                    Profile Screen
-                  </Link>
-                </div>
-              </div>
-            }
+            element={isAuthenticated ? <HomepageGreen /> : <Navigate to="/onboarding" replace />}
           />
-          <Route path="/submittochallenge" element={<SubmitToChallenge />} />
-          <Route
-            path="/challengeleaderboard"
-            element={<ChallengeLeaderboard />}
-          />
-          <Route path="/weeklymealplanner" element={<WeeklyMealPlanner />} />
-          <Route path="/homepagegreen" element={<HomepageGreen />} />
-          <Route path="/importconfirmation" element={<ImportConfirmation />} />
-          <Route path="/expirationtracking" element={<ExpirationTracking />} />
-          <Route path="/recipedetail" element={<RecipeDetail />} />
-          <Route path="/marketplace" element={<Marketplace />} />
-          <Route path="/privatecookbook" element={<PrivateCookbook />} />
-          <Route path="/searchfilter" element={<SearchFilter />} />
-          <Route path="/creategroup" element={<CreateGroup />} />
-          <Route path="/cookmode" element={<CookMode />} />
-          <Route
-            path="/mealplannercalendar"
-            element={<MealPlannerCalendar />}
-          />
-          <Route path="/collectiondetail" element={<CollectionDetail />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/groupactivityfeed" element={<GroupActivityFeed />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/magicimportscan" element={<MagicImportScan />} />
-          <Route path="/shoppinglist" element={<ShoppingList />} />
-          <Route path="/invitefriends" element={<InviteFriends />} />
-          <Route path="/trendingcreators" element={<TrendingCreators />} />
-          <Route path="/achievementsbadges" element={<AchievementsBadges />} />
-          <Route path="/createchallenge" element={<CreateChallenge />} />
-          <Route path="/pantryinventory" element={<PantryInventory />} />
-          <Route path="/recipeimport" element={<RecipeImport />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/passwordreset" element={<PasswordReset />} />
-          <Route path="/homepageorange" element={<HomepageOrange />} />
-          <Route path="/invitemembers" element={<InviteMembers />} />
-          <Route path="/reciperankings" element={<RecipeRankings />} />
-          <Route path="/createrecipe" element={<CreateRecipe />} />
-          <Route path="/profile" element={<Profile />} />
+
+          {/* Protected app routes */}
+          <Route path="/homepagegreen" element={<ProtectedRoute><HomepageGreen /></ProtectedRoute>} />
+          <Route path="/homepageorange" element={<ProtectedRoute><HomepageOrange /></ProtectedRoute>} />
+          <Route path="/recipedetail/:id" element={<ProtectedRoute><RecipeDetail /></ProtectedRoute>} />
+          <Route path="/recipedetail" element={<ProtectedRoute><RecipeDetail /></ProtectedRoute>} />
+          <Route path="/createrecipe" element={<ProtectedRoute><CreateRecipe /></ProtectedRoute>} />
+          <Route path="/cookmode" element={<ProtectedRoute><CookMode /></ProtectedRoute>} />
+          <Route path="/searchfilter" element={<ProtectedRoute><SearchFilter /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/privatecookbook" element={<ProtectedRoute><PrivateCookbook /></ProtectedRoute>} />
+          <Route path="/collectiondetail" element={<ProtectedRoute><CollectionDetail /></ProtectedRoute>} />
+          <Route path="/weeklymealplanner" element={<ProtectedRoute><WeeklyMealPlanner /></ProtectedRoute>} />
+          <Route path="/mealplannercalendar" element={<ProtectedRoute><MealPlannerCalendar /></ProtectedRoute>} />
+          <Route path="/shoppinglist" element={<ProtectedRoute><ShoppingList /></ProtectedRoute>} />
+          <Route path="/pantryinventory" element={<ProtectedRoute><PantryInventory /></ProtectedRoute>} />
+          <Route path="/expirationtracking" element={<ProtectedRoute><ExpirationTracking /></ProtectedRoute>} />
+          <Route path="/magicimportscan" element={<ProtectedRoute><MagicImportScan /></ProtectedRoute>} />
+          <Route path="/recipeimport" element={<ProtectedRoute><RecipeImport /></ProtectedRoute>} />
+          <Route path="/importconfirmation" element={<ProtectedRoute><ImportConfirmation /></ProtectedRoute>} />
+          <Route path="/groupactivityfeed" element={<ProtectedRoute><GroupActivityFeed /></ProtectedRoute>} />
+          <Route path="/creategroup" element={<ProtectedRoute><CreateGroup /></ProtectedRoute>} />
+          <Route path="/invitemembers" element={<ProtectedRoute><InviteMembers /></ProtectedRoute>} />
+          <Route path="/invitefriends" element={<ProtectedRoute><InviteFriends /></ProtectedRoute>} />
+          <Route path="/marketplace" element={<ProtectedRoute><Marketplace /></ProtectedRoute>} />
+          <Route path="/reciperankings" element={<ProtectedRoute><RecipeRankings /></ProtectedRoute>} />
+          <Route path="/trendingcreators" element={<ProtectedRoute><TrendingCreators /></ProtectedRoute>} />
+          <Route path="/achievementsbadges" element={<ProtectedRoute><AchievementsBadges /></ProtectedRoute>} />
+          <Route path="/createchallenge" element={<ProtectedRoute><CreateChallenge /></ProtectedRoute>} />
+          <Route path="/challengeleaderboard" element={<ProtectedRoute><ChallengeLeaderboard /></ProtectedRoute>} />
+          <Route path="/submittochallenge" element={<ProtectedRoute><SubmitToChallenge /></ProtectedRoute>} />
+
+          {/* Catch-all — redirect unmatched URLs to root (auth-aware) */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </BrowserRouter>

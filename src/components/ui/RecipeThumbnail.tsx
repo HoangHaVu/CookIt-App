@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+import { useAppStore } from '../../lib/store';
+
 interface RecipeThumbnailProps {
     title: string;
     category: string;
     time: string;
     imageSrc: string;
     isFavorite?: boolean;
+    recipeId?: string;
 }
 
 export function RecipeThumbnail({
@@ -11,10 +15,18 @@ export function RecipeThumbnail({
     category,
     time,
     imageSrc,
-    isFavorite = false
+    isFavorite = false,
+    recipeId,
 }: RecipeThumbnailProps) {
+    const navigate = useNavigate();
+    const toggleFavorite = useAppStore((s) => s.toggleFavorite);
+    const isFavoritedInStore = useAppStore((s) => recipeId ? s.isFavorited(recipeId) : isFavorite);
+    const saved = isFavoritedInStore;
+
+    const detailPath = recipeId ? `/recipedetail/${recipeId}` : '/recipedetail';
+
     return (
-        <div className="group bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-xl border-2 border-slate-50 dark:border-slate-800 hover:border-brand-green/20 transition-all cursor-pointer">
+        <div onClick={() => navigate(detailPath)} className="group bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-xl border-2 border-slate-50 dark:border-slate-800 hover:border-brand-green/20 transition-all cursor-pointer">
             <div className="aspect-square relative overflow-hidden">
                 <img
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -22,8 +34,11 @@ export function RecipeThumbnail({
                     alt={title}
                 />
                 <div className="absolute top-4 right-4 z-10">
-                    <button className={`size-10 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-xl border border-white/20 transition-all active:scale-90 ${isFavorite ? 'bg-primary text-white' : 'bg-white/80 text-primary'}`}>
-                        <span className={`material-symbols-outlined font-black ${isFavorite ? 'fill-1' : ''}`}>favorite</span>
+                    <button
+                        onClick={(e) => { e.stopPropagation(); if (recipeId) toggleFavorite(recipeId); }}
+                        className={`size-10 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-xl border border-white/20 transition-all active:scale-90 ${saved ? 'bg-primary text-white' : 'bg-white/80 text-primary'}`}
+                    >
+                        <span className={`material-symbols-outlined font-black ${saved ? 'fill-1' : ''}`}>favorite</span>
                     </button>
                 </div>
             </div>

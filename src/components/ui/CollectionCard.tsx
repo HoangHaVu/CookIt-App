@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 interface CollectionCardProps {
     title: string;
     recipeCount: number;
@@ -13,11 +15,12 @@ export function CollectionCard({
     images,
     label = 'Label'
 }: CollectionCardProps) {
+    const navigate = useNavigate();
     const isTriple = images.length >= 3;
     const isDouble = images.length === 2;
 
     return (
-        <div className="flex flex-col overflow-hidden rounded-3xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] group">
+        <div onClick={() => navigate('/collectiondetail')} className="flex flex-col overflow-hidden rounded-3xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] group cursor-pointer">
             <div className={`grid ${isTriple ? 'grid-cols-3' : isDouble ? 'grid-cols-2' : 'grid-cols-1'} gap-1 h-44 overflow-hidden`}>
                 {images.slice(0, 3).map((img, i) => (
                     <div

@@ -11,19 +11,18 @@
 - Phase: **Phase 1 MVP** — alle Screens angelegt, noch nicht verdrahtet
 
 ### Was zuletzt gemacht wurde
-- DNA, ZUKUNFT, alle Pflichtdateien erstellt (sync antigravity)
-- 32 Screen-Dateien in src/app/ vorhanden
-- 34 Maps in docs/maps/ generiert
-- Stack in DNA Bereich 2 eingetragen
+- MVP Phase 1 vollständig abgeschlossen + Build clean (2026-03-10)
+- Catch-All Route `*` → Navigate to `/` eingebaut
+- Build: 127 Module, 0 Fehler, 398 KB Bundle
 
 ### Nächster Schritt
-1. **React Router konfigurieren** — Routes aus map-navigation.md in App.tsx einbauen
-2. **State Management** (Zustand oder Context API) für Like-System + Favoriten
-3. **Auth-Flow** verdrahten: Onboarding → Login/SignUp → Homepage
+→ **MVP ist launch-ready.** Phase 2 vorbereiten:
+1. Backend-Entscheidung: Supabase vs. eigener Server?
+2. Code-Splitting (lazy imports) für Performance
+3. Real Auth (Supabase Auth / Firebase) ersetzen Mock-Login
 
 ### Offene Blocker
-- Auth/Backend: N/A — noch kein Backend definiert (Entscheidung: Mock-Daten oder Supabase?)
-- State Management: noch nicht gewählt (Zustand empfohlen für React + Vite)
+- Kein Backend — alles Mock-Daten (bewusste MVP-Entscheidung)
 
 ### Wichtige Pfade & Befehle
 - Server starten: `npm run dev`

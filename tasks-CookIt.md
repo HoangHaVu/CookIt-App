@@ -5,13 +5,10 @@
 
 ## Kritisch (Sofort)
 
-- [ ] State Management einrichten (Zustand / Context API) — alle Screens brauchen shared state
-- [ ] React Router v6 konfigurieren — Routes aus map-navigation.md → src/app/ verbinden
-      Ref: docs/maps/map-navigation.md
-- [ ] Auth-Flow implementieren (Login, SignUp, PasswordReset, Onboarding)
-      Screens: src/app/Login.tsx, src/app/SignUp.tsx, src/app/Onboarding.tsx
-      Ref: docs/maps/map-login.md, map-sign-up.md, map-onboarding.md
-- [ ] Protected Routes: Nur eingeloggte Nutzer sehen App-Screens
+- [x] State Management einrichten — Zustand installiert + src/lib/store.ts erstellt (2026-03-09)
+- [x] React Router v6 konfiguriert — alle 32 Screens verdrahtet (2026-03-09)
+- [x] Auth-Flow: Login/SignUp/Onboarding rufen store.login() auf → App.tsx leitet auth-basiert weiter (2026-03-09)
+- [x] Protected Routes: ProtectedRoute-Komponente + alle 28 App-Screens abgesichert (2026-03-09)
 
 ---
 
@@ -19,28 +16,18 @@
 
 ### Phase 1 MVP — Core Screens verdrahten
 
-- [ ] Homepage (Green/Orange) — CategoryScroll + RecommendedRecipes mit echten Daten
-      Screen: src/app/HomepageGreen.tsx, src/app/HomepageOrange.tsx
-      Ref: docs/maps/map-homepage-green.md
-- [ ] Recipe Detail — vollständige Darstellung (Zutaten, Schritte, Stats, Reviews)
-      Screen: src/app/RecipeDetail.tsx
-      Ref: docs/maps/map-recipe-detail.md
-- [ ] Create Recipe — Form mit Bild-Upload, Zutaten, Schritte, Tags, Privatsphäre
-      Screen: src/app/CreateRecipe.tsx
-      Ref: docs/maps/map-create-recipe.md
-- [ ] Profile Screen — eigenes Profil mit Stats + Rezept-Grid
-      Screen: src/app/Profile.tsx
-      Ref: docs/maps/map-profile.md
-- [ ] Search & Filter — Volltextsuche + kombinierbare Filter
-      Screen: src/app/SearchFilter.tsx
-      Ref: docs/maps/map-search-filter.md
+- [x] Homepage — CategoryScroll (MOCK_CATEGORIES) + RecommendedRecipes (MOCK_RECIPES) + Loading Skeleton + personalisiertes Greeting (2026-03-09)
+- [x] Recipe Detail — Zutaten, Schritte, Stats aus MOCK_RECIPES[0], Like-Button mit Store verdrahtet (2026-03-09)
+- [x] Create Recipe — vollständige Form-State (Zutaten dynamisch, Schritte dynamisch, Tags, Privacy) (2026-03-09)
+- [x] Profile Screen — currentUser aus Store, echte Stats (Followers, Saved-Count) (2026-03-09)
+- [x] Search & Filter — MOCK_RECIPES + Live-Suche + EmptyState (2026-03-09)
 
 ### Daten-Layer
 
-- [ ] Mock-Daten / JSON-Fixtures für Rezepte, User, Kategorien anlegen
-- [ ] Rezept-Datenmodell definieren (TypeScript Interfaces/Types)
-- [ ] Like-System implementieren (optimistic updates im State)
-- [ ] Favoriten-System implementieren
+- [x] Mock-Daten angelegt — src/lib/mockData.ts mit 5 Rezepten, 2 Usern, Kategorien (2026-03-09)
+- [x] TypeScript Interfaces definiert — src/lib/types.ts (Recipe, User, Comment, Collection, ...) (2026-03-09)
+- [x] Like-System implementiert — optimistic updates via Zustand Set (2026-03-09)
+- [x] Favoriten-System implementiert — RecipeCard + RecipeThumbnail verdrahtet (2026-03-09)
 
 ---
 
@@ -48,27 +35,47 @@
 
 ### Phase 1 MVP — Restliche Screens
 
-- [ ] Private Cookbook — Sammlungen + CollectionDetail
-      Screens: src/app/PrivateCookbook.tsx, src/app/CollectionDetail.tsx
-      Ref: docs/maps/map-private-cookbook.md
-- [ ] AppNavigation einbauen → Tabs: Homepage / Planner / Recipes / Profile
-      Komponente: src/components/layout/AppNavigation.tsx
-      Ref: docs/maps/map-layout.md
+- [x] Private Cookbook — Sammlungen + CollectionDetail mit Tab-Filter (All Recipes / Recently Added) (2026-03-09)
+- [x] AppNavigation einbauen → Tabs: Homepage / Planner / Recipes / Profile (2026-03-09)
+
+### Interaktivität (Batch-Update 2)
+
+- [x] ShoppingList — checkable Items (controlled), dynamischer Checkout-Zähler (2026-03-09)
+- [x] ExpirationTracking — Tab-Filter (All / Expiring Soon / Expired) mit useState (2026-03-09)
+- [x] TrendingCreators — Tab-Auswahl (Daily/Weekly/Monthly/All Time) + Follow-Toggle für alle Creator (2026-03-09)
+- [x] AchievementsBadges — User-Name + Avatar aus Zustand-Store (2026-03-09)
+- [x] Profile — Tab-State (My Recipes/Saved/Achievements) in Profile.tsx gelifted, ProfileRecipeGrid filtert nach Favoriten (2026-03-09)
+- [x] CollectionDetail — Tab-Filter (All Recipes / Recently Added) mit useState (2026-03-09)
+- [x] PantryInventory — Kategorie-Pills (All/Grains/Spices/Canned) aktiv schaltbar (2026-03-09)
+- [x] Marketplace — Kategorie-Filter + Live-Suche beide gleichzeitig aktiv (2026-03-09)
+
+### Interaktivität (Batch-Update 3)
+
+- [x] ChallengeLeaderboard — Recipes/Creators Tab-Toggle mit getrennten Ranking-Daten (2026-03-09)
+- [x] GroupActivityFeed — Feed/Recipes/Members Tabs, EmptyState für nicht-Feed-Tabs (2026-03-09)
+- [x] InviteCard — onInvite Callback Prop hinzugefügt (2026-03-09)
+- [x] InviteMembers — Invited-Set mit useState, "Done Inviting (N)"-Zähler (2026-03-09)
+- [x] InviteFriends — Invited-Set + Copy-Feedback mit setTimeout (2026-03-09)
+- [x] SubmitToChallenge — kontrollierte Radio-Selektion via useState statt defaultChecked (2026-03-09)
+- [x] CreateGroup — Form-State (name, description, isPublic) + Validierung + echter Privacy-Toggle (2026-03-09)
+- [x] CreateChallenge — Form-State (name, rules, prize, dates) + disabled Launch-Button (2026-03-09)
+- [x] MealPlannerCalendar — echter dynamischer Kalender: prev/next Monat, selectedDay, firstDayOfWeek (2026-03-09)
 
 ### UX / Ergänzende Screens
 
-- [ ] Empty States — alle Core-Screens brauchen Empty-State-Variante
-- [ ] Loading States — Skeleton-Loader für Feed, Recipe Detail
-- [ ] Error States — globales Error-Handling
+- [x] Empty States — EmptyState-Komponente erstellt, verdrahtet in SearchFilter + PrivateCookbook (2026-03-09)
+- [x] Loading States — SkeletonCard/SkeletonFeed-Komponente + 800ms Simulation in HomepageGreen (2026-03-09)
+- [x] Error States — React ErrorBoundary + "Try Again"-Button in main.tsx eingebunden (2026-03-09)
 
 ### Phase 2 Vorbereitung (nur Architektur)
 
-- [ ] Cook Mode Screen überprüfen — Timer-Logik-Struktur planen
-      Screen: src/app/CookMode.tsx
-      Ref: docs/maps/map-cook-mode.md
-- [ ] Weekly Meal Planner — Kalender-Logik planen
-      Screens: src/app/WeeklyMealPlanner.tsx, src/app/MealPlannerCalendar.tsx
-      Ref: docs/maps/map-weekly-meal-planner.md
+- [x] Cook Mode — funktionierender Countdown-Timer mit Play/Pause, Schritt-Navigation, Done-State (2026-03-09)
+- [x] Weekly Meal Planner — DayPicker mit echtem Wochendatum, tagbasierte Mahlzeiten, EmptyState für leere Tage (2026-03-09)
+- [x] Catch-All Route `*` → Navigate to `/` (auth-aware redirect) (2026-03-10)
+
+### MVP Launch Status
+
+- [x] BUILD CLEAN — 127 Module, 0 TypeScript-Fehler, 398 KB Bundle (2026-03-10)
 
 ---
 

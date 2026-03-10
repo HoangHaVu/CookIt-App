@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { PageHeader } from '../components/layout/PageHeader';
 import { CreatorCard } from '../components/ui/CreatorCard';
 import { AppNavigation } from '../components/layout/AppNavigation';
+
+type TimeTab = 'Daily' | 'Weekly' | 'Monthly' | 'All Time';
 
 const TOP_CREATORS = [
   {
@@ -30,44 +33,58 @@ const TOP_CREATORS = [
     handle: '@eglass',
     followers: '640K',
     imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuALBS2kL84KnsmRGd1RzOu960uIIR-cxWIsPvTR7dO075b-cQgIEKua4fXYH2_vTp36kIxKDtTzA8h1Uxn7CMTqmYipr1k5eSh41VHmksAl1R3WOCrEO372Kj3O19izbAUDjiFyiBHsYsRvMVlfpRYyp-XmVqHloEx6RZqnk0Y7EjbFizSsZHrNR2wpvwHyxHe9b6IjUMZHPzjeAMKsFleDHbPcKF5A6MMKae-TQAfaLQ6oRILW7sgrlP2_W1JtxSAX73Srk9TWDSns',
-    isFollowing: true,
   },
 ];
 
 const ON_THE_RISE = [
   {
     name: 'Jordan Smith',
+    handle: '@jsmith',
     growth: '+24% this week',
     imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDOwMu5YJOreBWH0J_oD00XaM6fLJb4kBCO9M79YNO8BmK2mPo3lQOzlPxLbP1dsVWz3YaoeMrAEs2Woza2NMrNsAdI7_kjtBg-VA1mGJrir3tgrB4Y-yBZ3uXT9p0z_gpcMRTFwyotXMVuzM9kVCNR1dXHVVl8KYzlDCEoDPiMlie9EeRzosCVWhkvAKfJFHoF-c2G6tr4p-jsF62p2AhjriMJSqAPABjINUnimM8zC68deodejPbRxNEN14inDrKoIpgMdB5_NZOq',
   },
   {
     name: 'Maya Gupta',
+    handle: '@mgupta',
     growth: '+18% this week',
     imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKpIRVVYyTy4vmdmhORDtcQ1SZEXO0K4FKW20gmNLKWNASCARCXRP9vGscm0o1SHOw75-8wxorvO319Xqa44b275TssnZ1eQB7xWoDRF7-eXJxw5dwkkE1VTdGVIJQV7gguffrxwRJZN6RpBYzRys39Ys6wK-rCv-JdyPoRP78eQvnYHghXYAtKq4D6R2hd3NmUark_zXzZmfHyHuJka5mxdVAzRq2iZU0pwU8cKhPRo7AamOLf19VvOx-DtcWP4cpv1SdPj8d2TNR',
-  }
+  },
 ];
 
+const TIME_TABS: TimeTab[] = ['Daily', 'Weekly', 'Monthly', 'All Time'];
+
 export default function TrendingCreators() {
+  const [activeTab, setActiveTab] = useState<TimeTab>('Weekly');
+  const [followedHandles, setFollowedHandles] = useState<Set<string>>(new Set(['@eglass']));
+
+  const toggleFollow = (handle: string) => {
+    setFollowedHandles((prev) => {
+      const next = new Set(prev);
+      if (next.has(handle)) next.delete(handle);
+      else next.add(handle);
+      return next;
+    });
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
       <PageHeader title="Trending Creators" />
 
       <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm sticky top-[72px] z-10 overflow-hidden">
         <div className="flex px-4 overflow-x-auto no-scrollbar">
-          {['Daily', 'Weekly', 'Monthly', 'All Time'].map((tab) => {
-            const isActive = tab === 'Weekly';
-            return (
-              <button
-                key={tab}
-                className={`flex-1 min-w-24 py-4 text-center text-xs font-black uppercase tracking-widest border-b-4 transition-all ${isActive
+          {TIME_TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`flex-1 min-w-24 py-4 text-center text-xs font-black uppercase tracking-widest border-b-4 transition-all ${
+                activeTab === tab
                   ? 'border-primary text-brand-green'
                   : 'border-transparent text-slate-400 hover:text-slate-600'
-                  }`}
-              >
-                {tab}
-              </button>
-            );
-          })}
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
       </nav>
 
@@ -78,7 +95,12 @@ export default function TrendingCreators() {
           </h2>
           <div className="space-y-4">
             {TOP_CREATORS.map((creator) => (
-              <CreatorCard key={creator.handle} {...creator} />
+              <CreatorCard
+                key={creator.handle}
+                {...creator}
+                isFollowing={followedHandles.has(creator.handle)}
+                onToggleFollow={() => toggleFollow(creator.handle)}
+              />
             ))}
           </div>
         </section>
@@ -88,29 +110,39 @@ export default function TrendingCreators() {
             On the Rise
           </h2>
           <div className="grid grid-cols-2 gap-4">
-            {ON_THE_RISE.map((creator) => (
-              <div key={creator.name} className="bg-white dark:bg-slate-900 p-4 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 text-center transition-all active:scale-[0.98]">
-                <div className="relative mx-auto mb-4 size-20">
-                  <img
-                    className="w-full h-full rounded-2xl object-cover border-2 border-accent-sage shadow-md"
-                    src={creator.imageSrc}
-                    alt={creator.name}
-                  />
-                  <div className="absolute -top-1 -right-1 bg-primary size-5 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-slate-900 shadow-sm">
-                    <span className="material-symbols-outlined text-white text-[12px] font-black">trending_up</span>
+            {ON_THE_RISE.map((creator) => {
+              const isFollowing = followedHandles.has(creator.handle);
+              return (
+                <div key={creator.name} className="bg-white dark:bg-slate-900 p-4 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 text-center transition-all active:scale-[0.98]">
+                  <div className="relative mx-auto mb-4 size-20">
+                    <img
+                      className="w-full h-full rounded-2xl object-cover border-2 border-accent-sage shadow-md"
+                      src={creator.imageSrc}
+                      alt={creator.name}
+                    />
+                    <div className="absolute -top-1 -right-1 bg-primary size-5 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-slate-900 shadow-sm">
+                      <span className="material-symbols-outlined text-white text-[12px] font-black">trending_up</span>
+                    </div>
                   </div>
+                  <p className="font-black text-sm text-slate-900 dark:text-slate-100 truncate leading-tight">
+                    {creator.name}
+                  </p>
+                  <p className="text-[10px] text-primary font-black uppercase tracking-wider mt-1 mb-4">
+                    {creator.growth}
+                  </p>
+                  <button
+                    onClick={() => toggleFollow(creator.handle)}
+                    className={`w-full text-[10px] font-black uppercase tracking-widest py-2.5 rounded-xl transition-all active:scale-95 ${
+                      isFollowing
+                        ? 'bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700'
+                        : 'bg-primary hover:bg-orange-600 shadow-lg shadow-primary/20 text-white'
+                    }`}
+                  >
+                    {isFollowing ? 'Following' : 'Follow'}
+                  </button>
                 </div>
-                <p className="font-black text-sm text-slate-900 dark:text-slate-100 truncate leading-tight">
-                  {creator.name}
-                </p>
-                <p className="text-[10px] text-primary font-black uppercase tracking-wider mt-1 mb-4">
-                  {creator.growth}
-                </p>
-                <button className="w-full bg-primary hover:bg-orange-600 shadow-lg shadow-primary/20 text-white text-[10px] font-black uppercase tracking-widest py-2.5 rounded-xl transition-all">
-                  Follow
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       </main>
